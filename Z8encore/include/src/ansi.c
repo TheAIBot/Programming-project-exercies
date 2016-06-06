@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "ansi.h"
+#include "SineLUT.h"
 
 
 #define ESC 0x1B
@@ -203,4 +204,17 @@ void window(int x1, int y1, int x2, int y2, char style,char title[]){
 			printf("%c", title[index]);
 			index++;
 	 }
+}
+
+void initVector(struct TVector * v, long x, long y)
+{
+	v->x = x;
+	v->y = y;
+}
+
+void rotate(struct TVector *v, int angle)
+{long nx=v->x;
+long ny=v->y;	
+v->x = nx * cos(angle) -ny * sin(angle);
+	v->y = nx * sin(angle) + ny * cos(angle);
 }

@@ -1,7 +1,11 @@
 #ifndef _ANSI_H_
 #define _ANSI_H_
 
-
+struct TVector
+{
+	long x;
+	long y;
+};
 
 void bgcolor(int);
 void color();
@@ -14,5 +18,7 @@ void blink(char);
 void reverse(char);
 void movecursor(int, int);
 void window(int, int, int, int ,char, char[]);
+void initVector(struct TVector * v, long, long);
+void rotate(struct TVector *v, int angle);
 
 #endif
