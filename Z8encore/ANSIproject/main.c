@@ -2,21 +2,9 @@
 #include <sio.h>             // special encore serial i/o routines
 #include "ansi.h"
 #include "SineLUT.h"
-#include "SuperIO.h";
-#include "charset.h"
-
-
-volatile int hundredseconds = 0;
-volatile int seconds = 0;
-volatile int minutes = 0;
-volatile int hours = 0;
-volatile int runTimer = 1;
-volatile char LEDupdateFlag = 0;
-char videoBuffer[5][6];
-char* wholeString;
-int wholeStringIndex = 0;
-int wholeStringLength = 0;
-
+#include "SuperIO.h"
+#include "screenio.h"
+#include "buttonio.h"
 
 void printVector(struct TVector v)
 {
@@ -25,23 +13,6 @@ void printVector(struct TVector v)
 	printf("\n");
 	printFix(expand(v.y));
 	printf("\n");
-}
-
-char readkey()
-{	char f7 = (~PFIN & 0x80) >> 7;
-	char f6 = (~PFIN & 0x40) >> 5;
-	char d3 = (~PDIN & 0x08) >> 1;
-	return (f7 | f6 | d3);// & 0x07;
-
-	/*
-	char value=0;
-
-	if((PFIN >> 7 & 1) == 0) value |= 1;
-	if((PFIN >> 6 & 1) == 0) value |= 2;
-	if((PDIN >> 3 & 1) == 0) value |= 4;
-
-	return value;
-	*/
 }
 
 void delay(int times)
@@ -54,200 +25,12 @@ void delay(int times)
 	}
 }
 
-#pragma interrupt
-void timer0int() {
-	/*if (runTimer == 1)
-	{
-		hundredseconds++;
-		if (hundredseconds == 100)
-		{
-		hundredseconds = 0;
-			seconds++;
-			if (seconds == 60)
-			{
-				seconds = 0;
-				minutes++;
-				if (minutes == 60)
-				{
-					minutes = 0;
-					hours++;
-				}
-			}
-		}
-	}*/
-	LEDupdateFlag = 1;
-
-	//index++;
-	//if (index > 4)
-	//{
-	//	index = 0;
-	//}
-}
-
-void initButtons()
-{
-	//Initialize af knapper
-	PFADDR = 0x01;
-	PFCTL |= 0xC0;	
-	PDADDR = 0x01;
-	PDCTL |= 0x08;
-	PEADDR = 0x00;
-	PECTL |= 0x1f;
-	PGADDR = 0x00;
-	PDCTL |= 0xef;
-}
-
-void initTimer()
-{
-	//interupt vector
-	SET_VECTOR(TIMER0, timer0int);
-
-	//Timer
-	DI();
-	T0CTL = 0x39; //00111001b -> TEN = 1 TPOL = 0 PRES = 111 TMODE = 001.
-	T0H = 0x00; //00000000; starting value
-	T0L = 0x01; //00000001 - 0000000000000001
-	T0RH = 0x00;
-	T0RL = 0x48;
-
-	//Set interrupt
-	IRQ0ENH &= 0xDF; //enable Timer 0 interrupt, and set nominal priority
-	IRQ0ENL |= 0x20; 
-
-	//Enable timer
-	T0CTL = 0xB9; //10111001
-	EI();
-}
-
-void* LEDinit()
-{
-	PEDD = 0x00;
-	PGDD = 0x00;
-
-	initTimer();
-}
-
-char getCharColumnArray(char c, int index)
-{
-	return character_data[c - 32][index];
-}
-
-void LEDsetString(char string[])
-{
-	int length = 0;
-	int y = 0;
-	while (string[++length] != '\0') { }
-	printf("%d.\n", length); 
-	for(wholeStringIndex = 0; wholeStringIndex < 5; wholeStringIndex++)
-	{
-		for(y = 0; y < 6; y++)
-		{
-			videoBuffer[wholeStringIndex][y] = getCharColumnArray(string[wholeStringIndex], y);
-		}
-		videoBuffer[wholeStringIndex][5] = 0x00;
-	}
-	wholeString = string;
-	wholeStringLength = length;
-}
-
-void loadCharIntoVideoBuffer()
-{
-	int y;
-	for(y = 0; y < 5; y++)
-	{
-		videoBuffer[4][y] = getCharColumnArray(wholeString[wholeStringIndex], y);
-	}
-	videoBuffer[4][5] = 0x00;
-	wholeStringIndex++;
-	if(wholeStringIndex >= wholeStringLength)
-	{
-		wholeStringIndex = 0;
-	}
-}
-
-void initScreen(char screen)
-{
-	if (screen == 1)
-	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 7); //10011111
-	}
-	else if(screen == 2)
-	{
-		PGOUT &= ~0x7f | (1 << 7);//11111111
-		PEOUT |= 0x1f; //00011111
-	}
-	else if(screen == 3)
-	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 5); //00111111
-	}
-	else if(screen == 4)
-	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 6);//01011111
-	}
-}
-
-void clockScreen(char screen)
-{
-	if (screen == 1)
-	{
-    //clock
-		PEOUT &= ~(1 << 7);
-		PEOUT |= (1 << 7);
-		PEOUT &= ~(1 << 7);
-	}
-	else if(screen == 2)
-	{
-	  //clock
-		PGOUT &= ~(1 << 7);
-		PGOUT |= (1 << 7);
-		PGOUT &= ~(1 << 7);
-	}
-	else if(screen == 3)
-	{
-	  //clock
-		PEOUT &= ~(1 << 5);
-		PEOUT |= (1 << 5);
-		PEOUT &= ~(1 << 5);
-	}
-	else if(screen == 4)
-	{
-	  //clock
-		PEOUT &= ~(1 << 6);
-		PEOUT |= (1 << 6);
-		PEOUT &= ~(1 << 6);
-	}
-}
 
 
-void writeLED(int column, int screen, char shape[6])
-{		
-		initScreen(screen);
 
-		PEOUT &=  ~(1 << column);
-		PGOUT |= shape[4 - column];
-		
-		// Clock D1
-		clockScreen(screen);
-}
 
-void LEDupdate()
-{
-	int column = 0;
-	int screen = 0;
-	for(screen = 1; screen <= 4; screen++)
-	{
-		for(column = 0; column < 5; column++)
-		{
-			
-			while(LEDupdateFlag == 0) {}
-			writeLED(column, screen, videoBuffer[screen - 1]);
-			LEDupdateFlag = 0;
-		}
-	}
-}
+
+
 
 void main() {
 	//standard instanser
@@ -271,25 +54,7 @@ void main() {
 
 	while (1 == 1)
 	{
-		for(j = 0; j < 5; j++)
-		{
-			for(i = 0; i < 5;  i++) // 5
-			{
-				LEDupdate();
-			}
-			for(i = 0; i < 5; i++)
-			{
-				for(k = 1; k < 6; k++)
-				{
-					videoBuffer[i][k - 1] = videoBuffer[i][k];
-				}
-				if(i < 5)
-				{
-					videoBuffer[i][5] = videoBuffer[i + 1][0];
-				}
-			}
-		}
-		loadCharIntoVideoBuffer();
+		scrollText();
 	}
 	
 	

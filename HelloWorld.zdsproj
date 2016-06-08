@@ -7,6 +7,9 @@
 <file filter-key="">Z8encore\ANSIproject\main.c</file>
 <file filter-key="">Z8encore\include\src\ansi.c</file>
 <file filter-key="">Z8encore\include\src\SineLUT.c</file>
+<file filter-key="">Z8encore\include\src\screenio.c</file>
+<file filter-key="">Z8encore\include\src\buttonio.c</file>
+<file filter-key="">Z8encore\include\src\timerio.c</file>
 </files>
 
 <!-- configuration information -->

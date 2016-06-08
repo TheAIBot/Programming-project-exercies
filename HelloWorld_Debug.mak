@@ -50,6 +50,12 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\ansi.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\buttonio.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\buttonio.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timerio.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timerio.obj
 
 rebuildall: clean Debug
 
@@ -61,7 +67,10 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\zsldevinit.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\main.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\ansi.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\buttonio.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timerio.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -77,7 +86,8 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\main.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SuperIO.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\buttonio.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdio.h  \
@@ -117,4 +127,50 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj :  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\SineLUT.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timerio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\defines.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\dmadefs.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\eZ8.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\gpio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\sio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\buttonio.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\buttonio.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\buttonio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\defines.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\dmadefs.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\eZ8.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\gpio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\sio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\buttonio.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timerio.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\timerio.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timerio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\defines.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\dmadefs.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\eZ8.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\gpio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\sio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\timerio.c
 
