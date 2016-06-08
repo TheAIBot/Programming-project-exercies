@@ -62,14 +62,5 @@ define _zsl_g_clock_xdefine = 18432000
 /* Set frequency to 18432000 Hz */
 define __user_frequency = 18432000
 
-"C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld"= \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\startupL.obj, \
- .\zsldevinit.obj, \
- .\main.obj, \
- .\ansi.obj, \
- .\SineLUT.obj, \
- .\screenio.obj, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\crtrevaaLDD.lib, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\fpdumyL.obj, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\zslLYD.lib
-
+"C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld"=  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\SineLUT.obj,  .\screenio.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\crtrevaaLDD.lib,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\fpdumyL.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\zslLYD.lib
+WARNING (731) --> File ".\screenio.obj" is not found.
