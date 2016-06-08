@@ -493,6 +493,7 @@ ptn_Child1=Document-0
 ptn_Child2=Document-1
 ptn_Child3=Document-2
 ptn_Child4=Document-3
+ptn_Child5=Document-4
 
 [WorkState_v1_1.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
@@ -502,7 +503,7 @@ DocPathName=Z8encore\ANSIproject\main.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKBAAAAAAKBAAAAAAJAFAAAAAAEDAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBDAAAAAAEBAAAAAAACFAAAAAFICAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-1]
 ptn_Child1=ViewFrame-0
@@ -532,7 +533,17 @@ DocPathName=Z8encore\include\timerio.h
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGLAAAAAAGLAAAAAAKAFAAAAAFKCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGICAAAAAELAAAAAAKNGAAAAADKCAAAAA
+
+[WorkState_v1_1.Frames.ChildFrames.Document-4]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-4.ViewFrame-0]
+DocPathName=Z8encore\include\src\buttonio.c
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPECHAAAAANKAAAAAAMNMAAAAAMICAAAAA
 
 [WorkState_v1_1.Frames.MainFrame]
 Title=HelloWorld -- ZDS II - Z8 Encore! Family -- screenio.c

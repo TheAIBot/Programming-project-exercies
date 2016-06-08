@@ -69,6 +69,8 @@ define __user_frequency = 18432000
  .\ansi.obj, \
  .\SineLUT.obj, \
  .\screenio.obj, \
+ .\buttonio.obj, \
+ .\timerio.obj, \
  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\crtrevaaLDD.lib, \
  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\std\fpdumyL.obj, \
  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\zslLYD.lib
