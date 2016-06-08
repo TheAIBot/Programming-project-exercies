@@ -1,6 +1,7 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines#include "screenio.h"
 #include "timerio.h"
+#include "charset.h"
 
 char videoBuffer[5][6];
 char* wholeString;
@@ -13,6 +14,11 @@ void LEDinit()
 	PGDD = 0x00;
 
 	initTimer();
+}
+
+char getCharColumnArray(char c, int index)
+{
+	return character_data[c - 32][index];
 }
 
 void LEDsetString(char string[])
@@ -105,7 +111,7 @@ void clockScreen(char screen)
 }
 
 
-void writeLED(int column, int screen, char shape[6])
+void writeLED(int column, int screen, char shape[])
 {		
 		initScreen(screen);
 
@@ -114,6 +120,19 @@ void writeLED(int column, int screen, char shape[6])
 		
 		// Clock D1
 		clockScreen(screen);
+}
+
+void LEDWriteCharToScreen(int screen, char toWrite[]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
+{
+	int column = 0;
+	for(column = 0; column < 5; column++)
+	{
+		while(LEDupdateFlag == 0) 
+		{
+		}
+		writeLED(column, screen, toWrite);
+		LEDupdateFlag = 0;
+	}
 }
 
 void LEDupdate()
@@ -125,24 +144,11 @@ void LEDupdate()
 	}
 }
 
-void LEDWriteCharToScreen(int screen, char toWrite[]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
-{
-	int column = 0;
-	for(column = 0; column < 5; column++)
-	{
-		while(LEDupdateFlag == 0) {}
-		writeLED(column, screen, toWrite[screen - 1]);
-		LEDupdateFlag = 0;
-	}
-}
-
-char getCharColumnArray(char c, int index)
-{
-	return character_data[c - 32][index];
-}
-
 void scrollText() // need to make this so it returns after running LEDupdate once, so it doesn't take that much time to run
 {
+	int i;
+	int j;
+	int k;
 	for(j = 0; j < 5; j++)
 	{
 		for(i = 0; i < 5;  i++) // 5

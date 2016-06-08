@@ -80,7 +80,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\main.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SuperIO.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\buttonio.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
@@ -124,6 +124,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\SineLUT.obj :  \
 
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timerio.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \

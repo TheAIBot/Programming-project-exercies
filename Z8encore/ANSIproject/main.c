@@ -3,8 +3,8 @@
 #include "ansi.h"
 #include "SineLUT.h"
 #include "SuperIO.h"
-#include "charset.h"
 #include "screenio.h"
+#include "buttonio.h"
 
 void printVector(struct TVector v)
 {
@@ -13,23 +13,6 @@ void printVector(struct TVector v)
 	printf("\n");
 	printFix(expand(v.y));
 	printf("\n");
-}
-
-char readkey()
-{	char f7 = (~PFIN & 0x80) >> 7;
-	char f6 = (~PFIN & 0x40) >> 5;
-	char d3 = (~PDIN & 0x08) >> 1;
-	return (f7 | f6 | d3);// & 0x07;
-
-	/*
-	char value=0;
-
-	if((PFIN >> 7 & 1) == 0) value |= 1;
-	if((PFIN >> 6 & 1) == 0) value |= 2;
-	if((PDIN >> 3 & 1) == 0) value |= 4;
-
-	return value;
-	*/
 }
 
 void delay(int times)
@@ -43,19 +26,6 @@ void delay(int times)
 }
 
 
-
-void initButtons()
-{
-	//Initialize af knapper
-	PFADDR = 0x01;
-	PFCTL |= 0xC0;	
-	PDADDR = 0x01;
-	PDCTL |= 0x08;
-	PEADDR = 0x00;
-	PECTL |= 0x1f;
-	PGADDR = 0x00;
-	PDCTL |= 0xef;
-}
 
 
 
