@@ -1,6 +1,5 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
-#include <string.h>
 #include "ansi.h"
 #include "SineLUT.h"
 #include "SuperIO.h";
@@ -133,28 +132,32 @@ char getCharColumnArray(char c, int index)
 	return character_data[c - 32][index];
 }
 
-void LEDsetString(char string[], int length)
+void LEDsetString(char string[])
 {
+	int length = 0;
 	int y = 0;
+	while (string[++length] != '\0') { }
+	printf("%d.\n", length); 
 	for(wholeStringIndex = 0; wholeStringIndex < 5; wholeStringIndex++)
 	{
-		for(y = 0; y < 5; y++)
+		for(y = 0; y < 6; y++)
 		{
 			videoBuffer[wholeStringIndex][y] = getCharColumnArray(string[wholeStringIndex], y);
 		}
+		videoBuffer[wholeStringIndex][5] = 0x00;
 	}
 	wholeString = string;
 	wholeStringLength = length;
 }
 
-void reloadChar()
+void loadCharIntoVideoBuffer()
 {
 	int y;
 	for(y = 0; y < 5; y++)
 	{
 		videoBuffer[4][y] = getCharColumnArray(wholeString[wholeStringIndex], y);
 	}
-	//videoBuffer[4][5] = 0x00;
+	videoBuffer[4][5] = 0x00;
 	wholeStringIndex++;
 	if(wholeStringIndex >= wholeStringLength)
 	{
@@ -234,23 +237,15 @@ void LEDupdate()
 {
 	int column = 0;
 	int screen = 0;
-	while (column < 20)
+	for(screen = 1; screen <= 4; screen++)
 	{
-		for(screen = 1; screen <= 4; screen++)
+		for(column = 0; column < 5; column++)
 		{
-			for(column = 0; column < 5; column++)
-			{
-				
-				while(LEDupdateFlag == 0) {}
-				writeLED(column % 21, screen, videoBuffer[screen - 1]);
-				LEDupdateFlag = 0;
-			}
+			
+			while(LEDupdateFlag == 0) {}
+			writeLED(column, screen, videoBuffer[screen - 1]);
+			LEDupdateFlag = 0;
 		}
-		if(LEDupdateFlag == 1){
-
-			LEDupdateFlag = 0;	
-			column++;
-	 	}
 	}
 }
 
@@ -263,28 +258,26 @@ void main() {
 	int k;
 	int prevPressed = 0;
 	int oldI;
-	//char charA[] = {0x3F, 0x81, 0x81, 0x81, 0x3F};
-	char charA[] = {0x2F, 0x49, 0x49, 0x49, 0x31};
 	char title[11] = "Stop watch";
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
 
-	LEDsetString("ABRG  ", 6);
+	LEDsetString("Hello world you nice thing \0");
 
 	
 
 	initButtons();
 	LEDinit();
-	clrscr();
+	//clrscr();
 
 	while (1 == 1)
 	{
 		for(j = 0; j < 5; j++)
 		{
-			for(i = 0; i < 50;  i++)
+			for(i = 0; i < 5;  i++) // 5
 			{
 				LEDupdate();
 			}
-			for(i = 0; i < 6; i++)
+			for(i = 0; i < 5; i++)
 			{
 				for(k = 1; k < 6; k++)
 				{
@@ -292,11 +285,11 @@ void main() {
 				}
 				if(i < 5)
 				{
-					videoBuffer[i][4] = videoBuffer[i + 1][0];
+					videoBuffer[i][5] = videoBuffer[i + 1][0];
 				}
 			}
 		}
-		reloadChar();
+		loadCharIntoVideoBuffer();
 	}
 	
 	
