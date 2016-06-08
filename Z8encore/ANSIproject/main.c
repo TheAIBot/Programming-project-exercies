@@ -21,7 +21,6 @@ void printVector(struct TVector v)
 }
 
 char readkey()
-<<<<<<< HEAD
 {	char f7 = (~PFIN & 0x80) >> 7;
 	char f6 = (~PFIN & 0x40) >> 5;
 	char d3 = (~PDIN & 0x08) >> 1;
@@ -160,19 +159,6 @@ void main() {
 		}
 	}
 
-=======
-{
-	char f7 = 6 >> (PFIN & 0x40);
-	char f6 = 5 >> (PFIN & 0x20);
-	char d3 = PDIN & 0x04;
-	return (f7 | f6 | d3);// & 0x07;
-}
-
-void main() {
-	int times = 0;
-PFADDR = 0x01;
-PFCTL &= 0x60;	
->>>>>>> origin/master
 	/*char title[12] = "Hello world";
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
 	//title = ("Hello world");
@@ -208,7 +194,6 @@ PFCTL &= 0x60;
 	rotate(&vec, -35);
 	printVector(vec);
 	*/
-<<<<<<< HEAD
 	//printf("DD");
 
 	/*while(1 == 1)
@@ -237,29 +222,4 @@ printf("%d\n", readkey());
 		}
 	}
 	*/
-=======
-
-	while(1 == 1)
-	{
-		char updated = 0;
-		char buttonpresses1 = readkey();
-		//int i;
-		delay(50);
-		/*for(i = 0; i < 10000; i++)
-		{
-
-		}*/
-		char buttonpresses2 = readkey();
-		if (buttonpresses1 > 0)
-		{
-			updated  = 1;
-			times++;	
-		}
-		if (updated == 1)
-		{
-			printf("%d", times);
-		}
-	}
-
->>>>>>> origin/master
 }
