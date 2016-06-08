@@ -4,6 +4,11 @@
 #include "SineLUT.h"
 
 volatile int index = 0;
+volatile int hundredseconds = 0;
+volatile int seconds = 0;
+volatile int minutes = 0;
+volatile int hours = 0;
+
 
 void printVector(struct TVector v)
 {
@@ -43,20 +48,39 @@ void delay(int times)
 
 #pragma interrupt
 void timer0int() {
-	index++;
+	hundredseconds++;
+	if (hundredseconds == 100)
+	{
+	hundredseconds = 0;
+		seconds++;
+		if (seconds == 60)
+		{
+			seconds = 0;
+			minutes++;
+			if (minutes == 60)
+			{
+				minutes = 0;
+				hours++;
+			}
+		}
+	}
+
+
+/*index++;
+	if (index > 5)
+	{
+		index = 0;
+	}*/
 }
 
-void main() {
-	//standard instanser
-	int times = 0;
-	int i;
-	int prevPressed = 0;
-	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
-	
-	//interupt vector
-	SET_VECTOR(TIMER0, timer0int);
+void writeLED(int column, char shape[])
+{
+	PEOUT &=  ~(0x00 << column);
+	PGOUT |= shape[column];
+}
 
-	
+void initButtons()
+{
 	//Initialize af knapper
 	PFADDR = 0x01;
 	PFCTL |= 0xC0;	
@@ -66,23 +90,73 @@ void main() {
 	PECTL |= 0x1f;
 	PGADDR = 0x00;
 	PDCTL |= 0xef;
+}
 
+void initTimer()
+{
+	//interupt vector
+	SET_VECTOR(TIMER0, timer0int);
 
 	//Timer
 	DI();
 	T0CTL = 0x39; //00111001b -> TEN = 1 TPOL = 0 PRES = 011 TMODE = 001.
 	T0H = 0x1; //0001; starting value
 	T0L = 0x1; //0001; starting value
-	T0RH = 0x05;
-	T0RL = 0xa0;
+	T0RH = 0x00;
+
+	T0RL = 0x90;
 
 	//Set interrupt
 	IRQ0ENH |= 0x20; //enable Timer 0 interrupt, and set nominal priority
-	IRQ0ENL &= 0xdf; 
+	IRQ0ENL |= 0x20; 
 
 	//Enable timer
 	T0CTL = 0xc9; //10111001
 	EI();
+}
+
+void initLED()
+{
+	PGOUT &= ~0x7f;
+	PEOUT |= 0x1f;
+}
+
+
+
+void main() {
+	//standard instanser
+	int times = 0;
+	int i;
+	int prevPressed = 0;
+	int oldI;
+	char charA[] = {0x3F, 0x81, 0x81, 0x81, 0x3F};
+	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
+	
+
+	initButtons();
+	initTimer();
+	initLED();
+
+	oldI = -1;
+	while (1 == 1)
+	{
+		if (oldI != seconds){
+			printf("%dH %dm %ds %d hsm\n", hours, minutes, seconds, hundredseconds);
+			oldI = seconds;
+		}
+	}
+
+	oldI = -1;
+	while (1 == 1)
+	{
+		if (oldI != index){
+			PGOUT &= ~0x7f;
+			PEOUT |= 0x1f;
+			PEOUT &=  ~(0x01 << index);
+			PGOUT |= charA[index];
+			oldI = index;
+		}
+	}
 
 	/*char title[12] = "Hello world";
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
@@ -121,7 +195,7 @@ void main() {
 	*/
 	//printf("DD");
 
-	while(1 == 1)
+	/*while(1 == 1)
 	{
 		char updated = 0;
 		char buttonpresses1 = readkey();
@@ -146,4 +220,5 @@ printf("%d\n", readkey());
 			printf("%d\n", times);
 		}
 	}
+	*/
 }
