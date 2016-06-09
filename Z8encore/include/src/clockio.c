@@ -1,19 +1,35 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
-#include "timerio.h"
+#include "clockio.h"
 
 volatile char LEDupdateFlag = 0;
-char runTimer = 1;
+char runClock = 1;
+unsigned long halfmiliseconds = 0; // assumes the click runs with 2000hz
 
-#pragma interrupt
-void timer0int() {
-	if (runTimer == 1)
+void delay(int times)
+{
+	int i;
+	for(i = 0; i < times; i++)
 	{
-		LEDupdateFlag = 1;
+		waitOnce();
 	}
 }
 
-void initTimer() // need to add an argument to set the time interval
+void waitOnce()
+{
+	while(LEDupdateFlag == 0) {	}
+}
+
+#pragma interrupt
+void timer0int() {
+	if (runClock == 1)
+	{
+		LEDupdateFlag = 1;
+	}
+	halfmiliseconds++;
+}
+
+void initClock() // need to add an argument to set the time interval
 {
 	//interupt vector
 	SET_VECTOR(TIMER0, timer0int);
@@ -35,12 +51,17 @@ void initTimer() // need to add an argument to set the time interval
 	EI();
 }
 
-void startTimer()
+void startClock()
 {
-	runTimer = 1;
+	runClock = 1;
 }
 
-void stopTimer()
+void stopClock()
 {
-	runTimer = 0;
+	runClock = 0;
+}
+
+unsigned long getMiliseconds()
+{
+	return halfmiliseconds / 2;
 }

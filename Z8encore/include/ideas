@@ -1,0 +1,68 @@
+struct TGame
+{
+	struct TVector gameSize;
+	struct TLevel[];
+	char color;
+	int highscore[];	
+}
+
+struct TLevel
+{
+	struct TBall;
+	int score;
+	struct TBrick[];
+	struct TMovingBrick[];
+	struct TBouncer;
+	struct TBoss boss;
+	struct TPowerUP powerUp[];
+
+}
+
+struct TBall
+{
+	struct TVector position;
+	int speed;
+	struct TVector diretion;
+	char color;
+}
+
+struct TBouncer
+{
+	struct TVector position;
+	int size;
+	char color;
+}
+
+struct TBrick
+{
+	struct TVector position;
+	struct TVector size;
+	char health;
+	char dropChance;
+}
+
+struct TMovingBrick
+{
+	struct TVector position;
+	struct TVector size;
+	char health;
+	struct TVector motion;
+	char dropChance;
+}
+
+struct TBoss
+{
+	struct TVector position;
+	struct TVector size;
+	struct TBall shoots[];
+	char health;
+	char color;
+	char points;
+}
+
+struct TPowerUp
+{
+	char powerupType;
+	struct TVector position;
+	struct TVector motion;
+}

@@ -1,6 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines#include "screenio.h"
-#include "timerio.h"
+#include "clockio.h"
 #include "charset.h"
 
 char videoBuffer[5][6];
@@ -15,7 +15,7 @@ void LEDinit()
 	PEDD = 0x00;
 	PGDD = 0x00;
 
-	initTimer();
+	initClock();
 }
 
 
@@ -130,9 +130,7 @@ void LEDWriteCharColumnsToScreen(int screen, char toWrite[]) // need to make ano
 	int column = 0;
 	for(column = 0; column < 5; column++)
 	{
-		while(LEDupdateFlag == 0) 
-		{
-		}
+		waitOnce();
 		writeLED(column, screen, toWrite);
 		LEDupdateFlag = 0;
 	}

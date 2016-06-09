@@ -5,6 +5,7 @@
 #include "SuperIO.h"
 #include "screenio.h"
 #include "buttonio.h"
+#include "timer.h"
 
 void printVector(struct TVector v)
 {
@@ -13,16 +14,6 @@ void printVector(struct TVector v)
 	printf("\n");
 	printFix(expand(v.y));
 	printf("\n");
-}
-
-void delay(int times)
-{
-	unsigned long delay = 0;
-	int i;
-	for(i = 0; i < times; i++)
-	{
-		delay += delay * delay;
-	}
 }
 
 void main() {
