@@ -213,7 +213,8 @@ void initVector(struct TVector * v, long x, long y)
 }
 
 void rotate(struct TVector *v, int angle)
-{long nx=v->x;
+{
+long nx=v->x;
 long ny=v->y;	
 v->x = nx * cos(angle) -ny * sin(angle);
 	v->y = nx * sin(angle) + ny * cos(angle);

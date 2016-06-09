@@ -6,7 +6,7 @@
 #include "screenio.h"
 #include "buttonio.h"
 #include "timer.h"
-
+/*
 void printVector(struct TVector v)
 {
 	printf("\n");
@@ -14,7 +14,7 @@ void printVector(struct TVector v)
 	printf("\n");
 	printFix(expand(v.y));
 	printf("\n");
-}
+}*/
 
 void main() {
 	//standard instanser

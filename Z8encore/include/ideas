@@ -1,9 +1,18 @@
 struct TGame
 {
-	struct TVector gameSize;
-	struct TLevel[];
+	int size;
+	struct TLevel;
 	char color;
-	int highscore[];	
+	int highscore;	
+}
+
+struct gameSize
+{
+	int size;
+	(
+	int x;
+	int y;
+	)
 }
 
 struct TLevel
@@ -21,16 +30,17 @@ struct TLevel
 struct TBall
 {
 	struct TVector position;
-	int speed;
-	struct TVector diretion;
-	char color;
+	struct TVector momentum;
+	long velocity;
+	long angle;
+	char skin;
 }
 
 struct TBouncer
 {
 	struct TVector position;
-	int size;
-	char color;
+	char length;
+	char skin;
 }
 
 struct TBrick
