@@ -44,21 +44,28 @@ void main() {
 	LEDinit();
 	clrscr();
 	
-
-	while (1 == 1)
-	{
-		scrollText();
-	}
 	
 	initball(&vball,initialx, initialy, angle, velocity);
 	initbouncer(&cbouncer,initialx,initialybounce,initl);
 	window(0,0,size,size,'0',title);
+	startfunc(&vball,&vbouncer);
 
-	while(1) {
-		if ()
+		while (1 == 1)
+	{
+		scrollText();
+	}
+
+	switch (op) {
+    
+	case 1:
 	
-	
-	
+	break;
+	case 2:
+
+	break;
+	case 3:
+
+	break;
 	}
 
 	/*window(3,3,38,9, '0', title);
