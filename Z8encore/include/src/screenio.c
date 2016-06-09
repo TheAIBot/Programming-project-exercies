@@ -7,6 +7,8 @@ char videoBuffer[5][6];
 char* wholeString;
 int wholeStringIndex = 0;
 int wholeStringLength = 0;
+char LEDUpdateCount = 0;
+char columnScrollOffset = 0;
 
 void LEDinit()
 {
@@ -16,7 +18,8 @@ void LEDinit()
 	initTimer();
 }
 
-char getCharColumnArray(char c, int index)
+
+char getCharColumnCharArray(char c, int index)
 {
 	return character_data[c - 32][index];
 }
@@ -30,7 +33,7 @@ void LEDsetString(char string[])
 	{
 		for(y = 0; y < 6; y++)
 		{
-			videoBuffer[wholeStringIndex][y] = getCharColumnArray(string[wholeStringIndex], y);
+			videoBuffer[wholeStringIndex][y] = getCharColumnCharArray(string[wholeStringIndex], y);
 		}
 		videoBuffer[wholeStringIndex][5] = 0x00;
 	}
@@ -44,7 +47,7 @@ void loadCharIntoVideoBuffer()
 	int y;
 	for(y = 0; y < 5; y++)
 	{
-		videoBuffer[4][y] = getCharColumnArray(wholeString[wholeStringIndex], y);
+		videoBuffer[4][y] = getCharColumnCharArray(wholeString[wholeStringIndex], y);
 	}
 	videoBuffer[4][5] = 0x00;
 	wholeStringIndex++;
@@ -122,7 +125,7 @@ void writeLED(int column, int screen, char shape[])
 		clockScreen(screen);
 }
 
-void LEDWriteCharToScreen(int screen, char toWrite[]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
+void LEDWriteCharColumnsToScreen(int screen, char toWrite[]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
 {
 	int column = 0;
 	for(column = 0; column < 5; column++)
@@ -140,34 +143,44 @@ void LEDupdate()
 	int screen = 0;
 	for(screen = 1; screen <= 4; screen++) // doesn't support strings that are smaller than 4 chars
 	{
-		LEDWriteCharToScreen(screen, videoBuffer[screen - 1]);
+		LEDWriteCharColumnsToScreen(screen, videoBuffer[screen - 1]);
 	}
 }
 
-void scrollText() // need to make this so it returns after running LEDupdate once, so it doesn't take that much time to run
+void scrollText()
 {
 	int i;
 	int j;
 	int k;
-	for(j = 0; j < 5; j++)
+	if(columnScrollOffset < 6)
 	{
-		for(i = 0; i < 5;  i++) // 5
+		if (LEDUpdateCount < 5)
 		{
 			LEDupdate();
+			LEDUpdateCount++;
 		}
-		for(i = 0; i < 5; i++)
+		if (LEDUpdateCount == 5)
 		{
-			for(k = 1; k < 6; k++)
+			for(i = 0; i < 5; i++)
 			{
-				videoBuffer[i][k - 1] = videoBuffer[i][k];
+				for(k = 1; k < 6; k++)
+				{
+					videoBuffer[i][k - 1] = videoBuffer[i][k];
+				}
+				if(i < 5)
+				{
+					videoBuffer[i][5] = videoBuffer[i + 1][0];
+				}
 			}
-			if(i < 5)
-			{
-				videoBuffer[i][5] = videoBuffer[i + 1][0];
-			}
+			LEDUpdateCount = 0;
+			columnScrollOffset++;
 		}
 	}
-	loadCharIntoVideoBuffer();
+	if(columnScrollOffset == 6)
+	{
+		loadCharIntoVideoBuffer();
+		columnScrollOffset = 0;
+	}
 }
 
 
