@@ -13,7 +13,7 @@ void timer0int() {
 	}
 }
 
-void initTimer()
+void initTimer() // need to add an argument to set the time interval
 {
 	//interupt vector
 	SET_VECTOR(TIMER0, timer0int);

@@ -25,13 +25,6 @@ void delay(int times)
 	}
 }
 
-
-
-
-
-
-
-
 void main() {
 	//standard instanser
 	unsigned char index = 0;
