@@ -4,5 +4,7 @@
 extern char LEDupdateFlag;
 
 void initTimer();
+void startTimer();
+void stopTimer();
 
 #endif

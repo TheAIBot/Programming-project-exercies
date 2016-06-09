@@ -3,10 +3,14 @@
 #include "timerio.h"
 
 volatile char LEDupdateFlag = 0;
+char runTimer = 1;
 
 #pragma interrupt
 void timer0int() {
-	LEDupdateFlag = 1;
+	if (runTimer == 1)
+	{
+		LEDupdateFlag = 1;
+	}
 }
 
 void initTimer()
@@ -29,4 +33,14 @@ void initTimer()
 	//Enable timer
 	T0CTL = 0xB9; //10111001
 	EI();
+}
+
+void startTimer()
+{
+	runTimer = 1;
+}
+
+void stopTimer()
+{
+	runTimer = 0;
 }
