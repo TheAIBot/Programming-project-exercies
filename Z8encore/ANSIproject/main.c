@@ -18,6 +18,16 @@ void printVector(struct TVector v)
 
 void main() {
 	//standard instanser
+	struct TBall vball;
+	struct TBouncer vbouncer;
+
+	int velocity = 0;
+	int angle = 40;
+	int size = 150;
+	int initialx = 75; 
+	int initialy = size + 1;
+	int initialybounce = size;
+	int initl = 5;
 	unsigned char index = 0;
 	int times = 0;
 	int i;
@@ -25,23 +35,32 @@ void main() {
 	int k;
 	int prevPressed = 0;
 	int oldI;
-	char title[11] = "Stop watch";
+	char title[10] = "Pong game";
+	LEDsetString("Pong Game \0");
+
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
-
-	LEDsetString("Hello world you nice thing \0");
-
 	
-
 	initButtons();
 	LEDinit();
-	//clrscr();
+	clrscr();
+	
 
 	while (1 == 1)
 	{
 		scrollText();
 	}
 	
+	initball(&vball,initialx, initialy, angle, velocity);
+	initbouncer(&cbouncer,initialx,initialybounce,initl);
+	window(0,0,size,size,'0',title);
+
+	while(1) {
+		if ()
 	
+	
+	
+	}
+
 	/*window(3,3,38,9, '0', title);
 	gotoxy(5, 5);
 	printf("Time since start:");
