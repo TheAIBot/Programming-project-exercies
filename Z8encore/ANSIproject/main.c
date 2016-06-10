@@ -44,6 +44,7 @@ void main() {
 	int k;
 	int prevPressed = 0;
 	int oldI;
+	char initNewBall = 1;
 	char title[] = "Pong game\0";
 	LEDsetString("Pong Game \0");
 
@@ -58,5 +59,21 @@ void main() {
 	initStriker(&vstriker,initialx,initialstrikery ,initl);
 	window(0, 0, size, size, '0', title);
 	//initLevel
-	moveStrikerPreShot(&vball, &vstriker, size, isd3Pressed(), isf7Pressed(), isf6Pressed());
+	while(1 == 1)
+	{
+		if(!isf6Pressed())
+		{
+			moveStrikerPreShot(&vball, &vstriker, size, isd3Pressed(), isf7Pressed());
+		}
+		else
+		{
+			if(isBallDead())
+			{
+				clearStriker(vStriker->position.x,vStriker->position.y, vStriker->length); 
+				initBall(&vball,vStriker->position.x,vStriker->position.y + 1,FCOLOR_BLUE, 40 ,0);
+				moveStrikerPreShot(&vball,&vStriker, size, isd3Pressed(), isf7Pressed(), isf6Pressed());
+				deathcount++;
+			}
+		}
+	}
 }

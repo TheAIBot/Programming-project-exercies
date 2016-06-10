@@ -8,6 +8,6 @@ struct TPowerUp
 	char powerupType;
 	struct TVector position;
 	struct TVector motion;
-}
+};
 
 #endif

@@ -10,7 +10,7 @@ void draw(int x, int y, int length, char c)
 	gotoxy(x - (length / 2), y); // go to left of bouncer
 	for(i = 0; i < length; i++)
 	{
-		printf("%c", bouncerStyle);
+		printf("%c", c);
 	}
 }
 
@@ -23,17 +23,13 @@ void drawStriker(int x, int y, int length)
 void clearStriker(int x, int y, int length)
 {
 	const char emptyChar = ' ';
-	gotoxy(x - (length / 2), y); // go to left of bouncer
-	printf("%c", emptyChar);
-
-	gotoxy(x + (length / 2), y); // go to left of bouncer
-	printf("%c", emptyChar);
+	draw(x, y, length, emptyChar);
 }
 
 void clearStrikerLeft(int x, int y, int length)
 {
 	const char emptyChar = ' ';
-	gotoxy(x + (length / 2), y); // go to left of bouncer
+	gotoxy(x + (length / 2), y); // go to right of bouncer
 	printf("%c", emptyChar);
 }
 
@@ -48,14 +44,14 @@ void drawStrikerLeft(int x, int y, int length)
 {
 	const char strikerStyle = 178;
 	gotoxy(x - (length / 2), y); // go to left of bouncer
-	printf("%c", emptyChar);
+	printf("%c", strikerStyle);
 }
 
 void drawStrikerRight(int x, int y, int length)
 {
 	const char strikerStyle = 178;
-	gotoxy(x + (length / 2), y); // go to left of bouncer
-	printf("%c", emptyChar);
+	gotoxy(x + (length / 2), y); // go to right of bouncer
+	printf("%c", strikerStyle);
 }
 
 void moveStrikerLeft(struct TStriker *vStriker)
@@ -73,8 +69,8 @@ void moveStrikerRight(struct TStriker *vStriker)
 }
 
 //Rendering nextstate Bouncer
-void moveStriker(struct TStriker *vStriker, char rightButtonPressed, char leftButtonPressed) {
-	if (rightButtonPressed && vStriker->position.x < size) {
+void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed) {
+	if (rightButtonPressed && vStriker->position.x < gameSize) {
 		moveStrikerRight(&vStriker);	
 	}
 	else if(leftButtonPressed && vStriker->position.x > 0) {

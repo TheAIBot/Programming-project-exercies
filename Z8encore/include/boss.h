@@ -9,7 +9,7 @@ struct TBoss
 	char health;
 	char color;
 	char points;
-}
+};
 
 
 #endif

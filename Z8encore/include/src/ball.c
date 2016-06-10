@@ -1,7 +1,7 @@
 #include <eZ8.h>
 #include <sio.h>
 #include "ball.h"
-#incldue "ansi.h"
+#include "ansi.h"
 
 void draw(int x, int y, char c)
 {
@@ -31,6 +31,6 @@ void initBall(struct TBall *vBall,int x, int y, char color, long angle, long vel
 
 	//vball->mx=velocity*cos(angle);
 	//vball->my=velocity*sin(angle);
-	fgcolor(color)
+	fgcolor(color);
 	drawBall(x, y);
 }

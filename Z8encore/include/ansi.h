@@ -7,6 +7,7 @@ struct TVector
 	long y;
 };
 
+void fgcolor(int);
 void bgcolor(int);
 void color();
 void resetbgcolor();

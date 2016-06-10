@@ -17,16 +17,16 @@ LIB = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8lib
 #   -localfold -longsize:32 -NOloopopt -maxerrs:50 -model:L -NOoptlink
 #   -optsize -peephole -NOpromote -quiet -regvar -revaa -NOsdiopt
 #   -shortsize:16
-#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
+#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
 #   -strict
 #   -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include"
 #   -NOwatch -cpu:Z8F6403
-#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog -revaa"
+#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X -revaa"
 CFLAGS = -sw:M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.ccsw
 # assembler options
 #   -debug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1
 #   -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj -NOigcase
-#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
+#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
 #   -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt
 #   -warn -NOzmasm -revaa -cpu:Z8F6403
 AFLAGS = -sw:M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.asmsw
@@ -70,6 +70,8 @@ clean:
             del M:\Documents\GitHub\Programming-project-exercies\level.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\powerup.obj  \
             del M:\Documents\GitHub\Programming-project-exercies\powerup.obj
+	@if exist M:\Documents\GitHub\Programming-project-exercies\color.obj  \
+            del M:\Documents\GitHub\Programming-project-exercies\color.obj
 
 rebuildall: clean Debug
 
@@ -91,7 +93,8 @@ OBJS =  \
             M:\Documents\GitHub\Programming-project-exercies\brick.obj  \
             M:\Documents\GitHub\Programming-project-exercies\game.obj  \
             M:\Documents\GitHub\Programming-project-exercies\level.obj  \
-            M:\Documents\GitHub\Programming-project-exercies\powerup.obj
+            M:\Documents\GitHub\Programming-project-exercies\powerup.obj  \
+            M:\Documents\GitHub\Programming-project-exercies\color.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -219,6 +222,7 @@ M:\Documents\GitHub\Programming-project-exercies\clockio.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\Gamefunctions.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\Gamefunctions.c  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ball.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\boss.h  \
@@ -319,7 +323,9 @@ M:\Documents\GitHub\Programming-project-exercies\level.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\level.c  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ball.h  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\boss.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\level.h  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\powerup.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\striker.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
@@ -352,4 +358,21 @@ M:\Documents\GitHub\Programming-project-exercies\powerup.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\powerup.c
+
+M:\Documents\GitHub\Programming-project-exercies\color.obj :  \
+            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\color.c  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\color.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\color.c
 
