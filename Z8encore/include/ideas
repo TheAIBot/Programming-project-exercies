@@ -4,6 +4,10 @@ struct TGame
 	struct TLevel;
 	char color;
 	int highscore;	
+	
+	initGame();
+	updateGame();
+	drawGame();
 }
 
 struct gameSize
@@ -24,6 +28,12 @@ struct TLevel
 	struct TBouncer;
 	struct TBoss boss;
 	struct TPowerUP powerUp[];
+	
+	initLevel();
+	updateLevel();
+	drawLevel();
+	
+	removeBrick();
 
 }
 
@@ -34,6 +44,11 @@ struct TBall
 	long velocity;
 	long angle;
 	char skin;
+	
+	initBall();
+	updateBall();
+	moveBall();
+	drawBall();
 }
 
 struct TBouncer
@@ -41,6 +56,11 @@ struct TBouncer
 	struct TVector position;
 	char length;
 	char skin;
+	
+	initBouncer();
+	updateBouncer();
+	moveBouncer();
+	drawBouncer();
 }
 
 struct TBrick
@@ -49,6 +69,12 @@ struct TBrick
 	struct TVector size;
 	char health;
 	char dropChance;
+	
+	initBrick();
+	hasCollidedWithBall();
+	damageBrick();
+	isAlive();
+	drawBrick();
 }
 
 struct TMovingBrick
@@ -58,6 +84,13 @@ struct TMovingBrick
 	char health;
 	struct TVector motion;
 	char dropChance;
+	
+	initMovingBrick();
+	hadCollidedWithBall();
+	updateMovingBrick();
+	damageMovingBrick();
+	isAlive();
+	drawMovingBrick();
 }
 
 struct TBoss
@@ -68,6 +101,13 @@ struct TBoss
 	char health;
 	char color;
 	char points;
+	
+	initBoss();
+	updateBoss();
+	shootBall();
+	damageBoss();
+	isAlive();
+	drawBoss();
 }
 
 struct TPowerUp
@@ -75,4 +115,9 @@ struct TPowerUp
 	char powerupType;
 	struct TVector position;
 	struct TVector motion;
+	
+	initPowerUp();
+	applyPowerUpToBouncer();
+	updatePowerUp();
+	drawPowerUp();
 }
