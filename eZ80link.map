@@ -57,8 +57,10 @@ define _far_heapbot = top of EDATA
 define _near_heaptop = highaddr of RDATA
 define _near_heapbot = top of RDATA
 
+define _zsl_g_clock_xdefine = 18432000
+
 /* Set frequency to 18432000 Hz */
 define __user_frequency = 18432000
 
-"M:\Documents\GitHub\Programming-project-exercies\HelloWorld"=  startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\SineLUT.obj,  .\screenio.obj,  .\buttonio.obj,  .\clockio.obj,  .\Gamefunctions.obj,  .\ball.obj,  .\striker.obj,  .\brick.obj,  .\game.obj,  .\level.obj,  .\powerup.obj,  crtrevaaLDD.lib,  fpdumyL.obj
+"M:\Documents\GitHub\Programming-project-exercies\HelloWorld"=  startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\SineLUT.obj,  .\screenio.obj,  .\buttonio.obj,  .\clockio.obj,  .\Gamefunctions.obj,  .\ball.obj,  .\striker.obj,  .\brick.obj,  .\game.obj,  .\level.obj,  .\powerup.obj,  crtrevaaLDD.lib,  fpdumyL.obj,  c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\zilog\zslLYD.lib
 WARNING (731) --> File "startupL.obj" is not found.

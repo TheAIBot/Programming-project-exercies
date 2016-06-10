@@ -16,13 +16,11 @@
 //Rendering nextstate Ball
 void nextStateBall(struct TBall *vball) {
 	
-if(vball->velocity > 0){
-	         gotoxy=(vball->position.x,vball->position.y);
-	         printf(" ");	
-		 vball->position.x = vball->position.x + cos(vball->angle)*velocity;
-		 vball->position.y = vball->position.y + sin(vball->angle)*velocity;
-	         gotoxy=(vball->position.x,vball->position.y);
-	         printf("%c",vball->skin);  // (9)	
+	if(vball->velocity > 0){
+		clearBall(vball->position.x,vball->position.y);	
+		 vball->position.x = vball->position.x + cos(vball->angle) * velocity;
+		 vball->position.y = vball->position.y + sin(vball->angle) * velocity;
+		 drawBall(vball->position.x,vball->position.y);	
 
 //ved ikke om vi skal have momentumvektor
 	//vball->momentum.x = vball->velocity*cos(vball->angle);
@@ -30,33 +28,8 @@ if(vball->velocity > 0){
 	}
 }
 
-//Rendering nextstate Bouncer
-void nextStateBouncer(struct TBouncer *vbouncer) {
-	if (rightbn) {
-		if (vbouncer->position.x < size) {
-			gotoxy( vbouncer->position.x - vbouncer->length / 2, vbouncer->position.y);
-			printf(" ");
-			vbouncer->position.x=vbouncer->position.x + 1;
-			gotoxy(vbouncer->position.x + vbouncer->length / 2, vbouncer->position.y);
-			printf("%c", vbouncer->skin); // (178)
-
-		}	
-	}
-	else if(leftbn) {
-		if ( vbouncer->position.x > 0) 
-			gotoxy(vbouncer->position.x + length / 2, vbouncer->position.y);
-			printf(" ");
-			vball->position.x=vbouncer->position.x - 1;
-			gotoxy(vbouncer->position.x - length / 2, vbouncer->position.y);
-			printf("%c", vbouncer->skin); // (178)
-			
-		}
-	}
-
-}
-
 //Bounce off walls when impact
-void impact(struct TBall *vball, struct TBouncer *vbouncer,  int angle, int size,) {
+void impact(struct TBall *vball, struct TBouncer *vbouncer,  int angle, int size) {
 int curx=vball->position.x;
 int cury=vball->position.y;
 

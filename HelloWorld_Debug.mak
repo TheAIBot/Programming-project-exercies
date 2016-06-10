@@ -16,17 +16,19 @@ LIB = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8lib
 #   -NOkeepasm -NOkeeplst -NOlist -NOlistinc -localcopy -localcse
 #   -localfold -longsize:32 -NOloopopt -maxerrs:50 -model:L -NOoptlink
 #   -optsize -peephole -NOpromote -quiet -regvar -revaa -NOsdiopt
-#   -shortsize:16 -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include" -strict
+#   -shortsize:16
+#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
+#   -strict
 #   -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include"
 #   -NOwatch -cpu:Z8F6403
-#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include -revaa"
+#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog -revaa"
 CFLAGS = -sw:M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.ccsw
 # assembler options
 #   -debug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1
 #   -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj -NOigcase
-#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include" -list -NOlistmac
-#   -name -pagelen:56 -pagewidth:80 -quiet -sdiopt -warn -NOzmasm -revaa
-#   -cpu:Z8F6403
+#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
+#   -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt
+#   -warn -NOzmasm -revaa -cpu:Z8F6403
 AFLAGS = -sw:M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.asmsw
 
 OUTDIR = M:\Documents\GitHub\Programming-project-exercies\
@@ -109,6 +111,7 @@ M:\Documents\GitHub\Programming-project-exercies\main.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\boss.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\brick.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\buttonio.h  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\color.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\game.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\level.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\powerup.h  \
@@ -138,6 +141,7 @@ M:\Documents\GitHub\Programming-project-exercies\ansi.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -241,6 +245,7 @@ M:\Documents\GitHub\Programming-project-exercies\Gamefunctions.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\ball.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\ball.c  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ball.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
@@ -258,6 +263,7 @@ M:\Documents\GitHub\Programming-project-exercies\ball.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\striker.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\striker.c  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\color.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\striker.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
@@ -276,6 +282,7 @@ M:\Documents\GitHub\Programming-project-exercies\striker.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\brick.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\brick.c  \
+            M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~2\Z8encore\include\brick.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \

@@ -5,7 +5,11 @@
 #include "striker.h"
 #include "ball.h"
 
-void initLevel()
+void initLevel(struct TStriker *vStriker, 
+				 struct TBall *vball,
+				 struct TBrick bricks[],
+				 struct TBoss *boss,
+				 struct TPowerUp powerups[])
 {
 
 }
@@ -19,28 +23,24 @@ void updateLevel(struct TStriker *vStriker,
 	
 }
 
-void moveStrikerPreShot(struct TStriker *vStriker, struct TBall *vball, char leftButtonPressed, char rightButtonPressed, char middleButtonPressed) {
-    if (rightButtonPressed && vStriker->position.x < size) {
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSize, char leftButtonPressed, char rightButtonPressed, char middleButtonPressed) {
+    if (rightButtonPressed && vStriker->position.x < gameSize) {
 		//render new ball position
 		clearBall(vball->position.x,vball->position.y);
 		vball->position.x++;
-		drawBall(vball->position.x,vball->position.y, vball->skin);
+		drawBall(vball->position.x, vball->position.y);
 
 		//render new bouncer position
-		clearStriker(vStriker->position.x, vStriker->position.y, vStriker->length);
-		vStriker->position.x++;
-		drawStriker(vStriker->position.x, vStriker->position.y, vStriker->length);	
+		moveStrikerRight(&vStriker);	
 	}
-	else if(leftButtonPressed && vbouncer->position.x > 0) {
+	else if(leftButtonPressed && vStriker->position.x > 0) {
 		//render new ball position
 		clearBall(vball->position.x,vball->position.y);
 		vball->position.x--;
-		drawBall(vball->position.x,vball->position.y, vball->skin);
+		drawBall(vball->position.x,vball->position.y);
 
 		//render new bouncer position
-		clearStriker(vStriker->position.x, vStriker->position.y, vStriker->length);
-		vStriker->position.x--;
-		drawStriker(vStriker->position.x, vStriker->position.y, vStriker->length);
+		moveStrikerLeft(&vStriker);
 	}
 	if (middleButtonPressed) {
 		//need angle

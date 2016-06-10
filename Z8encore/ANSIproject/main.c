@@ -13,6 +13,7 @@
 #include "brick.h"
 #include "boss.h"
 #include "powerup.h"
+#include "color.h"
 
 /*
 void printVector(struct TVector v)
@@ -43,7 +44,7 @@ void main() {
 	int k;
 	int prevPressed = 0;
 	int oldI;
-	char title[10] = "Pong game";
+	char title[] = "Pong game\0";
 	LEDsetString("Pong Game \0");
 
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
@@ -53,11 +54,12 @@ void main() {
 	clrscr();
 	
 	
-	initBall(&vball,initialx, initialy, angle, velocity);
+	initBall(&vball,initialx, initialy, FCOLOR_BLUE, angle, velocity);
 	initStriker(&vstriker,initialx,initialstrikery ,initl);
-	window(0,0,size,size,'0',title);
-	moveStrikerPreShot(&vball,&vbouncer, isd3Pressed(), isf7Pressed(), isf6Pressed());
-
+	window(0, 0, size, size, '0', title);
+	//initLevel
+	moveStrikerPreShot(&vball, &vstriker, size, isd3Pressed(), isf7Pressed(), isf6Pressed());
+/*
 		while (1 == 1)
 	{
 		scrollText();
@@ -75,7 +77,7 @@ void main() {
 
 	break;
 	}
-
+*/
 	/*window(3,3,38,9, '0', title);
 	gotoxy(5, 5);
 	printf("Time since start:");
