@@ -4,26 +4,22 @@
 #include "ansi.h"
 #include "striker.h"
 #include "ball.h"
+#include "powerup.h"
+#include "boss.h"
+#include "bricks.h"
 
-void initLevel(struct TStriker *vStriker, 
-				 struct TBall *vball,
-				 struct TBrick bricks[],
-				 struct TBoss *boss,
-				 struct TPowerUp powerups[])
+
+void initLevel(struct TStriker *vStriker, struct TBall *vball, struct TBrick bricks[], struct TBoss *boss, struct TPowerUp powerups[])
 {
 
 }
 
-void updateLevel(struct TStriker *vStriker, 
-				 struct TBall *vball,
-				 struct TBrick bricks[],
-				 struct TBoss *boss,
-				 struct TPowerUp powerups[])
+void updateLevel(struct TStriker *vStriker, struct TBall *vball, struct TBrick bricks[], struct TBoss *boss, struct TPowerUp powerups[])
 {
 	
 }
 
-void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSize, char leftButtonPressed, char rightButtonPressed, char middleButtonPressed) {
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSize, char leftButtonPressed, char rightButtonPressed) {
     if (rightButtonPressed && vStriker->position.x < gameSize) {
 		//render new ball position
 		clearBall(vball->position.x,vball->position.y);
@@ -41,9 +37,5 @@ void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int game
 
 		//render new bouncer position
 		moveStrikerLeft(&vStriker);
-	}
-	if (middleButtonPressed) {
-		//need angle
-  		vball->velocity = 5;
 	}
 }

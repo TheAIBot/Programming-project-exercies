@@ -9,6 +9,8 @@
 #include "brick.h"
 #include "boss.h"
 #include "powerup.h"
+#include "SineLUT.h"
+#include "buttonio.h"
 
 //volatile Tgame g = new Tgame;
 
@@ -18,8 +20,8 @@ void nextStateBall(struct TBall *vball) {
 	
 	if(vball->velocity > 0){
 		clearBall(vball->position.x,vball->position.y);	
-		 vball->position.x = vball->position.x + cos(vball->angle) * velocity;
-		 vball->position.y = vball->position.y + sin(vball->angle) * velocity;
+		 vball->position.x = vball->position.x + cos(vball->angle) * vball->velocity;
+		 vball->position.y = vball->position.y + sin(vball->angle) * vball->velocity;
 		 drawBall(vball->position.x,vball->position.y);	
 
 //ved ikke om vi skal have momentumvektor
@@ -29,16 +31,16 @@ void nextStateBall(struct TBall *vball) {
 }
 
 //Bounce off walls when impact
-void impact(struct TBall *vball, struct TBouncer *vbouncer,  int angle, int size) {
+void impact(struct TBall *vball, struct TStriker *vStriker, int gameSize,  int angle, int size) {
 int curx=vball->position.x;
 int cury=vball->position.y;
 
 //bounce off right and left walls	
-if (curx == size || curx == 0) {
+if (curx == gameSize || curx == 0) {
 		vball->angle = 180 - vball->angle;
 	}
 //bounce off top wall and bouncer
-if (cury == 0 || cury==size-1 && (curx >= vbouncer->position.x - vbouncer->length / 2 && curx <= vbouncer->length + vbouncer->length / 2)){
+if (cury == 0 || cury==gameSize-1 && (curx >= vStriker->position.x - vStriker->length / 2 && curx <= vStriker->length + vStriker->length / 2)){
 		vball->angle= - vball->angle;
 	}
 //ved ikke om vi skal have momentumvektor
@@ -48,16 +50,13 @@ if (cury == 0 || cury==size-1 && (curx >= vbouncer->position.x - vbouncer->lengt
 
 
 //Death zone
-void deathzone(struct TBall *vball, struct TBouncer *vbouncer, int deathcount){
-int curx=vball->position.x;
-int cury=vball->position.y;
-if (cury==size-1 &&(curx <= vbouncer->position.x - vbouncer->length / 2 || curx >= vbouncer->length + vbouncer->length / 2)){
-		gotoxy( vbouncer->position.x - vbouncer->length / 2, vbouncer->position.y);
-		printf(" ");  
-		initball(&vball,vbouncer->position.x,vbouncer->position.y + 1, 40 ,0);
-		startfunc(&vball,&vbouncer);
-        	deathcount++;
-}
+char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSize){
+	int curx=vball->position.x;
+	int cury=vball->position.y;
+	if (cury==gameSize-1 &&(curx <= vStriker->position.x - vStriker->length / 2 || curx >= vStriker->length + vStriker->length / 2)){
+		return 1;
+	}
+	return 0;
 }
 
 //Score
