@@ -60,22 +60,5 @@ define _near_heapbot = top of RDATA
 /* Set frequency to 18432000 Hz */
 define __user_frequency = 18432000
 
-"M:\Documents\GitHub\Programming-project-exercies\HelloWorld"= \
- startupL.obj, \
- .\zsldevinit.obj, \
- .\main.obj, \
- .\ansi.obj, \
- .\SineLUT.obj, \
- .\screenio.obj, \
- .\buttonio.obj, \
- .\clockio.obj, \
- .\Gamefunctions.obj, \
- .\ball.obj, \
- .\striker.obj, \
- .\brick.obj, \
- .\game.obj, \
- .\level.obj, \
- .\powerup.obj, \
- crtrevaaLDD.lib, \
- fpdumyL.obj
-
+"M:\Documents\GitHub\Programming-project-exercies\HelloWorld"=  startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\SineLUT.obj,  .\screenio.obj,  .\buttonio.obj,  .\clockio.obj,  .\Gamefunctions.obj,  .\ball.obj,  .\striker.obj,  .\brick.obj,  .\game.obj,  .\level.obj,  .\powerup.obj,  crtrevaaLDD.lib,  fpdumyL.obj
+WARNING (731) --> File "startupL.obj" is not found.

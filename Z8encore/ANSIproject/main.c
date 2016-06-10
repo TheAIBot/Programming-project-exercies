@@ -6,6 +6,14 @@
 #include "screenio.h"
 #include "buttonio.h"
 #include "timer.h"
+#include "game.h"
+#include "level.h"
+#include "ball.h"
+#include "striker.h"
+#include "brick.h"
+#include "boss.h"
+#include "powerup.h"
+
 /*
 void printVector(struct TVector v)
 {
@@ -19,14 +27,14 @@ void printVector(struct TVector v)
 void main() {
 	//standard instanser
 	struct TBall vball;
-	struct TBouncer vbouncer;
+	struct TStriker vstriker;
 
 	int velocity = 0;
 	int angle = 40;
 	int size = 150;
 	int initialx = 75; 
 	int initialy = size + 1;
-	int initialybounce = size;
+	int initialstrikery = size;
 	int initl = 5;
 	unsigned char index = 0;
 	int times = 0;
@@ -45,10 +53,10 @@ void main() {
 	clrscr();
 	
 	
-	initball(&vball,initialx, initialy, angle, velocity);
-	initbouncer(&cbouncer,initialx,initialybounce,initl);
+	initBall(&vball,initialx, initialy, angle, velocity);
+	initStriker(&vstriker,initialx,initialstrikery ,initl);
 	window(0,0,size,size,'0',title);
-	startfunc(&vball,&vbouncer);
+	moveStrikerPreShot(&vball,&vbouncer, isd3Pressed(), isf7Pressed(), isf6Pressed());
 
 		while (1 == 1)
 	{

@@ -1,4 +1,4 @@
-struct TGame
+data main TGame
 {
 	int size;
 	struct TLevel;
@@ -6,29 +6,21 @@ struct TGame
 	int highscore;	
 }
 
-struct gameSize
-{
-	int size;
-	(
-	int x;
-	int y;
-	)
-}
-
-struct TLevel
+data main Level
 {
 	struct TBall;
 	int score;
+
 	struct TBrick[];
 	struct TMovingBrick[];
 	struct TBouncer;
 	struct TBoss boss;
 	struct TPowerUP powerUp[];
-
 }
 
 struct TBall
-{
+{	
+	
 	struct TVector position;
 	struct TVector momentum;
 	long velocity;
@@ -36,7 +28,7 @@ struct TBall
 	char skin;
 }
 
-struct TBouncer
+struct TStriker
 {
 	struct TVector position;
 	char length;
@@ -44,14 +36,6 @@ struct TBouncer
 }
 
 struct TBrick
-{
-	struct TVector position;
-	struct TVector size;
-	char health;
-	char dropChance;
-}
-
-struct TMovingBrick
 {
 	struct TVector position;
 	struct TVector size;
