@@ -14,6 +14,9 @@
 #include "boss.h"
 #include "powerup.h"
 #include "color.h"
+#include "clockio.h"
+
+#define GAMESIZE 70
 
 /*
 void printVector(struct TVector v)
@@ -28,14 +31,13 @@ void printVector(struct TVector v)
 void main() {
 	//standard instanser
 	struct TBall vball;
-	struct TStriker vstriker;
+	struct TStriker vStriker;
 
+	int deathcount = 0;
 	int velocity = 0;
 	int angle = 40;
-	int size = 150;
-	int initialx = 75; 
-	int initialy = size + 1;
-	int initialstrikery = size;
+	int initialx = GAMESIZE >> 1;
+	int initialy = GAMESIZE - 1;
 	int initl = 5;
 	unsigned char index = 0;
 	int times = 0;
@@ -46,34 +48,49 @@ void main() {
 	int oldI;
 	char initNewBall = 1;
 	char title[] = "Pong game\0";
-	LEDsetString("Pong Game \0");
+	//LEDsetString("Pong Game \0");
 
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
 	
+	initClock();
 	initButtons();
-	LEDinit();
+	//LEDinit();
+	color(FCOLOR_BLACK, BCOLOR_GRAY);
 	clrscr();
 	
-	
-	initBall(&vball,initialx, initialy, FCOLOR_BLUE, angle, velocity);
-	initStriker(&vstriker,initialx,initialstrikery ,initl);
-	window(0, 0, size, size, '0', title);
+	window(0, 0, GAMESIZE, GAMESIZE, '0', title);
+	initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity);
+	initStriker(&vStriker,initialx, initialy ,initl);
 	//initLevel
-	while(1 == 1)
+
+	while(1)
 	{
-		if(!isf6Pressed())
+		if(initNewBall)
 		{
-			moveStrikerPreShot(&vball, &vstriker, size, isd3Pressed(), isf7Pressed());
+			while(!isf6Pressed())
+			{
+				moveStrikerPreShot(&vball, &vStriker, GAMESIZE, isd3Pressed(), isf7Pressed());
+				//delay(100);
+			}
+			initNewBall = 0;
+			vball.velocity = 1;
 		}
 		else
 		{
-			if(isBallDead())
+			updateBall(&vball);
+			delay(100);
+			if(isBallDead(&vball, &vStriker, GAMESIZE))
 			{
-				clearStriker(vStriker->position.x,vStriker->position.y, vStriker->length); 
-				initBall(&vball,vStriker->position.x,vStriker->position.y + 1,FCOLOR_BLUE, 40 ,0);
-				moveStrikerPreShot(&vball,&vStriker, size, isd3Pressed(), isf7Pressed(), isf6Pressed());
+				clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
+				clearBall(vball.position.x,vball.position.y);
+				initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity);
+				initStriker(&vStriker,initialx,initialy ,initl);
 				deathcount++;
+				initNewBall = 1;
 			}
+			//bla bla bla code
 		}
 	}
+
+	while(1) {}
 }

@@ -71,7 +71,6 @@ define __user_frequency = 18432000
  .\screenio.obj, \
  .\buttonio.obj, \
  .\clockio.obj, \
- .\Gamefunctions.obj, \
  .\ball.obj, \
  .\striker.obj, \
  .\brick.obj, \

@@ -10,7 +10,6 @@
 <file filter-key="">Z8encore\include\src\screenio.c</file>
 <file filter-key="">Z8encore\include\src\buttonio.c</file>
 <file filter-key="">Z8encore\include\src\clockio.c</file>
-<file filter-key="">Z8encore\include\Gamefunctions.c</file>
 <file filter-key="">Z8encore\include\src\ball.c</file>
 <file filter-key="">Z8encore\include\src\striker.c</file>
 <file filter-key="">Z8encore\include\src\brick.c</file>
@@ -312,10 +311,22 @@
 
 <!-- watch information -->
 <watch-elements>
+<watch-element expression="initialx" />
+<watch-element expression="initialy" />
+<watch-element expression="x" />
+<watch-element expression="y" />
+<watch-element expression="gameSize" />
 </watch-elements>
 
 <!-- breakpoint information -->
 <breakpoints>
+<breakpoint temporary="false" enabled="true" >
+<line-number>75</line-number>
+<pathname>M:\Documents\GitHub\Programming-project-exercies\Z8encore\ANSIproject\main.c</pathname>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 <!-- ice event information -->

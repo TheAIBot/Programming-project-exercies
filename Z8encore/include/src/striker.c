@@ -4,7 +4,7 @@
 #include "striker.h"
 #include "ansi.h"
 
-void draw(int x, int y, int length, char c)
+void sdraw(int x, int y, int length, char c)
 {
 	int i;
 	gotoxy(x - (length / 2), y); // go to left of bouncer
@@ -17,40 +17,40 @@ void draw(int x, int y, int length, char c)
 void drawStriker(int x, int y, int length)
 {
 	const char strikerStyle = 178;
-	draw(x, y, length, strikerStyle);
+	sdraw(x, y, length, strikerStyle);
 }
 
 void clearStriker(int x, int y, int length)
 {
 	const char emptyChar = ' ';
-	draw(x, y, length, emptyChar);
+	sdraw(x, y, length, emptyChar);
 }
 
 void clearStrikerLeft(int x, int y, int length)
 {
 	const char emptyChar = ' ';
-	gotoxy(x + (length / 2), y); // go to right of bouncer
+	gotoxy(x + (length >> 1), y); // go to right of bouncer
 	printf("%c", emptyChar);
 }
 
 void clearStrikerRight(int x, int y, int length)
 {
 	const char emptyChar = ' ';
-	gotoxy(x - (length / 2), y); // go to left of bouncer
+	gotoxy(x - (length >> 1), y); // go to left of bouncer
 	printf("%c", emptyChar);
 }
 
 void drawStrikerLeft(int x, int y, int length)
 {
 	const char strikerStyle = 178;
-	gotoxy(x - (length / 2), y); // go to left of bouncer
+	gotoxy(x - (length >> 1), y); // go to left of bouncer
 	printf("%c", strikerStyle);
 }
 
 void drawStrikerRight(int x, int y, int length)
 {
 	const char strikerStyle = 178;
-	gotoxy(x + (length / 2), y); // go to right of bouncer
+	gotoxy(x + (length >> 1), y); // go to right of bouncer
 	printf("%c", strikerStyle);
 }
 
@@ -70,11 +70,11 @@ void moveStrikerRight(struct TStriker *vStriker)
 
 //Rendering nextstate Bouncer
 void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed) {
-	if (rightButtonPressed && vStriker->position.x < gameSize) {
-		moveStrikerRight(&vStriker);	
+	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSize) {
+		moveStrikerRight(vStriker);	
 	}
-	else if(leftButtonPressed && vStriker->position.x > 0) {
-		moveStrikerLeft(&vStriker);
+	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
+		moveStrikerLeft(vStriker);
 	}
 }
 
