@@ -5,7 +5,7 @@
 #include "SineLUT.h"
 #include "fixedmath.h"
 
-#define BALL_STYLE 9
+#define BALL_STYLE 254
 #define EMPY_CHAR ' '
 
 void bdraw(long x, long y, char c)
@@ -16,9 +16,14 @@ void bdraw(long x, long y, char c)
 	printf("%c", c); // (9)
 }
 
+void setBallColor(struct TBall *ball)
+{
+	fgcolor(ball->color);
+}
+
 void drawBall(long x, long y)
 {
-	bdraw(x, y, 'o');
+	bdraw(x, y, BALL_STYLE);
 }
 
 void clearBall(long x, long y)
@@ -33,18 +38,14 @@ void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velo
 	vBall->angle = angle;
 	vBall->velocity = velocity;
 	vBall->color = color;
-
-	vBall->momentum.x = FIX14_MULT(velocity,cos(angle));
-	vBall->momentum.y = FIX14_MULT(velocity,-sin(angle));
-
 	fgcolor(color);
 	drawBall(vBall->position.x, vBall->position.y);
 }
 
 void moveBall(struct TBall *vball)
 {
-	vball->position.x += vball->momentum.x;
-	vball->position.y += vball->momentum.y;
+	vball->position.x += FIX14_MULT(vball->velocity,cos(vball->angle));
+	vball->position.y += FIX14_MULT(vball->velocity,-sin(vball->angle));
 }
 
 //Rendering nextstate Ball
@@ -56,9 +57,7 @@ void updateBall(struct TBall *vball) {
 	}
 	else 
 	{
-		vball->velocity = TO_FIX14(1);
-		vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
-		vball->momentum.y = FIX14_MULT(vball->velocity,-sin(vball->angle));
+		vball->velocity = TO_FIX14(1) >> 1;
 	}
 }
 
@@ -78,26 +77,17 @@ void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int g
 	int stry = vStriker->position.y;
 	int strhl = vStriker->length >> 1;//half length of striker
 
-	/*if(ballx <= 0 || ballx >= gameSizeX)
-	{
-		vball->momentum.x  = -vball->momentum.x;
-	}
-
-	if(bally <= 0 || bally >= gameSizeY)
-	{
-		vball->momentum.y  = -vball->momentum.y;
-	}*/ 
-
 	//bounce off right and left walls	
 	if (ballx == gameSizeX - 1 || ballx == 2) {
 		vball->angle = 180 - vball->angle;
+		if(vball->angle < 0)
+		{
+			vball->angle = vball->angle + 360;//find better solution
+		}
 	}
 	//bounce off top wall and central striker
 	if (bally == 2 ||(bally == stry - 1 && ballx == strx )){
 		vball->angle= 360 - vball->angle;
 	}
-	//momentumvektor
-	vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
-	vball->momentum.y = FIX14_MULT(vball->velocity,-sin(vball->angle));	
 }
 

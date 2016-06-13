@@ -15,7 +15,6 @@ struct TBall
 	struct TPosition position;
 	int velocity;
 	int angle;
-	struct TPosition momentum;
 	char color;
 };
 
@@ -25,5 +24,6 @@ void clearBall(long x, long y);
 char isBallDead(struct TBall *vball, int gameSize);
 void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int gameSizeY);
 void updateBall(struct TBall *vball);
+void setBallColor(struct TBall *ball);
 
 #endif

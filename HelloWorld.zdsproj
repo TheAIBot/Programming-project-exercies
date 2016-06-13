@@ -316,6 +316,13 @@
 
 <!-- breakpoint information -->
 <breakpoints>
+<breakpoint temporary="false" enabled="true" >
+<line-number>88</line-number>
+<pathname>M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\brick.c</pathname>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 <!-- ice event information -->

@@ -45,14 +45,21 @@ void main() {
 	int lives = 10;
 	char title[] = "Brick Breaker\0";
 	char onboard[] = "Brick Breaker!\0";
+	struct TBrick bricks[] = 
+	{
+		{{0,1}, {4,1}, 1, {0,0}, 0}, 
+		{{4,3}, {4,1}, 1, {0,0}, 0}, 
+		{{8,5}, {4,1}, 1, {0,0}, 0}, 
+		{{16,7}, {4,1}, 1, {0,0}, 0}
+	};
 	//LEDsetString("Pong Game \0");
 
-	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
+	init_uart(_UART0,_DEFFREQ,115200);
 	
 	LEDinit();  //setup 1000-2000 HZ
 	initButtons();
 	//LEDinit();
-	color(FCOLOR_BLACK, BCOLOR_GRAY);
+	color(FCOLOR_WHITE, BCOLOR_BLACK);
 	LEDsetString(onboard);
 	enablecursor('0');
 	//initLevel
@@ -96,14 +103,16 @@ void main() {
 		hzscale = 0;
 		initNewBall = 1;
 		//initialize game objects
-		initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity*difficulty);
+		initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity*difficulty);
 		initStriker(&vStriker,initialx, initialy ,initl);
-		fgcolor(FCOLOR_BLUE);
+		initBricks(bricks);
+		fgcolor(FCOLOR_WHITE);
 		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
+		fgcolor(FCOLOR_WHITE);
 		//TIMER !!!!
 	
 		// initialize game data
-		gotoxy(4,GAMESIZEY+1);
+		gotoxy(0,GAMESIZEY+1);
 		printf("Difficulty: %5d\n", difficulty);
 		printf("Total score: %5d\n",score);
 		printf("Lives: %5d",lives);
@@ -117,8 +126,7 @@ void main() {
 				}
 			if (hzscale == 9) {//100Hz
 			*/
-			//delay(1000);
-			delay(100);
+			delay(20);
 			if(initNewBall)
 			{
 				while(!isf6Pressed())
@@ -130,17 +138,17 @@ void main() {
 			}
 			else
 			{
-				fgcolor(FCOLOR_CYAN);
+				setBallColor(&vball);
 				updateBall(&vball);
-				fgcolor(FCOLOR_GREEN);
 				moveStriker(&vStriker, GAMESIZEX, isf7Pressed(), isd3Pressed());
 				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY);
-				bounceStriker(&vStriker, &vball, GAMESIZEY);
+				bounceStriker(&vStriker, &vball);
+				handleBrickCollisions(bricks, &vball);
 				if(isBallDead(&vball, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
 					clearBall(vball.position.x,vball.position.y);
-					initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity);
+					initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity);
 					initStriker(&vStriker,initialx,initialy ,initl);
 					deathcount++;
 					initNewBall = 1;
