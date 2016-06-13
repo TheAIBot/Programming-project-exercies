@@ -30,7 +30,7 @@ void main() {
 	int angle = 45;
 	int initialx = GAMESIZEX >> 1;
 	int initialy = GAMESIZEY - 1;
-	int initl = 5;
+	int initl = 11;
 	unsigned char index = 0;
 	int times = 0;
 	int i;
@@ -49,11 +49,12 @@ void main() {
 
 	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
 	
-	initClock();  //setup 1000-2000 HZ
+	LEDinit();  //setup 1000-2000 HZ
 	initButtons();
 	//LEDinit();
 	color(FCOLOR_BLACK, BCOLOR_GRAY);
-	LEDsetString(onboard);	
+	LEDsetString(onboard);
+	enablecursor('0');
 	//initLevel
 	/*printFix(cos(0));
 	printFix(cos(45));
@@ -74,7 +75,7 @@ void main() {
 	    printf("Press center button to start game.");
 		while(1){
 			scrollText();
-			if(hzscale == 9){ //100 Hz
+			if(hzscale == 19){ //100 Hz
 				hzscale = 0;
 				if(isd3Pressed()){
 					difficulty++;
@@ -97,6 +98,7 @@ void main() {
 		//initialize game objects
 		initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity*difficulty);
 		initStriker(&vStriker,initialx, initialy ,initl);
+		fgcolor(FCOLOR_BLUE);
 		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
 		//TIMER !!!!
 	
@@ -115,7 +117,8 @@ void main() {
 				}
 			if (hzscale == 9) {//100Hz
 			*/
-			delay(1000);
+			//delay(1000);
+			delay(100);
 			if(initNewBall)
 			{
 				while(!isf6Pressed())
@@ -127,10 +130,13 @@ void main() {
 			}
 			else
 			{
+				fgcolor(FCOLOR_CYAN);
 				updateBall(&vball);
-				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY)
-				delay(100);
-				if(isBallDead(&vball, &vStriker, GAMESIZEY))
+				fgcolor(FCOLOR_GREEN);
+				moveStriker(&vStriker, GAMESIZEX, isf7Pressed(), isd3Pressed());
+				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY);
+				bounceStriker(&vStriker, &vball, GAMESIZEY);
+				if(isBallDead(&vball, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
 					clearBall(vball.position.x,vball.position.y);

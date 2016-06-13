@@ -122,11 +122,6 @@ M:\Documents\GitHub\Programming-project-exercies\main.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -140,11 +135,6 @@ M:\Documents\GitHub\Programming-project-exercies\ansi.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\ansi.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -157,11 +147,6 @@ M:\Documents\GitHub\Programming-project-exercies\ansi.obj :  \
 M:\Documents\GitHub\Programming-project-exercies\SineLUT.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\SineLUT.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
@@ -172,11 +157,6 @@ M:\Documents\GitHub\Programming-project-exercies\screenio.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -190,11 +170,6 @@ M:\Documents\GitHub\Programming-project-exercies\buttonio.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\buttonio.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\buttonio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -207,11 +182,6 @@ M:\Documents\GitHub\Programming-project-exercies\buttonio.obj :  \
 M:\Documents\GitHub\Programming-project-exercies\clockio.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\clockio.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -228,11 +198,6 @@ M:\Documents\GitHub\Programming-project-exercies\ball.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -250,11 +215,6 @@ M:\Documents\GitHub\Programming-project-exercies\brick.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\brick.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\brick.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -281,11 +241,6 @@ M:\Documents\GitHub\Programming-project-exercies\game.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -305,11 +260,6 @@ M:\Documents\GitHub\Programming-project-exercies\level.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\level.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\powerup.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -323,11 +273,6 @@ M:\Documents\GitHub\Programming-project-exercies\powerup.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\powerup.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\powerup.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -345,11 +290,6 @@ M:\Documents\GitHub\Programming-project-exercies\striker.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\color.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
@@ -363,11 +303,6 @@ M:\Documents\GitHub\Programming-project-exercies\timer.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\timer.c  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \

@@ -62,12 +62,10 @@ void updateBall(struct TBall *vball) {
 	}
 }
 
-char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSizeY){
-	int ballx=FIX14_TO_INT(vball->position.x);//truncation
-	int bally=FIX14_TO_INT(vball->position.y);//truncation
-	int strx = vStriker->position.x;//truncation
-	int strhl = vStriker->length >> 1;//half length of striker
-	if (bally==gameSizeY-1 && (ballx <= strx - strhl - 1 || ballx >= strx + strhl + 1)){
+char isBallDead(struct TBall *vball, int gameSizeY){
+	int ballx = FIX14_TO_INT(vball->position.x);//truncation
+	int bally = FIX14_TO_INT(vball->position.y);//truncation
+	if (bally==gameSizeY-1){
 		return 1;
 	}
 	return 0;
@@ -76,7 +74,8 @@ char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSizeY){
 void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
 	int ballx=FIX14_TO_INT(vball->position.x);//truncation
 	int bally=FIX14_TO_INT(vball->position.y);//truncation
-	int strx = vStriker->position.x;//truncation
+	int strx = vStriker->position.x;
+	int stry = vStriker->position.y;
 	int strhl = vStriker->length >> 1;//half length of striker
 
 	/*if(ballx <= 0 || ballx >= gameSizeX)
@@ -90,11 +89,11 @@ void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int g
 	}*/ 
 
 	//bounce off right and left walls	
-	if (ballx == gameSizeX || ballx == 0) {
+	if (ballx == gameSizeX - 1 || ballx == 2) {
 		vball->angle = 180 - vball->angle;
 	}
 	//bounce off top wall and central striker
-	if (bally == 0 ||(bally == gameSizeY - 1 && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)){
+	if (bally == 2 ||(bally == stry - 1 && ballx == strx )){
 		vball->angle= 360 - vball->angle;
 	}
 	//momentumvektor
