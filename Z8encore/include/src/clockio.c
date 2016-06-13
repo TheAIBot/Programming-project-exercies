@@ -3,8 +3,8 @@
 #include "clockio.h"
 
 volatile char LEDupdateFlag = 0;
-char runClock = 1;
-unsigned long halfmiliseconds = 0; // assumes the click runs with 2000hz
+volatile char runClock = 1;
+volatile unsigned long halfmiliseconds = 0; // assumes the click runs with 2000hz
 
 void delay(int times)
 {
@@ -17,7 +17,10 @@ void delay(int times)
 
 void waitOnce()
 {
-	while(LEDupdateFlag == 0) {	}
+	while(LEDupdateFlag == 0) 
+	{	
+	}
+	LEDupdateFlag = 0;
 }
 
 #pragma interrupt

@@ -57,7 +57,7 @@ void updateGame(struct TGame *game)
 	{
 		updateBall(&(game->balls[0]));
 		delay(100);
-		if(isBallDead(&(game->balls[0]), &(game->striker), game->gameSize))
+		if(isBallDead(&(game->balls[0]), game->gameSize))
 		{
 			clearStriker(game->striker.position.x,game->striker.position.y, game->striker.length); 
 			clearBall(game->balls[0].position.x, game->balls[0].position.y);

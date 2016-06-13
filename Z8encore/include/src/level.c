@@ -20,11 +20,12 @@ void updateLevel(struct TStriker *vStriker, struct TBall *vball, struct TBrick b
 	
 }
 
-void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSize, char leftButtonPressed, char rightButtonPressed) {
-    if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSize) {
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char leftButtonPressed, char rightButtonPressed) {
+    if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
 		//render new ball position
 		clearBall(vball->position.x, vball->position.y);
 		vball->position.x += TO_FIX14(1);
+		setBallColor(vball);
 		drawBall(vball->position.x, vball->position.y);
 
 		//render new bouncer position
@@ -34,6 +35,7 @@ void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int game
 		//render new ball position
 		clearBall(vball->position.x, vball->position.y);
 		vball->position.x -= TO_FIX14(1);
+		setBallColor(vball);
 		drawBall(vball->position.x, vball->position.y);
 
 		//render new bouncer position

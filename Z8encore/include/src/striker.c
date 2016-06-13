@@ -3,6 +3,8 @@
 #include "color.h"
 #include "striker.h"
 #include "ansi.h"
+#include "fixedmath.h"
+#include "SineLUT.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_CHAR ' '
@@ -15,6 +17,11 @@ void sdraw(int x, int y, int length, char c)
 	{
 		printf("%c", c);
 	}
+}
+
+void setStrikerColor()
+{
+	fgcolor(FCOLOR_BLUE);
 }
 
 void clearStriker(int x, int y, int length)
@@ -36,21 +43,21 @@ void clearStrikerRight(int x, int y, int length)
 
 void drawStriker(int x, int y, int length)
 {
-	fgcolor(FCOLOR_GREEN);
+	setStrikerColor();
 	sdraw(x, y, length, STRIKER_STYLE);
 }
 
 void drawStrikerLeft(int x, int y, int length)
 {
 	gotoxy(x - (length >> 1), y); // go to left of bouncer
-	fgcolor(FCOLOR_GREEN);
+	setStrikerColor();
 	printf("%c", STRIKER_STYLE);
 }
 
 void drawStrikerRight(int x, int y, int length)
 {
 	gotoxy(x + (length >> 1), y); // go to right of bouncer
-	fgcolor(FCOLOR_GREEN);
+	setStrikerColor();
 	printf("%c", STRIKER_STYLE);
 }
 
@@ -69,8 +76,8 @@ void moveStrikerRight(struct TStriker *vStriker)
 }
 
 //Rendering nextstate Bouncer
-void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed) {
-	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSize) {
+void moveStriker(struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
+	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
 		moveStrikerRight(vStriker);	
 	}
 	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
@@ -84,4 +91,48 @@ void initStriker(struct TStriker *vStriker, int x, int y, int l){
 	vStriker->position.y = y;
 	vStriker->length = l;
 	drawStriker(x, y, l);	
+}
+
+//bounce off striker at different angles
+void bounceStriker(struct TStriker *vStriker, struct TBall *vball){
+	int ballx = FIX14_TO_INT(vball->position.x);//truncation
+	int bally = FIX14_TO_INT(vball->position.y);//truncation
+	int strx = vStriker->position.x;//truncation
+	int stry = vStriker->position.y;//truncation
+	int strhl = vStriker->length >> 1; //half length of striker
+	int ang = vball->angle;
+	int ail = vball->angle - 270;  //incomming angle for ball incomming from left
+    int air = 270 - vball->angle;  //incomming angle for ball incomming from right	
+
+   	if ((bally == stry - 1) && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1) 
+	{	//When incomming from left
+		if (0 <= ail && ail <= 90 && ballx - strx > 0){ //Right of striker
+			if (ballx - strx <= vStriker->length+1 >> 2) { //Right medium
+				vball->angle = 90 - ((3*ail) >> 1);}
+			else {   					   //Right end
+			   vball->angle = 90 - 3*ail;}
+
+		}
+		if (0 <= ail && ail <= 90 && ballx - strx < 0){
+			if (ballx - strx <= - vStriker->length+1 >> 2) { //Left medium
+				vball->angle = 90 - (ail << 1 )/3;}
+			else {   					   //Left end
+			   vball->angle = 90 - ail/3;}
+		} 
+		//When incomming from right		
+		if (0 <= air && air <= 90 && ballx - strx < 0){ //left 
+			if (ballx - strx <= - vStriker->length+1 >> 2) { //left medium
+				vball->angle = 90 + ((3*air) >> 1);}
+			else {   					   //left end
+			   vball->angle = 90 + 3*air;}
+
+		}
+		if (0 <= air && air <= 90 && ballx - strx > 0){//right 
+			if (ballx - strx <= vStriker->length+1 >> 2) { //right medium
+				vball->angle = 90 + (air << 1 )/3;}
+			else {   					   //right end
+			   vball->angle = 90 + air/3;}
+		} 
+		
+	}
 }

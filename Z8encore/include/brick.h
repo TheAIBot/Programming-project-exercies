@@ -12,4 +12,8 @@ struct TBrick
 	char dropChance;
 };
 
+
+void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball);
+void initBricks(struct TBrick bricks[]);
+
 #endif
