@@ -17,8 +17,11 @@
 <file filter-key="">Z8encore\include\src\game.c</file>
 <file filter-key="">Z8encore\include\src\level.c</file>
 <file filter-key="">Z8encore\include\src\powerup.c</file>
+<<<<<<< HEAD
 <file filter-key="">Z8encore\include\src\striker.c</file>
 <file filter-key="">Z8encore\include\src\timer.c</file>
+=======
+>>>>>>> refs/remotes/origin/andreas
 </files>
 
 <!-- configuration information -->
@@ -211,9 +214,9 @@
 <option name="keeplst" type="boolean" change-action="none">false</option>
 <option name="list" type="boolean" change-action="none">false</option>
 <option name="listinc" type="boolean" change-action="none">false</option>
-<option name="localcopy" type="boolean" change-action="compile">true</option>
-<option name="localcse" type="boolean" change-action="compile">true</option>
-<option name="localfold" type="boolean" change-action="compile">true</option>
+<option name="localcopy" type="boolean" change-action="compile">false</option>
+<option name="localcse" type="boolean" change-action="compile">false</option>
+<option name="localfold" type="boolean" change-action="compile">false</option>
 <option name="longsize" type="integer" change-action="rebuild">32</option>
 <option name="loopopt" type="boolean" change-action="compile">false</option>
 <option name="maxerrs" type="integer" change-action="none">50</option>
@@ -317,6 +320,30 @@
 
 <!-- breakpoint information -->
 <breakpoints>
+<<<<<<< HEAD
+=======
+<breakpoint temporary="false" enabled="true" >
+<line-number>184</line-number>
+<pathname>M:\Documents\GitHub\Programming-project-exercies\Z8encore\ANSIproject\main.c</pathname>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>28</line-number>
+<pathname>C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\ANSIproject\main.c</pathname>
+<address>885</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>15</line-number>
+<pathname>C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8ENCORE\INCLUDE\SRC\BALL.C</pathname>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+>>>>>>> refs/remotes/origin/andreas
 </breakpoints>
 
 <!-- ice event information -->

@@ -46,6 +46,7 @@ char isf6Pressed()
 		b2 = ((~PFIN & 0x40) == 0x40)? 1 : 0;
 		return b1 & b2;
 	}
+	return 0;
 }
 
 char isd3Pressed()
@@ -58,4 +59,5 @@ char isd3Pressed()
 		b2 = ((~PDIN & 0x08) == 0x08)? 1 : 0;
 		return b1 & b2;
 	}
+	return 0;
 }

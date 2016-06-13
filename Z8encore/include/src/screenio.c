@@ -31,7 +31,7 @@ void LEDsetString(char string[])
 	while (string[++length] != '\0') { }
 	for(wholeStringIndex = 0; wholeStringIndex < 5; wholeStringIndex++) // doesn't support strings that are smaller than 5 chars
 	{
-		for(y = 0; y < 6; y++)
+		for(y = 0; y < 6; y++) //maybe this hould be 5 instead of 6. look at loadCharIntoVideoBuffer which has correct code
 		{
 			videoBuffer[wholeStringIndex][y] = getCharColumnCharArray(string[wholeStringIndex], y);
 		}

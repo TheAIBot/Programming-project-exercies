@@ -18,6 +18,7 @@
 
 #define GAMESIZE 70
 
+<<<<<<< HEAD
 
 char updateFlag = 0;
 
@@ -156,6 +157,21 @@ void main() {
 		}
 	}
 	while(1) {}
+=======
+void main() {
+	struct TGame game;
+	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
+	
+	initClock(); //needed to use delay which the buttons use
+	initButtons();
+
+	initGame(&game, GAMESIZE);
+
+	while(1)
+	{
+		updateGame(&game);
+	}
+>>>>>>> refs/remotes/origin/andreas
 }
 
 }
