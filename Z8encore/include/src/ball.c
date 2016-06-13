@@ -81,52 +81,8 @@ void impact(struct TBall *vball, struct TStriker *vStriker, int gameSize,  int a
 	if (bally == 0 ||(bally == gameSize - 1 && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)){
 		vball->angle= 180 - vball->angle;
 	}
-	//ved ikke om vi skal have momentumvektor
+	//momentumvektor
 		vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
 		vball->momentum.y = FIX14_MULT(vball->velocity,sin(vball->angle));	
 }
 
-//bounce off striker at different angles
-void bounceStriker(struct TStriker *vStriker, struct TBall *vball, int gameSize){
-	int ballx = FIX14_TOINT(vball->position.x);//truncation
-	int bally = FIX14_TOINT(vball->position.y);//truncation
-	int strx = FIX14_TOINT(vStriker->position.x);//truncation
-	int stry = FIX14_TOINT(vStriker->position.y);//truncation
-	int strhl = vStriker->length >> 1; //half length of striker
-	
-	if ((bally == gameSize - 1) && (ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)) {
-		air = vball->angle - 90;  //incomming angle for ball incomming from left
- 	    ail = 90 - vball->angle;  //incomming angle for ball incomming from left
-		//When incomming from left
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){
-			if (ballx - strx =< strx >> 1) { //Right medium
-				vball->angle = 90 - 1.5*air;}
-			else {   					   //Right end
-			   vball->angle = 90 - 3*air;}
-
-		} else 
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx < 0){
-			if (ballx - strx =< - strx >> 1) { //Left medium
-				vball->angle = 90 - air/1.5;}
-			else {   					   //Left end
-			   vball->angle = 90 - air/3;}
-		} else
-		//When incomming from right		
-		if (FIX14_TOINT(vball->momentum.x) < 0 && ballx - strx < 0){
-			if (ballx - strx =< - strx >> 1) { //Right medium
-				vball->angle = 90 - 1.5*air;}
-			else {   					   //Right end
-			   vball->angle = 90 - 3*air;}
-
-		} else 
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){
-			if (ballx - strx =< strx >> 1) { //Left medium
-				vball->angle = 90 - air/1.5;}
-			else {   					   //Left end
-			   vball->angle = 90 - air/3;}
-		} else
-	}
-	vball->momentum.x=FIX14_MULT(velocity*cos(vball->angle));
-	vball->momentum.y=FIX14_MULT(velocity*sin(vball->angle));
-
-}
