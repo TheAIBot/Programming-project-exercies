@@ -69,7 +69,6 @@ void main() {
 	initButtons();
 	//LEDinit();
 	color(FCOLOR_BLACK, BCOLOR_GRAY);
-	enablecursor('1');
 	
 	//initLevel
 	while(1) {
