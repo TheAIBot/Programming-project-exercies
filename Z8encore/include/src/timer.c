@@ -20,19 +20,19 @@ void stopTimer()
 	startClock();
 }
 
-struct Ttime getStructuredTime()
+struct TTime getStructuredTime()
 {
 	const unsigned long ONE_SECOND = 1000;
-	const unsigned long ONE_MINUTE = oneSecond * 60;
-	const unsigned long ONE_HOUR = oneMinute * 60;
+	const unsigned long ONE_MINUTE = ONE_SECOND * 60;
+	const unsigned long ONE_HOUR = ONE_MINUTE * 60;
 
 	unsigned long milisecondsPassed = getElapsedMiliseconds();
-	time timePassed;
+	struct TTime timePassed;
 	timePassed.hours       = (milisecondsPassed) / ONE_HOUR;
 	timePassed.minutes     = (milisecondsPassed - timePassed.hours * ONE_HOUR) / ONE_MINUTE;
 	timePassed.seconds     = (milisecondsPassed - timePassed.hours * ONE_HOUR - timePassed.minutes * ONE_MINUTE) / ONE_SECOND;
 	timePassed.miliseconds = (milisecondsPassed - timePassed.hours * ONE_HOUR - timePassed.minutes * ONE_MINUTE - timePassed.seconds * ONE_SECOND);
-	return &time;
+	return timePassed;
 }
 
 unsigned long getElapsedMiliseconds()

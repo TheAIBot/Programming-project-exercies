@@ -15,10 +15,11 @@ struct TBall
 	struct TPosition position;
 	int velocity;
 	int angle;
+	struct TPosition momentum;
 	char color;
 };
 
-void initBall(struct TBall *vBall,int x, int y, char color, int angle, int velocity);
+void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity);
 void drawBall(long x, long y);
 void clearBall(long x, long y);
 char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSize);

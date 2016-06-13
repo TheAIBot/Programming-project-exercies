@@ -3,6 +3,8 @@
 #include "color.h"
 #include "striker.h"
 #include "ansi.h"
+#include "fixedmath.h"
+#include "SineLUT.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_CHAR ' '
@@ -69,8 +71,8 @@ void moveStrikerRight(struct TStriker *vStriker)
 }
 
 //Rendering nextstate Bouncer
-void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed) {
-	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSize) {
+void moveStriker(struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
+	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
 		moveStrikerRight(vStriker);	
 	}
 	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
@@ -87,46 +89,46 @@ void initStriker(struct TStriker *vStriker, int x, int y, int l){
 }
 
 //bounce off striker at different angles
-void bounceStriker(struct TStriker *vStriker, struct TBall *vball, int gameSize){
-	int ballx = FIX14_TOINT(vball->position.x);//truncation
-	int bally = FIX14_TOINT(vball->position.y);//truncation
-	int strx = FIX14_TOINT(vStriker->position.x);//truncation
-	int stry = FIX14_TOINT(vStriker->position.y);//truncation
+void bounceStriker(struct TStriker *vStriker, struct TBall *vball, int gameSizeY){
+	int ballx = FIX14_TO_INT(vball->position.x);//truncation
+	int bally = FIX14_TO_INT(vball->position.y);//truncation
+	int strx = vStriker->position.x;//truncation
+	int stry = vStriker->position.y;//truncation
 	int strhl = vStriker->length >> 1; //half length of striker
 	
-	if ((bally == gameSize - 1) && (ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)) {
-		ail = vball->angle - 90;  //incomming angle for ball incomming from left
- 	    air = 90 - vball->angle;  //incomming angle for ball incomming from right
+	if ((bally == gameSizeY - 1) && (ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)) {
+		int ail = vball->angle - 270;  //incomming angle for ball incomming from left
+ 	    int air = 90 - vball->angle;  //incomming angle for ball incomming from right
 		//When incomming from left
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){ //Right of striker
-			if (ballx - strx =< strhl >> 1) { //Right medium
-				vball->angle = 90 - 1.5*ail;}
+		if (FIX14_TO_INT(vball->momentum.x) > 0 && ballx - strx > 0){ //Right of striker
+			if (ballx - strx <= strhl >> 1) { //Right medium
+				vball->angle = 90 - (3*ail) >> 1;}
 			else {   					   //Right end
 			   vball->angle = 90 - 3*ail;}
 
-		} else 
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx < 0){
-			if (ballx - strx =< - strhl >> 1) { //Left medium
-				vball->angle = 90 - ail/1.5;}
+		}
+		if (FIX14_TO_INT(vball->momentum.x) > 0 && ballx - strx < 0){
+			if (ballx - strx <= - strhl >> 1) { //Left medium
+				vball->angle = 90 - (ail << 1 )/3;}
 			else {   					   //Left end
 			   vball->angle = 90 - ail/3;}
-		} else
+		} 
 		//When incomming from right		
-		if (FIX14_TOINT(vball->momentum.x) < 0 && ballx - strx < 0){
-			if (ballx - strx =< - strhl >> 1) { //Right medium
-				vball->angle = 90 - 1.5*air;}
+		if (FIX14_TO_INT(vball->momentum.x) < 0 && ballx - strx < 0){
+			if (ballx - strx <= - strhl >> 1) { //Right medium
+				vball->angle = 90 - (3*air) >> 1;}
 			else {   					   //Right end
 			   vball->angle = 90 - 3*air;}
 
-		} else 
-		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){
-			if (ballx - strx =< strhl >> 1) { //Left medium
-				vball->angle = 90 - air/1.5;}
+		}
+		if (FIX14_TO_INT(vball->momentum.x) > 0 && ballx - strx > 0){
+			if (ballx - strx <= strhl >> 1) { //Left medium
+				vball->angle = 90 - (air << 1 )/3;}
 			else {   					   //Left end
 			   vball->angle = 90 - air/3;}
-		} else
+		} 
 	}
-	vball->momentum.x=FIX14_MULT(velocity*cos(vball->angle));
-	vball->momentum.y=FIX14_MULT(velocity*sin(vball->angle));
+	vball->momentum.x = FIX14_MULT(vball->velocity, cos(vball->angle));
+	vball->momentum.y = FIX14_MULT(vball->velocity, -sin(vball->angle));
 
 }

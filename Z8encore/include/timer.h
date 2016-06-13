@@ -1,13 +1,13 @@
 #ifndef _TIMER_H_
 #define _TIMER_H_
 
-typedef struct
+struct TTime
 {
 	int miliseconds;
 	char seconds;
 	char minutes;
 	int hours;
-} timer;
+};
 
 void startTimer();
 void stopTimer();

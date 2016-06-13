@@ -16,26 +16,9 @@
 #include "color.h"
 #include "clockio.h"
 
-#define GAMESIZE 70
+#define GAMESIZEX 150
+#define GAMESIZEY 60
 
-<<<<<<< HEAD
-
-char updateFlag = 0;
-
-#pragma interrupt
-void timer0int(){
-	updateFlag = 1;
-}
-
-/*
-void printVector(struct TVector v)
-{
-	printf("\n");
-	printFix(expand(v.x));
-	printf("\n");
-	printFix(expand(v.y));
-	printf("\n");
-}*/
 
 void main() {
 	//standard instanser
@@ -43,10 +26,10 @@ void main() {
 	struct TStriker vStriker;
 
 	int deathcount = 0;
-	int velocity = 0;
-	int angle = 40;
-	int initialx = GAMESIZE >> 1;
-	int initialy = GAMESIZE - 1;
+	long velocity = 0;
+	int angle = 45;
+	int initialx = GAMESIZEX >> 1;
+	int initialy = GAMESIZEY - 1;
 	int initl = 5;
 	unsigned char index = 0;
 	int times = 0;
@@ -70,108 +53,95 @@ void main() {
 	initButtons();
 	//LEDinit();
 	color(FCOLOR_BLACK, BCOLOR_GRAY);
-	
+	LEDsetString(onboard);	
 	//initLevel
+	/*printFix(cos(0));
+	printFix(cos(45));
+	printFix(cos(-78));
+	printFix(cos(649));
+	printFix(cos(40));
+	printFix(sin(40));
+	while(1){}*/
 	while(1) {
 		// begin main loop, selecting difficulty level
 		clrscr();
-		window(0, 0, GAMESIZE, GAMESIZE, '0', title);
-		gotoxy((GAMESIZE/2)-15, (GAMESIZE/2));
+		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
+		gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2));
 	    printf("Welcome to Brick Breaker!");
-	    gotoxy((GAMESIZE/2)-15, (GAMESIZE/2)-2);
+	    gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-2);
 	    printf("Select difficulty level by pressing left/right button (max. 5): %5d", difficulty);
-	    gotoxy((GAMESIZE/2)-15, (GAMESIZE/2)-3);
+	    gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-3);
 	    printf("Press center button to start game.");
-	   
-	  	stringLED = "Brick Breaker!";
 		while(1){
-			if(updateFlag == 1){ // 1000 Hz
-				updateFlag = 0;
-				LEDsetString(onboard);
-				LEDupdate();
-				scrollText();
-				hzscale++;
-			}
+			scrollText();
 			if(hzscale == 9){ //100 Hz
 				hzscale = 0;
 				if(isd3Pressed()){
 					difficulty++;
-					gotoxy((GAMESIZE/2)-15, (GAMESIZE/2)-2);
+					gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-2);
 		            printf("Select difficulty level by pressing left/right button: %5d", difficulty);
 				}
 				if( isf7Pressed() && difficulty > 1){
 					difficulty--;
-					gotoxy((GAMESIZE/2)-15, (GAMESIZE/2)-2);
+					gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-2);
 		        	printf("Select difficulty level by pressing left/right button: %5d", difficulty);
 				}
 				if(isf6Pressed() || difficulty == 5){break;}
 	    	}
+			hzscale++;
 		}
 
-	clrscr();
-	hzscale = 0;
-	//initialize game objects
-	initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity*difficulty);
-	initStriker(&vStriker,initialx, initialy ,initl);
-	window(0, 0, GAMESIZE, GAMESIZE, '0', title);
-	//TIMER !!!!
-
-	// initialize game data
-	gptoxy(4,GAMESIZE+1);
-	printf("Difficulty: %5d\n", difficulty);
-	printf("Total score: %5d\n",score);
-	printf("Lives: %5d",lives);
-	//TID??
-	while(1) {
-		if (updateFlag == 1) {//1000Hz
-			updateFlag = 0;
-			//Vi kan have andre ting vist på skærmen på boardet nu
-		
-		hzscale++;
-			}
-		if (hzscale > 9) {//100Hz
-		if(initNewBall)
-		{
-			while(!isf6Pressed())
-			{
-				moveStrikerPreShot(&vball, &vStriker, GAMESIZE, isd3Pressed(), isf7Pressed());
-				//delay(100);
-			}
-			initNewBall = 0;
-			vball.velocity = 1;
-		}
-		else
-		{
-			updateBall(&vball);
-			delay(100);
-			if(isBallDead(&vball, &vStriker, GAMESIZE))
-			{
-				clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
-				clearBall(vball.position.x,vball.position.y);
-				initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity);
-				initStriker(&vStriker,initialx,initialy ,initl);
-				deathcount++;
-				initNewBall = 1;
-			}
-			//bla bla bla code
-		}
-	}
-	while(1) {}
-=======
-void main() {
-	struct TGame game;
-	init_uart(_UART0,_DEFFREQ,_DEFBAUD);
+		clrscr();
+		hzscale = 0;
+		initNewBall = 1;
+		//initialize game objects
+		initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity*difficulty);
+		initStriker(&vStriker,initialx, initialy ,initl);
+		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
+		//TIMER !!!!
 	
-	initClock(); //needed to use delay which the buttons use
-	initButtons();
-
-	initGame(&game, GAMESIZE);
-
-	while(1)
-	{
-		updateGame(&game);
+		// initialize game data
+		gotoxy(4,GAMESIZEY+1);
+		printf("Difficulty: %5d\n", difficulty);
+		printf("Total score: %5d\n",score);
+		printf("Lives: %5d",lives);
+		//TID??
+		while(1) {
+			/*if (LEDupdateFlag == 1) {//1000Hz
+				updateFlag = 0;
+				//Vi kan have andre ting vist på skærmen på boardet nu
+			
+			    hzscale++;
+				}
+			if (hzscale == 9) {//100Hz
+			*/
+			delay(1000);
+			if(initNewBall)
+			{
+				while(!isf6Pressed())
+				{
+					moveStrikerPreShot(&vball, &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
+					//delay(100);
+				}
+				initNewBall = 0;
+			}
+			else
+			{
+				updateBall(&vball);
+				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY)
+				delay(100);
+				if(isBallDead(&vball, &vStriker, GAMESIZEY))
+				{
+					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
+					clearBall(vball.position.x,vball.position.y);
+					initBall(&vball,initialx, initialy - 1, FCOLOR_BLUE, angle, velocity);
+					initStriker(&vStriker,initialx,initialy ,initl);
+					deathcount++;
+					initNewBall = 1;
+				}
+				//bla bla bla code
+			}
+		}
+		while(1) {}
 	}
->>>>>>> refs/remotes/origin/andreas
-}
-
 }

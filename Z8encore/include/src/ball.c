@@ -27,26 +27,24 @@ void clearBall(long x, long y)
 }
 
 //Initialize ball
-void initBall(struct TBall *vBall,int x, int y, char color, int angle, int velocity){
+void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity){
 	vBall->position.x = TO_FIX14(x);
 	vBall->position.y = TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
 	vBall->color = color;
 
-<<<<<<< HEAD
-	vball->momentum.x=FIX14_MULT(velocity*cos(angle));
-	vball->momentum.y=FIX14_MULT(velocity*sin(angle));
-=======
->>>>>>> refs/remotes/origin/andreas
+	vBall->momentum.x = FIX14_MULT(velocity,cos(angle));
+	vBall->momentum.y = FIX14_MULT(velocity,-sin(angle));
+
 	fgcolor(color);
 	drawBall(vBall->position.x, vBall->position.y);
 }
 
 void moveBall(struct TBall *vball)
 {
-	vball->position.x +=  FIX14_MULT(cos(vball->angle), vball->velocity);
-	vball->position.y +=  FIX14_MULT(sin(vball->angle), vball->velocity);
+	vball->position.x += vball->momentum.x;
+	vball->position.y += vball->momentum.y;
 }
 
 //Rendering nextstate Ball
@@ -56,48 +54,51 @@ void updateBall(struct TBall *vball) {
 		moveBall(vball);
 		drawBall(vball->position.x,vball->position.y);
 	}
+	else 
+	{
+		vball->velocity = TO_FIX14(1);
+		vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
+		vball->momentum.y = FIX14_MULT(vball->velocity,-sin(vball->angle));
+	}
 }
 
-char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSize){
-<<<<<<< HEAD
-	int ballx=FIX14_TOINT(vball->position.x);//truncation
-	int bally=FIX14_TOINT(vball->position.y);//truncation
-	int strx = FIX14_TOINT(vStriker->position.x);//truncation
+char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSizeY){
+	int ballx=FIX14_TO_INT(vball->position.x);//truncation
+	int bally=FIX14_TO_INT(vball->position.y);//truncation
+	int strx = vStriker->position.x;//truncation
 	int strhl = vStriker->length >> 1;//half length of striker
-	if (bally==gameSize-1 && (ballx <= strx - strhl - 1 || ballx >= strx + strhl + 1)){
-=======
-	int curx = vball->position.x;
-	int cury = vball->position.y;
-	if (cury==gameSize-1 && (curx <= vStriker->position.x - vStriker->length / 2 || curx >= vStriker->length + vStriker->length / 2)){
->>>>>>> refs/remotes/origin/andreas
+	if (bally==gameSizeY-1 && (ballx <= strx - strhl - 1 || ballx >= strx + strhl + 1)){
 		return 1;
 	}
 	return 0;
 }
 
-void impact(struct TBall *vball, struct TStriker *vStriker, int gameSize,  int angle, int size) {
-	int ballx=FIX14_TOINT(vball->position.x);//truncation
-	int bally=FIX14_TOINT(vball->position.y);//truncation
-	int strx = FIX14_TOINT(vStriker->position.x);//truncation
+void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
+	int ballx=FIX14_TO_INT(vball->position.x);//truncation
+	int bally=FIX14_TO_INT(vball->position.y);//truncation
+	int strx = vStriker->position.x;//truncation
 	int strhl = vStriker->length >> 1;//half length of striker
 
-	//bounce off right and left walls	
-	if (ballx == gameSize || ballx == 0) {
-		vball->angle = 360 - vball->angle;
+	/*if(ballx <= 0 || ballx >= gameSizeX)
+	{
+		vball->momentum.x  = -vball->momentum.x;
 	}
-<<<<<<< HEAD
+
+	if(bally <= 0 || bally >= gameSizeY)
+	{
+		vball->momentum.y  = -vball->momentum.y;
+	}*/ 
+
+	//bounce off right and left walls	
+	if (ballx == gameSizeX || ballx == 0) {
+		vball->angle = 180 - vball->angle;
+	}
 	//bounce off top wall and central striker
-	if (bally == 0 ||(bally == gameSize - 1 && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)){
-		vball->angle= 180 - vball->angle;
+	if (bally == 0 ||(bally == gameSizeY - 1 && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)){
+		vball->angle= 360 - vball->angle;
 	}
 	//momentumvektor
-		vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
-		vball->momentum.y = FIX14_MULT(vball->velocity,sin(vball->angle));	
-=======
-	//bounce off top wall and bouncer
-	if (cury == 0 || cury==gameSize-1 && (curx >= vStriker->position.x - vStriker->length / 2 && curx <= vStriker->length + vStriker->length / 2)){
-		vball->angle= -vball->angle;
-	}	
->>>>>>> refs/remotes/origin/andreas
+	vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
+	vball->momentum.y = FIX14_MULT(vball->velocity,-sin(vball->angle));	
 }
 
