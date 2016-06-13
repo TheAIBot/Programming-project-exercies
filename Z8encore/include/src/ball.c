@@ -3,48 +3,45 @@
 #include "ball.h"
 #include "ansi.h"
 #include "SineLUT.h"
+#include "fixedmath.h"
 
-#define FIX14_SHIFT 14
-#define FIX14_MULT(a, b) ( (a)*(b) >> FIX14_SHIFT )
-#define FIX14_DIV(a, b) ( ((a) << FIX14_SHIFT) / (b) )
-#define FIX14_TOINT(a) (a >> FIX14_SHIFT)
+#define BALL_STYLE 9
+#define EMPY_CHAR ' '
 
-void bdraw(int x, int y, char c)
+void bdraw(long x, long y, char c)
 {
-	gotoxy(x, y);
+	int ix = FIX14_TO_INT(x);
+	int iy = FIX14_TO_INT(y);
+	gotoxy(ix, iy);
 	printf("%c", c); // (9)
 }
 
 void drawBall(long x, long y)
 {
-	const char ballChar = 9;
-	bdraw(FIX14_TOINT(x), FIX14_TOINT(y), 'O');
+	bdraw(x, y, 'o');
 }
 
 void clearBall(long x, long y)
 {
-	const char emptyChar = ' ';
-	bdraw(FIX14_TOINT(x), FIX14_TOINT(y), emptyChar);
+	bdraw(x, y, EMPY_CHAR);
 }
 
 //Initialize ball
-void initBall(struct TBall *vBall,int x, int y, char color, long angle, long velocity){
-	vBall->position.x = x;
-	vBall->position.y = y;
+void initBall(struct TBall *vBall,int x, int y, char color, int angle, int velocity){
+	vBall->position.x = TO_FIX14(x);
+	vBall->position.y = TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
 	vBall->color = color;
 
-	//vball->mx=velocity*cos(angle);
-	//vball->my=velocity*sin(angle);
 	fgcolor(color);
-	drawBall(x, y);
+	drawBall(vBall->position.x, vBall->position.y);
 }
 
 void moveBall(struct TBall *vball)
 {
-	vball->position.x = vball->position.x + FIX14_MULT(cos(vball->angle),vball->velocity);
-	vball->position.y = vball->position.y + FIX14_MULT(sin(vball->angle),vball->velocity);
+	vball->position.x +=  FIX14_MULT(cos(vball->angle), vball->velocity);
+	vball->position.y +=  FIX14_MULT(sin(vball->angle), vball->velocity);
 }
 
 //Rendering nextstate Ball
@@ -52,14 +49,14 @@ void updateBall(struct TBall *vball) {
 	if(vball->velocity > 0){
 		clearBall(vball->position.x,vball->position.y);	
 		moveBall(vball);
-		drawBall(vball->position.x,vball->position.y);			
+		drawBall(vball->position.x,vball->position.y);
 	}
 }
 
 char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSize){
-	int curx=vball->position.x;
-	int cury=vball->position.y;
-	if (cury==gameSize-1 &&(curx <= vStriker->position.x - vStriker->length / 2 || curx >= vStriker->length + vStriker->length / 2)){
+	int curx = vball->position.x;
+	int cury = vball->position.y;
+	if (cury==gameSize-1 && (curx <= vStriker->position.x - vStriker->length / 2 || curx >= vStriker->length + vStriker->length / 2)){
 		return 1;
 	}
 	return 0;
@@ -76,10 +73,7 @@ void impact(struct TBall *vball, struct TStriker *vStriker, int gameSize,  int a
 	//bounce off top wall and bouncer
 	if (cury == 0 || cury==gameSize-1 && (curx >= vStriker->position.x - vStriker->length / 2 && curx <= vStriker->length + vStriker->length / 2)){
 		vball->angle= -vball->angle;
-	}
-	//ved ikke om vi skal have momentumvektor
-		//vball->momentum.x = vball->velocity*cos(vball->angle);
-		//vball->momentum.y = vball->velocity*sin(vball->angle);	
+	}	
 }
 
 

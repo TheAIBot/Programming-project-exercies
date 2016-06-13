@@ -4,6 +4,9 @@
 #include "striker.h"
 #include "ansi.h"
 
+#define STRIKER_STYLE 178
+#define EMPTY_CHAR ' '
+
 void sdraw(int x, int y, int length, char c)
 {
 	int i;
@@ -14,44 +17,41 @@ void sdraw(int x, int y, int length, char c)
 	}
 }
 
-void drawStriker(int x, int y, int length)
-{
-	const char strikerStyle = 178;
-	sdraw(x, y, length, strikerStyle);
-}
-
 void clearStriker(int x, int y, int length)
 {
-	const char emptyChar = ' ';
-	sdraw(x, y, length, emptyChar);
+	sdraw(x, y, length, EMPTY_CHAR);
 }
 
 void clearStrikerLeft(int x, int y, int length)
 {
-	const char emptyChar = ' ';
 	gotoxy(x + (length >> 1), y); // go to right of bouncer
-	printf("%c", emptyChar);
+	printf("%c", EMPTY_CHAR);
 }
 
 void clearStrikerRight(int x, int y, int length)
 {
-	const char emptyChar = ' ';
 	gotoxy(x - (length >> 1), y); // go to left of bouncer
-	printf("%c", emptyChar);
+	printf("%c", EMPTY_CHAR);
+}
+
+void drawStriker(int x, int y, int length)
+{
+	fgcolor(FCOLOR_GREEN);
+	sdraw(x, y, length, STRIKER_STYLE);
 }
 
 void drawStrikerLeft(int x, int y, int length)
 {
-	const char strikerStyle = 178;
 	gotoxy(x - (length >> 1), y); // go to left of bouncer
-	printf("%c", strikerStyle);
+	fgcolor(FCOLOR_GREEN);
+	printf("%c", STRIKER_STYLE);
 }
 
 void drawStrikerRight(int x, int y, int length)
 {
-	const char strikerStyle = 178;
 	gotoxy(x + (length >> 1), y); // go to right of bouncer
-	printf("%c", strikerStyle);
+	fgcolor(FCOLOR_GREEN);
+	printf("%c", STRIKER_STYLE);
 }
 
 void moveStrikerLeft(struct TStriker *vStriker)

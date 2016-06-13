@@ -3,8 +3,8 @@
 
 struct TVector
 {
-	long x;
-	long y;
+	int x;
+	int y;
 };
 
 void fgcolor(int);
