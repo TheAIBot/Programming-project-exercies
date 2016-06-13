@@ -7,6 +7,7 @@
 struct TGame
 {
 	int gameSize;
+	struct TBall balls[5];
 	struct TStriker striker;
 	int deathCount;
 	int newBall;
