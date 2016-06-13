@@ -35,8 +35,8 @@ void initBall(struct TBall *vBall,int x, int y, char color, long angle, long vel
 	vBall->velocity = velocity;
 	vBall->color = color;
 
-	//vball->mx=velocity*cos(angle);
-	//vball->my=velocity*sin(angle);
+	vball->momentum.x=FIX14_MULT(velocity*cos(angle));
+	vball->momentum.y=FIX14_MULT(velocity*sin(angle));
 	fgcolor(color);
 	drawBall(x, y);
 }
@@ -57,29 +57,76 @@ void updateBall(struct TBall *vball) {
 }
 
 char isBallDead(struct TBall *vball, struct TStriker *vStriker, int gameSize){
-	int curx=vball->position.x;
-	int cury=vball->position.y;
-	if (cury==gameSize-1 &&(curx <= vStriker->position.x - vStriker->length / 2 || curx >= vStriker->length + vStriker->length / 2)){
+	int ballx=FIX14_TOINT(vball->position.x);//truncation
+	int bally=FIX14_TOINT(vball->position.y);//truncation
+	int strx = FIX14_TOINT(vStriker->position.x);//truncation
+	int strhl = vStriker->length >> 1;//half length of striker
+	if (bally==gameSize-1 && (ballx <= strx - strhl - 1 || ballx >= strx + strhl + 1)){
 		return 1;
 	}
 	return 0;
 }
 
 void impact(struct TBall *vball, struct TStriker *vStriker, int gameSize,  int angle, int size) {
-	int curx=vball->position.x;
-	int cury=vball->position.y;
-	
+	int ballx=FIX14_TOINT(vball->position.x);//truncation
+	int bally=FIX14_TOINT(vball->position.y);//truncation
+	int strx = FIX14_TOINT(vStriker->position.x);//truncation
+	int strhl = vStriker->length >> 1;//half length of striker
+
 	//bounce off right and left walls	
-	if (curx == gameSize || curx == 0) {
-		vball->angle = 180 - vball->angle;
+	if (ballx == gameSize || ballx == 0) {
+		vball->angle = 360 - vball->angle;
 	}
-	//bounce off top wall and bouncer
-	if (cury == 0 || cury==gameSize-1 && (curx >= vStriker->position.x - vStriker->length / 2 && curx <= vStriker->length + vStriker->length / 2)){
-		vball->angle= -vball->angle;
+	//bounce off top wall and central striker
+	if (bally == 0 ||(bally == gameSize - 1 && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)){
+		vball->angle= 180 - vball->angle;
 	}
 	//ved ikke om vi skal have momentumvektor
-		//vball->momentum.x = vball->velocity*cos(vball->angle);
-		//vball->momentum.y = vball->velocity*sin(vball->angle);	
+		vball->momentum.x = FIX14_MULT(vball->velocity,cos(vball->angle));
+		vball->momentum.y = FIX14_MULT(vball->velocity,sin(vball->angle));	
 }
 
+//bounce off striker at different angles
+void bounceStriker(struct TStriker *vStriker, struct TBall *vball, int gameSize){
+	int ballx = FIX14_TOINT(vball->position.x);//truncation
+	int bally = FIX14_TOINT(vball->position.y);//truncation
+	int strx = FIX14_TOINT(vStriker->position.x);//truncation
+	int stry = FIX14_TOINT(vStriker->position.y);//truncation
+	int strhl = vStriker->length >> 1; //half length of striker
+	
+	if ((bally == gameSize - 1) && (ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1)) {
+		air = vball->angle - 90;  //incomming angle for ball incomming from left
+ 	    ail = 90 - vball->angle;  //incomming angle for ball incomming from left
+		//When incomming from left
+		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){
+			if (ballx - strx =< strx >> 1) { //Right medium
+				vball->angle = 90 - 1.5*air;}
+			else {   					   //Right end
+			   vball->angle = 90 - 3*air;}
 
+		} else 
+		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx < 0){
+			if (ballx - strx =< - strx >> 1) { //Left medium
+				vball->angle = 90 - air/1.5;}
+			else {   					   //Left end
+			   vball->angle = 90 - air/3;}
+		} else
+		//When incomming from right		
+		if (FIX14_TOINT(vball->momentum.x) < 0 && ballx - strx < 0){
+			if (ballx - strx =< - strx >> 1) { //Right medium
+				vball->angle = 90 - 1.5*air;}
+			else {   					   //Right end
+			   vball->angle = 90 - 3*air;}
+
+		} else 
+		if (FIX14_TOINT(vball->momentum.x) > 0 && ballx - strx > 0){
+			if (ballx - strx =< strx >> 1) { //Left medium
+				vball->angle = 90 - air/1.5;}
+			else {   					   //Left end
+			   vball->angle = 90 - air/3;}
+		} else
+	}
+	vball->momentum.x=FIX14_MULT(velocity*cos(vball->angle));
+	vball->momentum.y=FIX14_MULT(velocity*sin(vball->angle));
+
+}

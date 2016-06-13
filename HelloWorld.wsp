@@ -5,8 +5,8 @@ ptn_Child3=Frames
 
 [WorkState_v1_1.DockState]
 Bars=14
-ScreenCX=1600
-ScreenCY=1200
+ScreenCX=1536
+ScreenCY=864
 ptn_Child1=Bar-0
 ptn_Child10=Bar-9
 ptn_Child11=Bar-10
@@ -221,12 +221,10 @@ Title=Debug Windows
 
 [WorkState_v1_1.DockState.Bar-2]
 Bar#0=0
-Bar#1=38001
+Bar#1=59139
 Bar#2=0
-Bar#3=59139
-Bar#4=0
 BarID=59422
-Bars=5
+Bars=3
 ClassName=
 DockingStyle=0
 ExStyle=0
@@ -285,16 +283,14 @@ Bar#19=38102
 Bar#2=38129
 Bar#20=38101
 Bar#21=38100
-Bar#22=0
+Bar#22=38001
 Bar#23=38003
 Bar#24=38004
 Bar#25=38002
 Bar#26=38000
 Bar#27=38005
 Bar#28=0
-Bar#29=103537
 Bar#3=38128
-Bar#30=0
 Bar#4=38127
 Bar#5=38126
 Bar#6=38125
@@ -302,7 +298,7 @@ Bar#7=38124
 Bar#8=38123
 Bar#9=38122
 BarID=59421
-Bars=31
+Bars=29
 ClassName=
 DockingStyle=0
 ExStyle=0
@@ -328,19 +324,19 @@ Docking=True
 DockingStyle=61440
 ExStyle=3889
 MDIChild=False
-MRUDockBottomPos=236
+MRUDockBottomPos=135
 MRUDockID=0
 MRUDockLeftPos=1
-MRUDockRightPos=1600
+MRUDockRightPos=760
 MRUDockTopPos=5
 MRUDockingState=0
 MRUFloatCX=300
 MRUFloatCY=180
 MRUFloatStyle=4
 MRUFloatXPos=-2147483648
-MRUFloatYPos=0
-MRUHorzDockCX=1599
-MRUHorzDockCY=231
+MRUFloatYPos=4216528
+MRUHorzDockCX=759
+MRUHorzDockCY=130
 MRUVertDockCX=300
 MRUVertDockCY=180
 PctWidth=1000000
@@ -359,7 +355,7 @@ Docking=True
 DockingStyle=61440
 ExStyle=3889
 MDIChild=False
-MRUDockBottomPos=791
+MRUDockBottomPos=547
 MRUDockID=0
 MRUDockLeftPos=0
 MRUDockRightPos=180
@@ -369,11 +365,11 @@ MRUFloatCX=300
 MRUFloatCY=180
 MRUFloatStyle=4
 MRUFloatXPos=-2147483648
-MRUFloatYPos=0
+MRUFloatYPos=6822976
 MRUHorzDockCX=300
 MRUHorzDockCY=180
 MRUVertDockCX=180
-MRUVertDockCY=793
+MRUVertDockCY=549
 PctWidth=1000000
 PrevFloating=False
 ResourceID=0
@@ -391,21 +387,20 @@ DockingStyle=61440
 ExStyle=908
 MDIChild=False
 MRUDockBottomPos=28
-MRUDockID=59419
+MRUDockID=0
 MRUDockLeftPos=-1
-MRUDockRightPos=1599
+MRUDockRightPos=759
 MRUDockTopPos=-1
 MRUDockingState=0
-MRUFloatCX=444
-MRUFloatCY=29
+MRUFloatCX=0
+MRUFloatCY=0
 MRUFloatStyle=8196
 MRUFloatXPos=-2147483648
-MRUFloatYPos=5834272
-MRUHorzDockCX=1600
+MRUFloatYPos=0
+MRUHorzDockCX=760
 MRUHorzDockCY=29
-MRUVertDockCX=80
-MRUVertDockCY=791
-MRUWidth=444
+MRUVertDockCX=0
+MRUVertDockCY=0
 PctWidth=1000000
 PrevFloating=False
 ResourceID=0
@@ -435,7 +430,7 @@ MRUFloatCX=0
 MRUFloatCY=0
 MRUFloatStyle=8196
 MRUFloatXPos=-2147483648
-MRUFloatYPos=6970288
+MRUFloatYPos=0
 MRUHorzDockCX=296
 MRUHorzDockCY=30
 MRUVertDockCX=0
@@ -495,13 +490,6 @@ ptn_Child2=ChildFrames
 
 [WorkState_v1_1.Frames.ChildFrames]
 ptn_Child1=Document-0
-ptn_Child10=Document-9
-ptn_Child11=Document-10
-ptn_Child12=Document-11
-ptn_Child13=Document-12
-ptn_Child14=Document-13
-ptn_Child15=Document-14
-ptn_Child16=Document-15
 ptn_Child2=Document-1
 ptn_Child3=Document-2
 ptn_Child4=Document-3
@@ -519,97 +507,37 @@ DocPathName=Z8encore\ANSIproject\main.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=True
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIBAAAAAAJCAAAAAAHAFAAAAAKJCAAAAA
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPDBAAAAAAEPPPPPPPEAFAAAAAFGCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-1]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-1.ViewFrame-0]
-DocPathName=Z8ENCORE\INCLUDE\SINELUT.H
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAOBFAAAAAAMCAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-10]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-10.ViewFrame-0]
-DocPathName=Z8encore\include\src\striker.c
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAKOEAAAAAMICAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-11]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-11.ViewFrame-0]
-DocPathName=Z8ENCORE\INCLUDE\SRC\POWERUP.C
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPCIAAAAAACIAAAAAAEAFAAAAAGKCAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-12]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-12.ViewFrame-0]
-DocPathName=Z8encore\include\src\brick.c
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKBAAAAAAKBAAAAAAMJEAAAAANCCAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-13]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-13.ViewFrame-0]
-DocPathName=Z8encore\include\src\game.c
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPEDAAAAAAEDAAAAAAGLEAAAAAHECAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-14]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-14.ViewFrame-0]
-DocPathName=c:\PROGRA~2\ZiLOG\ZDSII_~1.3\src\boot\common\startupl.asm
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAEAFAAAAAHHCAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-15]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-15.ViewFrame-0]
 DocPathName=Z8encore\include\src\screenio.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPGLAAAAAAGLAAAAAAGIFAAAAAPDCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGGAAAAAJBAAAAAAAEMAAAAABBCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-2]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-2.ViewFrame-0]
-DocPathName=Z8ENCORE\INCLUDE\SRC\BALL.C
+DocPathName=Z8encore\include\src\timer.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPGLAAAAAAGLAAAAAAIDFAAAAAKNCAAAAA
+WindowPlacement=MCAAAAAACAAAAAAACAAAAAAAAAAAAAAABACAAAAAIPPPPPPPBOPPPPPPOBAAAAAABPPPPPPPCLEAAAAAHDCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-3]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-3.ViewFrame-0]
-DocPathName=Z8encore\include\src\color.c
+DocPathName=Z8encore\include\src\clockio.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPANAAAAAAANAAAAAACFFAAAAAEPCAAAAA
+WindowPlacement=MCAAAAAACAAAAAAACAAAAAAAAKAAAAAABACAAAAAIPPPPPPPBOPPPPPPOEAAAAAAOEAAAAAAONEAAAAAEMBAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-4]
 ptn_Child1=ViewFrame-0
@@ -619,61 +547,51 @@ DocPathName=Z8encore\include\src\ansi.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAACAAAAAAACAAAAAAAAAAAAAAALPCAAAAAIPPPPPPPBOPPPPPPEPPPPPPPAAAAAAAAHAFAAAAANFCAAAAA
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAEPEAAAAAKNBAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-5]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-5.ViewFrame-0]
-DocPathName=Z8encore\include\src\clockio.c
+DocPathName=Z8encore\include\src\ball.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAACAAAAAAACAAAAAAAAAAAAAAADCCAAAAAIPPPPPPPBOPPPPPPDOAAAAAAJCAAAAAAKDEAAAAAOFCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPCIAAAAAACIAAAAAACBFAAAAAIPBAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-6]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-6.ViewFrame-0]
-DocPathName=Z8encore\include\Gamefunctions.c
+DocPathName=Z8encore\include\src\SineLUT.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAAAFAAAAAGPCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAMCFAAAAACBCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-7]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-7.ViewFrame-0]
-DocPathName=Z8encore\include\src\buttonio.c
+DocPathName=Z8encore\include\src\game.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAACAAAAAAACAAAAAAAAKAAAAAALPCAAAAAIPPPPPPPBOPPPPPPLKFAAAAAOOAAAAAADGLAAAAANMCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPGLAAAAAAGLAAAAAAODCAAAAADCCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-8]
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_1.Frames.ChildFrames.Document-8.ViewFrame-0]
-DocPathName=Z8encore\include\src\timer.c
-DocTemplateIndex=0
-DocumentString=IDE Document
-IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOAAAAAAAOHAAAAAABKEAAAAAEMCAAAAA
-
-[WorkState_v1_1.Frames.ChildFrames.Document-9]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_1.Frames.ChildFrames.Document-9.ViewFrame-0]
 DocPathName=Z8encore\include\src\level.c
 DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPOEAAAAAAOEAAAAAAANEAAAAACHCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPAAAAAAAAAAAAAAAAIIBAAAAANGBAAAAA
 
 [WorkState_v1_1.Frames.MainFrame]
-Title=HelloWorld -- ZDS II - Z8 Encore! Family -- main.c - [main.c]
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGEOPPPPPGIAAAAAANMKAAAAADAEAAAAA
+Title=HelloWorld -- ZDS II - Z8 Encore! Family -- main* - [main*]
+WindowPlacement=MCAAAAAACAAAAAAABAAAAAAAAADIPPPPAADIPPPPPPPPPPPPPPPPPPPPKPPPPPPPCAAAAAAAEAGAAAAAODDAAAAA
 
 [WorkState_v1_1.ToolBarMgr]
 CoolLook=True
