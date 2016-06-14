@@ -86,7 +86,7 @@ void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int g
 		}
 	}
 	//bounce off top wall and central striker
-	if (bally == 2 ||(bally == stry - 1 && ballx == strx )){
+	if (bally == 2){
 		vball->angle= 360 - vball->angle;
 	}
 }

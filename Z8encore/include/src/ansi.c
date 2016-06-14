@@ -47,26 +47,26 @@ void bgcolor(int background) {
       6        Cyan
       7        Gray
 */
-  printf("%c[%dm", ESC, background+40);
+  printf("%c[%dm", ESC, background + 40);
 }
 
 void color(int foreground, int background) {
 // combination of fgcolor() and bgcolor() - uses less bandwidth
-  int type = 22;             // normal text
+	int type = 22;             // normal text
 	if (foreground > 7) {
-	  type = 1;                // bold text
+		type = 1;                // bold text
 		foreground -= 8;
 	}
-  printf("%c[%d;%d;%dm", ESC, type, foreground+30, background+40);
+ 	printf("%c[%d;%d;%dm", ESC, type, foreground+30, background+40);
 }
 
 void resetbgcolor() {
-// gray on black text, no underline, no blink, no reverse
-  printf("%c[m", ESC);  
+	// gray on black text, no underline, no blink, no reverse
+  	printf("%c[m", ESC);  
 }
 
 void clrscr(){
-	  printf("%c[2J", ESC);
+	printf("%c[2J", ESC);
 }
 
 void clreol(){
@@ -79,139 +79,145 @@ void gotoxy(int x, int y){
 
 void underline(char on){
     if (on == '1'){
-	   printf("%c[%dm", ESC, 04);
+		printf("%c[%dm", ESC, 04);
 	} else {
-	   printf("%c[%dm", ESC, 24);
+		printf("%c[%dm", ESC, 24);
     }
 }	
 
 
 void blink(char on){
     if (on == '1'){
-	   printf("%c[%dm", ESC, 05);
+		printf("%c[%dm", ESC, 05);
 	} else {
-	   printf("%c[%dm", ESC, 25);
-    }
+		printf("%c[%dm", ESC, 25);
+	}
 }
 
 void reverse(char on){
     if (on == '1'){
-	   printf("%c[%dm", ESC, 07);
+		printf("%c[%dm", ESC, 07);
 	} else {
-	   printf("%c[%dm", ESC, 27);
-    }
-}
-
-void enablecursor(char on){
-    if (on == '1'){
-	   printf("%c[?%dh", ESC, 25);
-	} else {
-	   printf("%c[?%dl", ESC, 25);
+		printf("%c[%dm", ESC, 27);
     }
 }
 
 void movecursor(int x,int y) {
-if (x<0) printf("%c[%dD",ESC,(-1)*x);
-else printf("%c[%dC",ESC,x);
-if (y<0) printf("%c[%dB",ESC,(-1)*y);
-else printf("%c[%dA",ESC,y);
+	if (x<0) 
+	{
+		printf("%c[%dD",ESC,(-1)*x);
+	}
+	else 
+	{
+		printf("%c[%dC",ESC,x);
+	}
+
+	if (y<0) 
+	{
+		printf("%c[%dB",ESC,(-1)*y);
+	}
+	else 
+	{
+		printf("%c[%dA",ESC,y);
+	}
+}
+
+void writeScreen(int x, int y, char text[])
+{
+	gotoxy(x,y);
+	printf("%s", text);
 }
 
 void window(int x1, int y1, int x2, int y2, char style,char title[]){
-   int i,j,l= 0;
-   int windowWidth, titleStart, titleEnd;
-   int index =0;
+   	int i,j;
+   	int windowWidth = x2 - x1;
+	int titleStart;
+	int titleEnd;
+	int titleLength = 0;
+   	int index =0;
 
-   int symbol_lefttopcorner;
-   int symbol_righttopcorner;
-   int symbol_leftbottomcorner;
-   int symbol_rightbottomcorner;
-   int symbol_sideline; 
-   int symbol_bottomline;
-   int symbol_leftturnstile;
-   int symbol_rightturnstile;
+   	int symbol_lefttopcorner;
+   	int symbol_righttopcorner;
+   	int symbol_leftbottomcorner;
+   	int symbol_rightbottomcorner;
+   	int symbol_sideline; 
+   	int symbol_bottomline;
+   	int symbol_leftturnstile;
+   	int symbol_rightturnstile;
 
    // SELECT STYLE
-   if(style == '1'){
-     symbol_lefttopcorner = 218;
-	   symbol_leftturnstile = 180;
-	   symbol_righttopcorner = 191;
-	   symbol_rightturnstile = 195;
+	if(style == '1')
+	{
+		symbol_lefttopcorner = 218;
+	   	symbol_leftbottomcorner = 192;
+	   	symbol_rightbottomcorner = 217;
+	   	symbol_righttopcorner = 191;
 
-	   symbol_sideline = 179;
-	   symbol_bottomline = 196;
-       
-	   symbol_leftbottomcorner = 192;
-	   symbol_rightbottomcorner = 217;
+	   	symbol_leftturnstile = 180;
+	   	symbol_rightturnstile = 195;
 
-   } else {
-     symbol_lefttopcorner = 201;
-	   symbol_leftturnstile = 185;
-	   symbol_righttopcorner = 187;
-	   symbol_rightturnstile = 204;
+	   	symbol_sideline = 179;
+	   	symbol_bottomline = 196;
+   	} 
+	else 
+	{
+		symbol_lefttopcorner = 201;
+		symbol_leftbottomcorner = 200;
+	   	symbol_rightbottomcorner = 188;
+	   	symbol_righttopcorner = 187;
 
-	   symbol_sideline = 186;
-	   symbol_bottomline = 205;
-       
-	   symbol_leftbottomcorner = 200;
-	   symbol_rightbottomcorner = 188;
-      
-   }
-		for(i = x1; i<= x2; i++)
-	 {
-	 		gotoxy(i,y1);
-			printf("%c", symbol_bottomline);
-	 }
+		symbol_leftturnstile = 185;
+		symbol_rightturnstile = 204;
 
-		for(i = x1; i<= x2; i++)
-	 {
-	 	 gotoxy(i,y2);
-			printf("%c", symbol_bottomline);
-	 }
+	   	symbol_sideline = 186;
+	   	symbol_bottomline = 205;
+   	}
 
-		for(i = y1; i<= y2; i++)
-	 {
-	 	 gotoxy(x1,i);
-			printf("%c", symbol_sideline);
-	 }
+	for(i = y1; i <= y2; i++)
+	{
+		gotoxy(x1,i);
+		printf("%c", symbol_sideline);
+		gotoxy(x2,i);
+		printf("%c", symbol_sideline);
+	}
 
-		for(i = y1; i<= y2; i++)
-	 {
-	 	 gotoxy(x2,i);
-			printf("%c", symbol_sideline);
-	 }
-
-	 gotoxy(x1,y1);
+	gotoxy(x1,y1);
+	for(i = x1 + 1; i <= x2; i++)
+	{
+		printf("%c", symbol_bottomline);
+	}
+	gotoxy(x1,y2);
+	for(i = x1 + 1; i <= x2; i++)
+	{
+		printf("%c", symbol_bottomline);
+	}
+	
+	//set corners
+	gotoxy(x1,y1);
 	printf("%c", symbol_lefttopcorner);
-
 	gotoxy(x1,y2);
 	printf("%c", symbol_leftbottomcorner);
-
 	gotoxy(x2,y1);
 	printf("%c", symbol_righttopcorner);
-
 	gotoxy(x2,y2);
 	printf("%c", symbol_rightbottomcorner);
 	
 
-  while ((title[l]) != '\0'){
-		l++;
+	while ((title[titleLength]) != '\0'){
+		titleLength++;
 	}
 
+	titleStart = x1 + (windowWidth / 2) - (titleLength / 2);
+	titleEnd = titleStart + titleLength;
 
+	//write title
+	writeScreen(titleStart, y1, title);
 
-	 windowWidth = x2 - x1;
-	 titleStart = x1 + (windowWidth / 2) - (l / 2);
-	 titleEnd = x1 + (windowWidth / 2) + (l / 2);
-	 
-	
-	 gotoxy(titleStart,y1);
-	 index = 0;
-	 for(i = titleStart; i<= titleEnd; i++)
-	 {
-			printf("%c", title[index]);
-			index++;
-	 }
+	//set start and end title chars
+	gotoxy(titleStart - 1, y1);
+	printf("%c", symbol_leftturnstile);
+	gotoxy(titleEnd, y1);
+	printf("%c", symbol_rightturnstile);
 }
 
 void initVector(struct TVector * v, long x, long y)
@@ -222,8 +228,16 @@ void initVector(struct TVector * v, long x, long y)
 
 void rotate(struct TVector *v, int angle)
 {
-long nx=v->x;
-long ny=v->y;	
-v->x = nx * cos(angle) -ny * sin(angle);
+	long nx = v->x;
+	long ny = v->y;	
+	v->x = nx * cos(angle) -ny * sin(angle);
 	v->y = nx * sin(angle) + ny * cos(angle);
+}
+
+void enablecursor(char on){
+    if (on == '1'){
+	   printf("%c[?%dh", ESC, 25);
+	} else {
+	   printf("%c[?%dl", ESC, 25);
+    }
 }

@@ -4,6 +4,7 @@
 #include "ansi.h"
 #include "color.h"
 #include "ball.h"
+#include "fixedmath.h"
 
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
@@ -57,10 +58,16 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, int brick
 		if(bricks[brickIndex].health > 0)
 		{
 			struct TBrick *brick = &bricks[brickIndex];
-			if((ball->position.x >= brick->position.x && 
-			    ball->position.x <= brick->position.x + brick->size.x) &&
-				 (ball->position.y == brick->position.y + brick->size.y + 1 || 
-				  ball->position.y == brick->position.y - 1))
+			int ballX = FIX14_TO_INT(ball->position.x);
+			int ballY = FIX14_TO_INT(ball->position.y);
+			int brickX = brick->position.x;
+			int brickY = brick->position.y;
+			int brickSizeX = brick->size.x;
+			int brickSizeY = brick->size.y;
+			if((ballX >= brickX && 
+			    ballX <= brickX + brickSizeX) &&
+				 (ballY == brickY + brickSizeY || 
+				  ballY == brickY - 1))
 			{
 				brick->health--;
 				ball->angle = 360 - ball->angle;
@@ -70,13 +77,17 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, int brick
 				}
 			}
 
-			if((ball->position.y >= brick->position.y && 
-			    ball->position.y <= brick->position.y + brick->size.y) &&
-				 (ball->position.x == brick->position.x + brick->size.x + 1 || 
-				  ball->position.x == brick->position.x - 1))
+			if((ballY >= brickY && 
+			    ballY <= brickY + brickSizeY) &&
+				 (ballX == brickX + brickSizeX || 
+				  ballX == brickX - 1))
 			{
 				brick->health--;
-				ball->angle = 360 - ball->angle;
+				ball->angle = 180 - ball->angle;
+				if(ball->angle < 0)
+				{
+					ball->angle = ball->angle + 360;//find better solution
+				}
 				if(brick->health <= 0)
 				{
 					clearBrick(brick);
