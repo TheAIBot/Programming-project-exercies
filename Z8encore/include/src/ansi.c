@@ -102,6 +102,14 @@ void reverse(char on){
     }
 }
 
+void enablecursor(char on){
+    if (on == '1'){
+	   printf("%c[?%dh", ESC, 25);
+	} else {
+	   printf("%c[?%dl", ESC, 25);
+    }
+}
+
 void movecursor(int x,int y) {
 if (x<0) printf("%c[%dD",ESC,(-1)*x);
 else printf("%c[%dC",ESC,x);

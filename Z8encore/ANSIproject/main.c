@@ -29,7 +29,7 @@ void main() {
 	int angle = 45;
 	int initialx = GAMESIZEX >> 1;
 	int initialy = GAMESIZEY - 1;
-	int initl = 11;
+	int initl = 31;
 	unsigned char index = 0;
 	char initNewBall = 1;
 	char difficulty = 1;

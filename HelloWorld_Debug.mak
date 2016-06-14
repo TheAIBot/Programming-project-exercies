@@ -17,16 +17,16 @@ LIB = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8lib
 #   -localfold -longsize:32 -NOloopopt -maxerrs:50 -model:L -NOoptlink
 #   -optsize -peephole -NOpromote -quiet -regvar -revaa -NOsdiopt
 #   -shortsize:16
-#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
+#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
 #   -strict
 #   -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include"
 #   -NOwatch -cpu:Z8F6403
-#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X -revaa"
+#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog -revaa"
 CFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.ccsw
 # assembler options
 #   -debug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1
 #   -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj -NOigcase
-#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
+#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
 #   -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt
 #   -warn -NOzmasm -revaa -cpu:Z8F6403
 AFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.asmsw
