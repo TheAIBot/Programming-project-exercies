@@ -105,33 +105,35 @@ void bounceStriker(struct TStriker *vStriker, struct TBall *vball){
     int air = 270 - vball->angle;  //incomming angle for ball incomming from right	
 
    	if ((bally == stry - 1) && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1) 
+
 	{	//When incomming from left
-		if (0 <= ail && ail <= 90 && ballx - strx > 0){ //Right of striker
-			if (ballx - strx <= vStriker->length+1 >> 2) { //Right medium
+		if (0 <= ail && ail <= 90 && ballx - strx > 0){ //bouncing off right of striker 
+			if (0 <= ail && ail <= 50 && ballx - strx <= vStriker->length+1 >> 2) { //right medium: within angle intervall ai=0-50 degrees
 				vball->angle = 90 - ((3*ail) >> 1);}
-			else {   					   //Right end
-			   vball->angle = 90 - 3*ail;}
-
+ 			else if (0 <= ail && ail <= 25 && ballx - strx > vStriker->length+1 >> 2){ //right end: within angel intervall ai=0-25 degrees
+				vball->angle = 90 - 3*ail;}
+			else {vball->angle = 20;} //for every other case set refracted angle to 20 degrees relative to the x-axis
 		}
-		if (0 <= ail && ail <= 90 && ballx - strx < 0){
-			if (ballx - strx <= - vStriker->length+1 >> 2) { //Left medium
+		if (0 <= ail && ail <= 90 && ballx - strx < 0){ //bouncing off left of striker 
+			if (ballx - strx <= - vStriker->length+1 >> 2) { //Left medium: within angle intervall ai=0-90 degrees
 				vball->angle = 90 - (ail << 1 )/3;}
-			else {   					   //Left end
-			   vball->angle = 90 - ail/3;}
+			else { vball->angle = 90 - ail/3;} 			     //Left end: within angle intervall ai=0-90 degrees
 		} 
-		//When incomming from right		
-		if (0 <= air && air <= 90 && ballx - strx < 0){ //left 
-			if (ballx - strx <= - vStriker->length+1 >> 2) { //left medium
+
+
+		//When incomming from right	
+		if (0 <= air && air <= 90 && ballx - strx < 0){ //bouncing off left of striker 
+			if (0 <= ail && ail <= 50 && ballx - strx <= - vStriker->length+1 >> 2) {   //left medium: within angle intervall ai=0-50 degrees
 				vball->angle = 90 + ((3*air) >> 1);}
-			else {   					   //left end
-			   vball->angle = 90 + 3*air;}
+			else if (0 <= ail && ail <= 25 && ballx - strx > - vStriker->length+1 >> 2) { //right end: within angel intervall ai=0-25 degrees
+				vball->angle = 90 + 3*ail;}
+			else {vball->angle = 160;} //for every other case set refracted angle to 160 degrees relative to the x-axis
 
 		}
-		if (0 <= air && air <= 90 && ballx - strx > 0){//right 
-			if (ballx - strx <= vStriker->length+1 >> 2) { //right medium
+		if (0 <= air && air <= 90 && ballx - strx > 0){//bouncing off right of striker 
+			if (ballx - strx <= vStriker->length+1 >> 2) { //right medium:  within angle intervall ai=0-90 degrees
 				vball->angle = 90 + (air << 1 )/3;}
-			else {   					   //right end
-			   vball->angle = 90 + air/3;}
+			else {vball->angle = 90 + air/3;}   		   //right end: within angle intervall ai=0-90 degrees
 		} 
 		
 	}
