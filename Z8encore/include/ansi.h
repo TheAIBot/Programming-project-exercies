@@ -1,6 +1,9 @@
 #ifndef _ANSI_H_
 #define _ANSI_H_
 
+
+#define ESC 0x1B
+
 struct TVector
 {
 	int x;

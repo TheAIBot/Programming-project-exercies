@@ -5,9 +5,6 @@
 #include "ansi.h"
 #include "SineLUT.h"
 
-
-#define ESC 0x1B
-
 void fgcolor(int foreground) {
 /*  Value      foreground     Value     foreground
     ------------------------------------------------
