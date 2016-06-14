@@ -13,7 +13,7 @@ struct TBrick
 };
 
 
-void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, brickCount);
-void initBricks(struct TBrick bricks[], brickCount);
+void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, int brickCount);
+void initBricks(struct TBrick bricks[], int brickCount);
 
 #endif

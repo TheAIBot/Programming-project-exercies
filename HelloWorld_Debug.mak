@@ -56,6 +56,22 @@ clean:
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ball.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ball.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\boss.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\boss.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\brick.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\brick.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\game.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\game.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\level.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\level.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\powerup.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\powerup.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\striker.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\striker.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj
 
 rebuildall: clean Debug
 
@@ -70,7 +86,15 @@ OBJS =  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\SineLUT.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj  \
-            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ball.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\boss.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\brick.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\game.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\level.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\powerup.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\striker.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -197,4 +221,163 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\clockio.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ball.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\ball.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\SineLUT.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\ball.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\boss.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\boss.c
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\boss.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\brick.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\brick.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\brick.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\color.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\brick.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\game.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\game.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\SineLUT.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\SuperIO.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\boss.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\brick.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\buttonio.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\color.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\game.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\level.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\powerup.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\screenio.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\timer.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\game.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\level.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\level.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\boss.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\brick.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\level.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\powerup.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\level.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\powerup.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\powerup.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\powerup.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\powerup.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\striker.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\striker.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\SineLUT.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\color.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\striker.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\timer.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\timer.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\timer.c
 

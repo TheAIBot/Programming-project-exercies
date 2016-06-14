@@ -49,7 +49,7 @@ void clearBrick(struct TBrick *brick)
 	brickdraw(brick, EMPTY_STYLE);
 }
 
-void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, brickCount)
+void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, int brickCount)
 {
 	int brickIndex;
 	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
@@ -86,7 +86,7 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, brickCoun
 	}
 }
 
-void initBricks(struct TBrick bricks[], brickCount)
+void initBricks(struct TBrick bricks[], int brickCount)
 {
 	int brickIndex;
 	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)

@@ -493,6 +493,9 @@ ptn_Child1=Document-0
 ptn_Child2=Document-1
 ptn_Child3=Document-2
 ptn_Child4=Document-3
+ptn_Child5=Document-4
+ptn_Child6=Document-5
+ptn_Child7=Document-6
 
 [WorkState_v1_1.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
@@ -533,6 +536,36 @@ DocTemplateIndex=0
 DocumentString=IDE Document
 IsActiveChildFrame=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOAAAAAAAOHAAAAAABKEAAAAAEMCAAAAA
+
+[WorkState_v1_1.Frames.ChildFrames.Document-4]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-4.ViewFrame-0]
+DocPathName=Z8encore\include\src\brick.c
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAEAFAAAAAKPCAAAAA
+
+[WorkState_v1_1.Frames.ChildFrames.Document-5]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-5.ViewFrame-0]
+DocPathName=Z8encore\include\brick.h
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPGLAAAAAAGLAAAAAAOBFAAAAAEBDAAAAA
+
+[WorkState_v1_1.Frames.ChildFrames.Document-6]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-6.ViewFrame-0]
+DocPathName=Z8encore\include\src\game.c
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPANAAAAAAANAAAAAAIDFAAAAAOCDAAAAA
 
 [WorkState_v1_1.Frames.MainFrame]
 Title=HelloWorld -- ZDS II - Z8 Encore! Family -- main.c - [main.c]

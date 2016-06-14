@@ -10,6 +10,14 @@
 <file filter-key="">Z8encore\include\src\screenio.c</file>
 <file filter-key="">Z8encore\include\src\buttonio.c</file>
 <file filter-key="">Z8encore\include\src\clockio.c</file>
+<file filter-key="">Z8encore\include\src\ball.c</file>
+<file filter-key="">Z8encore\include\src\boss.c</file>
+<file filter-key="">Z8encore\include\src\brick.c</file>
+<file filter-key="">Z8encore\include\src\game.c</file>
+<file filter-key="">Z8encore\include\src\level.c</file>
+<file filter-key="">Z8encore\include\src\powerup.c</file>
+<file filter-key="">Z8encore\include\src\striker.c</file>
+<file filter-key="">Z8encore\include\src\timer.c</file>
 </files>
 
 <!-- configuration information -->
