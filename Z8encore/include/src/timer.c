@@ -20,6 +20,18 @@ void stopTimer()
 	startClock();
 }
 
+void initTimer(struct TTimer *timer, long interval)
+{
+	timer->lastEvent = 0;
+	timer->interval = interval;
+}
+
+void waitForEvent(struct TTimer *timer)
+{
+	while(timer->lastEvent + timer->interval > getMiliseconds()) {}
+	timer->lastEvent = getMiliseconds();
+}
+
 struct TTime getStructuredTime()
 {
 	const unsigned long ONE_SECOND = 1000;

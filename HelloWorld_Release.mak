@@ -1,5 +1,5 @@
 #
-# ZDS II Make File - HelloWorld, Debug
+# ZDS II Make File - HelloWorld, Release
 #
 
 CC = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8cc
@@ -8,41 +8,43 @@ LINK = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8link
 LIB = @c:\PROGRA~2\ZiLOG\ZDSII_~1.3\bin\eZ8lib
 
 # compiler options
-#   -NOwatch
-#   -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include"
+#   -alias -asm -bitfieldsize:32 -charsize:8 -const:RAM -NOdebug
+#   -define:_Z8F6403 -define:_Z8ENCORE_640_FAMILY
+#   -define:_Z8ENCORE_F640X -define:_MODEL_LARGE -doublesize:32
+#   -NOexpmac -floatsize:32 -NOfplib -genprintf -globalcopy -globalcse
+#   -globalfold -intrinsic -intsize:16 -intsrc -jmpopt -NOkeepasm
+#   -NOkeeplst -NOlist -NOlistinc -localcopy -localcse -localfold
+#   -longsize:32 -loopopt -maxerrs:50 -model:L -NOoptlink -optsize
+#   -peephole -NOpromote -quiet -regvar -revaa -sdiopt -shortsize:16
+#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
 #   -strict
-#   -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
-#   -shortsize:16 -NOsdiopt -revaa -regvar -quiet -NOpromote -peephole
-#   -optsize -NOoptlink -model:L -maxerrs:50 -NOloopopt -longsize:32
-#   -localfold -localcse -localcopy -NOlistinc -NOlist -NOkeeplst
-#   -NOkeepasm -NOjmpopt -intsrc -intsize:16 -intrinsic -NOglobalfold
-#   -NOglobalcse -NOglobalcopy -genprintf -NOfplib -floatsize:32
-#   -NOexpmac -doublesize:32 -define:_Z8F6403
-#   -define:_Z8ENCORE_640_FAMILY -define:_Z8ENCORE_F640X
-#   -define:_MODEL_LARGE -debug -const:RAM -charsize:8 -bitfieldsize:32
-#   -asm -alias -cpu:Z8F6403
-#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X -revaa"
-CFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.ccsw
+#   -usrinc:"C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include"
+#   -NOwatch -cpu:Z8F6403
+#   -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog -revaa"
+CFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Release.ccsw
 # assembler options
-#   -NOzmasm -warn -sdiopt -quiet -pagewidth:80 -pagelen:56 -name
-#   -NOlistmac -list
-#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X"
-#   -NOigcase -genobj -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1
-#   -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -debug -revaa
-#   -cpu:Z8F6403
-AFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.asmsw
+#   -NOdebug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1
+#   -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj -NOigcase
+#   -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog"
+#   -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt
+#   -warn -NOzmasm -revaa -cpu:Z8F6403
+AFLAGS = -sw:C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Release.asmsw
 
 OUTDIR = C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\
 
-Debug: HelloWorld
+Release: HelloWorld
 
 deltarget: 
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.lod  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.lod
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.hex  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.hex
 
 clean: 
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.lod  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.lod
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.hex  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld.hex
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\zsldevinit.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\zsldevinit.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\main.obj  \
@@ -74,9 +76,9 @@ clean:
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj
 
-rebuildall: clean Debug
+rebuildall: clean Release
 
-relink: deltarget Debug
+relink: deltarget Release
 
 LIBS = 
 
@@ -98,7 +100,7 @@ OBJS =  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj
 
 HelloWorld: $(OBJS)
-	 $(LINK)  @C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.linkcmd
+	 $(LINK)  @C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Release.linkcmd
 
 C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\zsldevinit.obj :  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\zsldevinit.asm  \

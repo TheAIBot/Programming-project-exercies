@@ -5,9 +5,6 @@
 #include "ansi.h"
 #include "SineLUT.h"
 
-
-#define ESC 0x1B
-
 void fgcolor(int foreground) {
 /*  Value      foreground     Value     foreground
     ------------------------------------------------
@@ -60,14 +57,6 @@ void color(int foreground, int background) {
  	printf("%c[%d;%d;%dm", ESC, type, foreground+30, background+40);
 }
 
-// enable/disable cursur
-void enablecursor(char on){
-    if (on == '1'){
-	   printf("%c[?%dh", ESC, 25);
-	} else {
-	   printf("%c[?%dl", ESC, 25);
-    }
-}
 void resetbgcolor() {
 	// gray on black text, no underline, no blink, no reverse
   	printf("%c[m", ESC);  
@@ -240,4 +229,12 @@ void rotate(struct TVector *v, int angle)
 	long ny = v->y;	
 	v->x = nx * cos(angle) -ny * sin(angle);
 	v->y = nx * sin(angle) + ny * cos(angle);
+}
+
+void enablecursor(char on){
+    if (on == '1'){
+	   printf("%c[?%dh", ESC, 25);
+	} else {
+	   printf("%c[?%dl", ESC, 25);
+    }
 }

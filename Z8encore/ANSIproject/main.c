@@ -19,25 +19,22 @@
 #define GAMESIZEX 150
 #define GAMESIZEY 60
 
+#define brickHeight 2
+#define brickWidth 6
+#define bricksize 0x26
+
 
 void main() {
 	//standard instanser
 	struct TBall vball;
 	struct TStriker vStriker;
 
-	int deathcount = 0;
 	long velocity = 0;
-	int angle = 45;
+	int angle = 45+90;
 	int initialx = GAMESIZEX >> 1;
 	int initialy = GAMESIZEY - 1;
-	int initl = 11;
+	int initl = 31;
 	unsigned char index = 0;
-	int times = 0;
-	int i;
-	int j;
-	int k;
-	int prevPressed = 0;
-	int oldI;
 	char initNewBall = 1;
 	char difficulty = 1;
 	int hzscale = 0;
@@ -45,17 +42,53 @@ void main() {
 	int lives = 10;
 	char title[] = "Brick Breaker\0";
 	char onboard[] = "Brick Breaker!\0";
+	struct TTimer timer;
 	struct TBrick bricks[] = 
 	{
-		{{0,1}, {4,1}, 1, {0,0}, 0}, 
-		{{4,3}, {4,1}, 1, {0,0}, 0}, 
-		{{8,5}, {4,1}, 1, {0,0}, 0}, 
-		{{16,7}, {4,1}, 1, {0,0}, 0}
+		{(brickWidth + 1) * 1, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 2, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 3, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 4, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 5, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 6, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 7, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 8, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 9, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) *10, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) *11, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) *12, (brickHeight + 1) * 15, bricksize, 3},
+		{(brickWidth + 1) * 1, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 2, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 3, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 4, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 5, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 6, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 7, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 8, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 9, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) *10, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) *11, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) *12, (brickHeight + 1) * 16, bricksize, 3},
+		{(brickWidth + 1) * 1, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 2, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 3, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 4, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 5, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 6, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 7, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 8, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) * 9, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) *10, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) *11, (brickHeight + 1) * 17, bricksize, 3},
+		{(brickWidth + 1) *12, (brickHeight + 1) * 17, bricksize, 3},
 	};
+
+	int brickCount = 13 * 3;
 	//LEDsetString("Pong Game \0");
 
 	init_uart(_UART0,_DEFFREQ,115200);
 	
+	initTimer(&timer, 30);
 	LEDinit();  //setup 1000-2000 HZ
 	initButtons();
 	//LEDinit();
@@ -105,7 +138,7 @@ void main() {
 		//initialize game objects
 		initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity*difficulty);
 		initStriker(&vStriker,initialx, initialy ,initl);
-		initBricks(bricks);
+		initBricks(bricks, brickCount);
 		fgcolor(FCOLOR_WHITE);
 		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
 		fgcolor(FCOLOR_WHITE);
@@ -118,21 +151,13 @@ void main() {
 		printf("Lives: %5d",lives);
 		//TID??
 		while(1) {
-			/*if (LEDupdateFlag == 1) {//1000Hz
-				updateFlag = 0;
-				//Vi kan have andre ting vist på skærmen på boardet nu
-			
-			    hzscale++;
-				}
-			if (hzscale == 9) {//100Hz
-			*/
-			delay(20);
+			waitForEvent(&timer);
 			if(initNewBall)
 			{
 				while(!isf6Pressed())
 				{
 					moveStrikerPreShot(&vball, &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
-					//delay(100);
+					delay(20);
 				}
 				initNewBall = 0;
 			}
@@ -143,19 +168,18 @@ void main() {
 				moveStriker(&vStriker, GAMESIZEX, isf7Pressed(), isd3Pressed());
 				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY);
 				bounceStriker(&vStriker, &vball);
-				handleBrickCollisions(bricks, &vball);
+				handleBrickCollisions(bricks, &vball, brickCount);
 				if(isBallDead(&vball, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
-					clearBall(vball.position.x,vball.position.y);
+					drawBallnewPosition(vball.position.x,vball.position.y, initialx, initialy - 1);
 					initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity);
 					initStriker(&vStriker,initialx,initialy ,initl);
-					deathcount++;
 					initNewBall = 1;
+					lives--;
 				}
 				//bla bla bla code
 			}
 		}
-		while(1) {}
 	}
 }

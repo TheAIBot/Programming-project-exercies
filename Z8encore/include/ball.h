@@ -19,8 +19,7 @@ struct TBall
 };
 
 void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity);
-void drawBall(long x, long y);
-void clearBall(long x, long y);
+void drawBallnewPosition(long oldX, long oldY, long newX, long newY);
 char isBallDead(struct TBall *vball, int gameSize);
 void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int gameSizeY);
 void updateBall(struct TBall *vball);

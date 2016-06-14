@@ -1,35 +1,35 @@
 /* Linker Command File - HelloWorld Debug */
 
 /* compiler options */
-/* -alias -asm -bitfieldsize:32 -charsize:8 -const:RAM -debug */
-/* -define:_Z8F6403 -define:_Z8ENCORE_640_FAMILY */
-/* -define:_Z8ENCORE_F640X -define:_MODEL_LARGE -doublesize:32 */
-/* -NOexpmac -floatsize:32 -NOfplib -genprintf -NOglobalcopy */
-/* -NOglobalcse -NOglobalfold -intrinsic -intsize:16 -intsrc */
-/* -NOjmpopt -NOkeepasm -NOkeeplst -NOlist -NOlistinc -localcopy */
-/* -localcse -localfold -longsize:32 -NOloopopt -maxerrs:50 -model:L */
-/* -NOoptlink -optsize -peephole -NOpromote -quiet -regvar -revaa */
-/* -NOsdiopt -shortsize:16 */
-/* -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X" */
-/* -strict */
+/* -NOwatch */
 /* -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include" */
-/* -NOwatch -cpu:Z8F6403 */
+/* -strict */
+/* -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X" */
+/* -shortsize:16 -NOsdiopt -revaa -regvar -quiet -NOpromote */
+/* -peephole -optsize -NOoptlink -model:L -maxerrs:50 -NOloopopt */
+/* -longsize:32 -localfold -localcse -localcopy -NOlistinc -NOlist */
+/* -NOkeeplst -NOkeepasm -NOjmpopt -intsrc -intsize:16 -intrinsic */
+/* -NOglobalfold -NOglobalcse -NOglobalcopy -genprintf -NOfplib */
+/* -floatsize:32 -NOexpmac -doublesize:32 -define:_Z8F6403 */
+/* -define:_Z8ENCORE_640_FAMILY -define:_Z8ENCORE_F640X */
+/* -define:_MODEL_LARGE -debug -const:RAM -charsize:8 */
+/* -bitfieldsize:32 -asm -alias -cpu:Z8F6403 */
 /* -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X -revaa" */
 
 /* assembler options */
-/* -debug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 */
-/* -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj */
-/* -NOigcase */
+/* -NOzmasm -warn -sdiopt -quiet -pagewidth:80 -pagelen:56 -name */
+/* -NOlistmac -list */
 /* -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X" */
-/* -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt */
-/* -warn -NOzmasm -revaa -cpu:Z8F6403 */
+/* -NOigcase -genobj -define:_Z8F6403=1 */
+/* -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 */
+/* -define:_MODEL_LARGE=1 -debug -revaa -cpu:Z8F6403 */
 
 -FORMAT=OMF695
--NOigcase -map -quiet -warn -NOwarnoverlap -NOxref
+-NOxref -NOwarnoverlap -warn -quiet -map -NOigcase
 
-RANGE ROM $0 : $FFFF
-RANGE RDATA $20 : $FF
 RANGE EDATA $100 : $EFF
+RANGE RDATA $20 : $FF
+RANGE ROM $0 : $FFFF
 
 CHANGE TEXT=EDATA
 CHANGE TEXT=FAR_DATA
@@ -62,7 +62,7 @@ define _zsl_g_clock_xdefine = 18432000
 /* Set frequency to 18432000 Hz */
 define __user_frequency = 18432000
 
-"M:\Documents\GitHub\Programming-project-exercies\HelloWorld"= \
+"C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld"= \
  c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\zilog\startupL.obj, \
  .\zsldevinit.obj, \
  .\main.obj, \

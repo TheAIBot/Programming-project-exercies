@@ -9,9 +9,18 @@ struct TTime
 	int hours;
 };
 
+struct TTimer
+{
+	long lastEvent;
+	long interval;
+};
+
 void startTimer();
 void stopTimer();
 struct Ttime getStructuredTime();
 unsigned long getElapsedMiliseconds();
+
+void initTimer(struct TTimer *timer, long interval);
+void waitForEvent(struct TTimer *timer);
 
 #endif
