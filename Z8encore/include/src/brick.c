@@ -49,24 +49,31 @@ void clearBrick(struct TBrick *brick)
 	brickdraw(brick, EMPTY_STYLE);
 }
 
-void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball)
+void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, brickCount)
 {
 	int brickIndex;
-	int brickLength = sizeof(bricks) / sizeof(bricks[0]);
-	for(brickIndex = 0; brickIndex < brickLength; brickIndex++)
+	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
 	{
 		if(bricks[brickIndex].health > 0)
 		{
 			struct TBrick *brick = &bricks[brickIndex];
-			//block of death
-			if(((ball->position.x >= brick->position.x && 
-			     ball->position.x <= brick->position.x) &&
-				(ball->position.y == brick->position.y + 1 || 
-				 ball->position.y == brick->position.y - 1) ||
-			    (ball->position.y >= brick->position.y && 
-			     ball->position.y <= brick->position.y) &&
-				(ball->position.x == brick->position.x + 1 || 
-				 ball->position.x == brick->position.x - 1)))
+			if((ball->position.x >= brick->position.x && 
+			    ball->position.x <= brick->position.x + brick->size.x) &&
+				 (ball->position.y == brick->position.y + brick->size.y + 1 || 
+				  ball->position.y == brick->position.y - 1))
+			{
+				brick->health--;
+				ball->angle = 360 - ball->angle;
+				if(brick->health <= 0)
+				{
+					clearBrick(brick);
+				}
+			}
+
+			if((ball->position.y >= brick->position.y && 
+			    ball->position.y <= brick->position.y + brick->size.y) &&
+				 (ball->position.x == brick->position.x + brick->size.x + 1 || 
+				  ball->position.x == brick->position.x - 1))
 			{
 				brick->health--;
 				ball->angle = 360 - ball->angle;
@@ -79,11 +86,10 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball)
 	}
 }
 
-void initBricks(struct TBrick bricks[])
+void initBricks(struct TBrick bricks[], brickCount)
 {
 	int brickIndex;
-	int brickLength = sizeof(bricks) / sizeof(bricks[0]);
-	for(brickIndex = 0; brickIndex < brickLength; brickIndex++)
+	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
 	{
 		drawBrick(&bricks[brickIndex]);
 	}

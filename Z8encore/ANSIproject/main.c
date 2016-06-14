@@ -25,19 +25,12 @@ void main() {
 	struct TBall vball;
 	struct TStriker vStriker;
 
-	int deathcount = 0;
 	long velocity = 0;
 	int angle = 45;
 	int initialx = GAMESIZEX >> 1;
 	int initialy = GAMESIZEY - 1;
 	int initl = 11;
 	unsigned char index = 0;
-	int times = 0;
-	int i;
-	int j;
-	int k;
-	int prevPressed = 0;
-	int oldI;
 	char initNewBall = 1;
 	char difficulty = 1;
 	int hzscale = 0;
@@ -47,11 +40,23 @@ void main() {
 	char onboard[] = "Brick Breaker!\0";
 	struct TBrick bricks[] = 
 	{
-		{{0,1}, {4,1}, 1, {0,0}, 0}, 
-		{{4,3}, {4,1}, 1, {0,0}, 0}, 
-		{{8,5}, {4,1}, 1, {0,0}, 0}, 
-		{{16,7}, {4,1}, 1, {0,0}, 0}
+		{{1,2}, {10,1}, 1, {0,0}, 0}, 
+		{{12,2}, {10,1}, 1, {0,0}, 0}, 
+		{{24,2}, {10,1}, 1, {0,0}, 0}, 
+		{{36,2}, {10,1}, 1, {0,0}, 0},
+		{{48,2}, {10,1}, 1, {0,0}, 0}, 
+		{{1,4}, {10,1}, 1, {0,0}, 0}, 
+		{{12,4}, {10,1}, 1, {0,0}, 0}, 
+		{{24,4}, {10,1}, 1, {0,0}, 0}, 
+		{{36,4}, {10,1}, 1, {0,0}, 0},
+		{{48,4}, {10,1}, 1, {0,0}, 0}, 
+		{{1,6}, {10,1}, 1, {0,0}, 0}, 
+		{{12,6}, {10,1}, 1, {0,0}, 0}, 
+		{{24,6}, {10,1}, 1, {0,0}, 0}, 
+		{{36,6}, {10,1}, 1, {0,0}, 0},
+		{{48,6}, {10,1}, 1, {0,0}, 0}, 
 	};
+	int brickCount = 16;
 	//LEDsetString("Pong Game \0");
 
 	init_uart(_UART0,_DEFFREQ,115200);
@@ -105,7 +110,7 @@ void main() {
 		//initialize game objects
 		initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity*difficulty);
 		initStriker(&vStriker,initialx, initialy ,initl);
-		initBricks(bricks);
+		initBricks(bricks, brickCount);
 		fgcolor(FCOLOR_WHITE);
 		window(0, 0, GAMESIZEX, GAMESIZEY, '0', title);
 		fgcolor(FCOLOR_WHITE);
@@ -143,7 +148,7 @@ void main() {
 				moveStriker(&vStriker, GAMESIZEX, isf7Pressed(), isd3Pressed());
 				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY);
 				bounceStriker(&vStriker, &vball);
-				handleBrickCollisions(bricks, &vball);
+				handleBrickCollisions(bricks, &vball, brickCount);
 				if(isBallDead(&vball, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
