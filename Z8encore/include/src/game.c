@@ -24,7 +24,7 @@ void initBallStriker(struct TBall *ball, struct TStriker *striker, int gameSize)
 	int angle = 40;
 	int strikerLength = 5;
 
-	initBall(ball, initialx, initialBallY, FCOLOR_BLUE, angle, velocity); // need to know why -3 and -2 is needed
+	initBall(ball, initialx, initialBallY, FCOLOR_BLUE, angle, velocity, 1); // need to know why -3 and -2 is needed
 	initStriker(striker, initialx, initialStrikerY ,strikerLength);
 }
 

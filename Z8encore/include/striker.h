@@ -15,5 +15,5 @@ void clearStriker(int x, int y, int length);
 void moveStrikerLeft(struct TStriker *vStriker);
 void moveStrikerRight(struct TStriker *vStriker);
 void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed);
-void bounceStriker(struct TStriker *vStriker, struct TBall *vball);
+void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]);
 #endif
