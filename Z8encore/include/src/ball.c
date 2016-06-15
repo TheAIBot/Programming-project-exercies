@@ -9,14 +9,14 @@
 #define BALL_STYLE 254
 #define EMPY_CHAR ' '
 
-void drawBallnewPosition(long oldX, long oldY, long newX, long newY)
+void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY)
 {
 	int oX = ROUND_TO_INT(oldX);
 	int oY = ROUND_TO_INT(oldY);
 	int nX = ROUND_TO_INT(newX);
 	int nY = ROUND_TO_INT(newY);
 
-	//goto(x,y) write(EMPY_CHAR) goto(x,y) write(BALL_STYLE)
+	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
 	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oY, oX, EMPY_CHAR, ESC, nY, nX, BALL_STYLE);
 }
 
@@ -33,7 +33,7 @@ void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velo
 	vBall->velocity = velocity;
 	vBall->color = color;
 	fgcolor(color);
-	drawBallnewPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
+	updateBallDrawnPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
 }
 
 void moveBall(struct TBall *vball)
@@ -51,7 +51,7 @@ void updateBall(struct TBall *vball) {
 		if(FIX14_TO_INT(oldX) != vball->position.x ||
 		   FIX14_TO_INT(oldY) != vball->position.y)
 		{
-			drawBallnewPosition(oldX, oldY, vball->position.x, vball->position.y);
+			updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
 		}
 	}
 	else 

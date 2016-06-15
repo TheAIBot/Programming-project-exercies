@@ -7,7 +7,7 @@
 #include "SineLUT.h"
 
 #define STRIKER_STYLE 178
-#define EMPTY_CHAR ' '
+#define EMPTY_STYLE ' '
 
 void sdraw(int x, int y, int length, char c)
 {
@@ -19,6 +19,12 @@ void sdraw(int x, int y, int length, char c)
 	}
 }
 
+void updateStrikerDrawnPosition(int oldX, int oldY, int newX, int newY, int length)
+{
+	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX, EMPTY_STYLE, ESC, newY, newX + length, STRIKER_STYLE);
+}
+
 void setStrikerColor()
 {
 	fgcolor(FCOLOR_BLUE);
@@ -26,19 +32,19 @@ void setStrikerColor()
 
 void clearStriker(int x, int y, int length)
 {
-	sdraw(x, y, length, EMPTY_CHAR);
+	sdraw(x, y, length, EMPTY_STYLE);
 }
 
 void clearStrikerLeft(int x, int y, int length)
 {
 	gotoxy(x + (length >> 1), y); // go to right of bouncer
-	printf("%c", EMPTY_CHAR);
+	printf("%c", EMPTY_STYLE);
 }
 
 void clearStrikerRight(int x, int y, int length)
 {
 	gotoxy(x - (length >> 1), y); // go to left of bouncer
-	printf("%c", EMPTY_CHAR);
+	printf("%c", EMPTY_STYLE);
 }
 
 void drawStriker(int x, int y, int length)
@@ -63,16 +69,24 @@ void drawStrikerRight(int x, int y, int length)
 
 void moveStrikerLeft(struct TStriker *vStriker)
 {
-	clearStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
+	int oldX = vStriker->position.x;
+	int oldY = vStriker->position.y;
 	vStriker->position.x--;
-	drawStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPosition(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
+	//clearStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
+	//vStriker->position.x--;
+	//drawStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
 }
 
 void moveStrikerRight(struct TStriker *vStriker)
 {
-	clearStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
+	int oldX = vStriker->position.x;
+	int oldY = vStriker->position.y;
 	vStriker->position.x++;
-	drawStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPosition(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
+	//clearStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
+	//vStriker->position.x++;
+	//drawStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
 }
 
 //Rendering nextstate Bouncer

@@ -114,22 +114,22 @@ void main() {
 	    gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-3);
 	    printf("Press center button to start game.");
 		while(1){
-			scrollText();
-			if(hzscale == 19){ //100 Hz
-				hzscale = 0;
-				if(isd3Pressed()){
-					difficulty++;
-					gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-2);
-		            printf("Select difficulty level by pressing left/right button: %5d", difficulty);
-				}
-				if( isf7Pressed() && difficulty > 1){
-					difficulty--;
-					gotoxy((GAMESIZEX/2)-15, (GAMESIZEY/2)-2);
-		        	printf("Select difficulty level by pressing left/right button: %5d", difficulty);
-				}
-				if(isf6Pressed() || difficulty == 5){break;}
-	    	}
-			hzscale++;
+			scrollText(); //10ms
+			delay(180);   //90ms
+			//1s / 100ms = 10hz update rate
+			if(isd3Pressed()){
+				difficulty++;
+				gotoxy((GAMESIZEX / 2) - 15, (GAMESIZEY / 2) - 2);
+	            printf("Select difficulty level by pressing left/right button: %5d", difficulty);
+			}
+			if( isf7Pressed() && difficulty > 1){
+				difficulty--;
+				gotoxy((GAMESIZEX / 2) - 15, (GAMESIZEY / 2) - 2);
+	        	printf("Select difficulty level by pressing left/right button: %5d", difficulty);
+			}
+			if(isf6Pressed() || difficulty == 5){
+				break;
+			}
 		}
 
 		clrscr();
@@ -154,12 +154,11 @@ void main() {
 			waitForEvent(&timer);
 			if(initNewBall)
 			{
-				while(!isf6Pressed())
+				moveStrikerPreShot(&vball, &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
+				if(!isf6Pressed())
 				{
-					moveStrikerPreShot(&vball, &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
-					delay(20);
+					initNewBall = 0;
 				}
-				initNewBall = 0;
 			}
 			else
 			{
@@ -172,13 +171,12 @@ void main() {
 				if(isBallDead(&vball, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
-					drawBallnewPosition(vball.position.x,vball.position.y, initialx, initialy - 1);
+					updateBallDrawnPosition(vball.position.x,vball.position.y, initialx, initialy - 1);
 					initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity);
 					initStriker(&vStriker,initialx,initialy ,initl);
 					initNewBall = 1;
 					lives--;
 				}
-				//bla bla bla code
 			}
 		}
 	}
