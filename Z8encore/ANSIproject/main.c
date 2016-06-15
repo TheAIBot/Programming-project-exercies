@@ -15,6 +15,7 @@
 #include "powerup.h"
 #include "color.h"
 #include "clockio.h"
+#include "joystick.h"
 
 #define GAMESIZEX 150
 #define GAMESIZEY 60
@@ -23,22 +24,17 @@
 #define brickWidth 6
 #define bricksize 0x26
 
-
-volatile int fisk()
-{
-	return ((ADCD_H << 2) | ((ADCD_L & 11000000)) >> 6);
-}
-
 void main() {
 
 	init_uart(_UART0,_DEFFREQ,115200);
 	color(FCOLOR_WHITE, BCOLOR_BLACK);
 	initClock();
+	initJoystick();
 	
 	while(1)
 	{
 		initButtons();
-		printf("%d %d %d\n", fisk(), isf7Pressed(), 1);
+		printf("%d %d\n", joystickXAxis(), isButton1Pressed());
 		delay(100);
 	}
 /*	
