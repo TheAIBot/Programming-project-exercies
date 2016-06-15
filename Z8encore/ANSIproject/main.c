@@ -24,16 +24,22 @@
 #define bricksize 0x26
 
 
+volatile int fisk()
+{
+	return ((ADCD_H << 2) | ((ADCD_L & 11000000)) >> 6);
+}
+
 void main() {
 
 	init_uart(_UART0,_DEFFREQ,115200);
 	color(FCOLOR_WHITE, BCOLOR_BLACK);
 	initClock();
-	initButtons();
+	
 	while(1)
 	{
-		printf("%d %d %d\n", ((ADCD_H << 2) | ((ADCD_L & 11000000)) >> 6), isf7Pressed(), 1);
-		delay(2000);
+		initButtons();
+		printf("%d %d %d\n", fisk(), isf7Pressed(), 1);
+		delay(100);
 	}
 /*	
 	//standard instanser
