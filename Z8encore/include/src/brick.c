@@ -12,7 +12,7 @@
 char getBrickColor(char data)
 {
   	char health = HEALTH(data);
-	if(INDESTRUCTIBLE(data))
+	if(IS_INDESTRUCTIBLE(data))
 	{
 		return FCOLOR_LIGHT_GRAY;
 	}
@@ -88,7 +88,7 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
@@ -193,7 +193,7 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 					}
 					if(hit == 1)
 					{
-						if(!INDESTRUCTIBLE(brick->data))
+						if(!IS_INDESTRUCTIBLE(brick->data))
 						{
 							brick->data--;
 							if(HEALTH(brick->data) <= 0)

@@ -50,7 +50,7 @@ void updateBalls(struct TBall balls[6]) {
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			if(ball->velocity > 0){
@@ -76,7 +76,7 @@ char isBallDead(struct TBall balls[6], int gameSizeY){
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			int ballx = FIX14_TO_INT(ball->position.x);//truncation
@@ -94,7 +94,7 @@ void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			int ballx=FIX14_TO_INT(ball->position.x);//truncation

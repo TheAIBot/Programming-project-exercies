@@ -7,7 +7,7 @@
 #define COLOR_BITS (0x7f)
 #define COLOR(data) (data & COLOR_BITS)
 #define ALIVE_BIT (7)
-#define ALIVE(data) (data >> ALIVE_BIT)
+#define IS_ALIVE(data) (data >> ALIVE_BIT)
 
 struct TPosition
 {

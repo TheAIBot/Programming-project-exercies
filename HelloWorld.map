@@ -4,7 +4,7 @@ Copyright (C) 1999-2004 ZiLOG, Inc. All Rights Reserved
 
 LINK MAP:
 
-DATE:      Wed Jun 15 19:22:05 2016
+DATE:      Wed Jun 15 22:52:57 2016
 PROCESSOR: assembler
 FILES:     D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore\lib\zilog\startupL.obj
            .\zsldevinit.obj
@@ -352,7 +352,7 @@ Module: get_freq.asm (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:19
     Segment: getfreq_TEXT                        C:3EF9      C:3F0F       17h
 
 
-Module: Z8ENCORE\ANSIPROJECT\MAIN.C (File: main.obj) Version: 1:0 06/15/2016 19:22:05
+Module: Z8ENCORE\ANSIPROJECT\MAIN.C (File: main.obj) Version: 1:0 06/15/2016 22:52:12
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -367,14 +367,14 @@ Module: Z8ENCORE\INCLUDE\SRC\ANSI.C (File: ansi.obj) Version: 1:0 06/14/2016 22:
     Segment: ROM_TEXT                            C:026C      C:027B       10h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BALL.C (File: ball.obj) Version: 1:0 06/15/2016 16:34:53
+Module: Z8ENCORE\INCLUDE\SRC\BALL.C (File: ball.obj) Version: 1:0 06/15/2016 22:52:57
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: ball_TEXT                           C:174D      C:1FBE      872h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BOSS.C (File: boss.obj) Version: 1:0 06/15/2016 16:35:38
+Module: Z8ENCORE\INCLUDE\SRC\BOSS.C (File: boss.obj) Version: 1:0 06/15/2016 22:52:57
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -382,7 +382,7 @@ Module: Z8ENCORE\INCLUDE\SRC\BOSS.C (File: boss.obj) Version: 1:0 06/15/2016 16:
     Segment: FAR_DATA                            E:072E      E:076E       41h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BRICK.C (File: brick.obj) Version: 1:0 06/15/2016 17:18:05
+Module: Z8ENCORE\INCLUDE\SRC\BRICK.C (File: brick.obj) Version: 1:0 06/15/2016 22:52:57
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -405,7 +405,7 @@ Module: Z8ENCORE\INCLUDE\SRC\CLOCKIO.C (File: clockio.obj) Version: 1:0 06/14/20
     Segment: FAR_DATA                            E:0728      E:072D        6h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\GAME.C (File: game.obj) Version: 1:0 06/15/2016 16:35:39
+Module: Z8ENCORE\INCLUDE\SRC\GAME.C (File: game.obj) Version: 1:0 06/15/2016 22:52:13
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -419,7 +419,7 @@ Module: Z8ENCORE\INCLUDE\SRC\JOYSTICK.C (File: joystick.obj) Version: 1:0 06/15/
     Segment: oystick_TEXT                        C:3B95      C:3C42       aeh
 
 
-Module: Z8ENCORE\INCLUDE\SRC\LEVEL.C (File: level.obj) Version: 1:0 06/15/2016 16:34:58
+Module: Z8ENCORE\INCLUDE\SRC\LEVEL.C (File: level.obj) Version: 1:0 06/15/2016 22:52:13
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -450,7 +450,7 @@ Module: Z8ENCORE\INCLUDE\SRC\SINELUT.C (File: SineLUT.obj) Version: 1:0 06/14/20
     Segment: sinelut_TEXT                        C:0F36      C:1166      231h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\STRIKER.C (File: striker.obj) Version: 1:0 06/15/2016 16:38:53
+Module: Z8ENCORE\INCLUDE\SRC\STRIKER.C (File: striker.obj) Version: 1:0 06/15/2016 22:52:57
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
