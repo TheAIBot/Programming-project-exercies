@@ -26,7 +26,7 @@
 
 void main() {
 	//standard instanser
-	struct TBall vball;
+	struct TBall balls[6];
 	struct TStriker vStriker;
 
 	long velocity = 0;
@@ -136,7 +136,7 @@ void main() {
 		hzscale = 0;
 		initNewBall = 1;
 		//initialize game objects
-		initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity*difficulty);
+		initBall(&balls[0],initialx, initialy - 1, FCOLOR_WHITE, angle, velocity*difficulty);
 		initStriker(&vStriker,initialx, initialy ,initl);
 		initBricks(bricks, brickCount);
 		fgcolor(FCOLOR_WHITE);
@@ -154,7 +154,7 @@ void main() {
 			waitForEvent(&timer);
 			if(initNewBall)
 			{
-				moveStrikerPreShot(&vball, &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
+				moveStrikerPreShot(&balls[0], &vStriker, GAMESIZEX, isd3Pressed(), isf7Pressed());
 				if(!isf6Pressed())
 				{
 					initNewBall = 0;
@@ -162,17 +162,16 @@ void main() {
 			}
 			else
 			{
-				setBallColor(&vball);
-				updateBall(&vball);
+				updateBalls(balls);
 				moveStriker(&vStriker, GAMESIZEX, isf7Pressed(), isd3Pressed());
-				impact(&vball, &vStriker, GAMESIZEX, GAMESIZEY);
-				bounceStriker(&vStriker, &vball);
-				handleBrickCollisions(bricks, &vball, brickCount);
-				if(isBallDead(&vball, GAMESIZEY))
+				impact(balls, &vStriker, GAMESIZEX, GAMESIZEY);
+				bounceStriker(&vStriker, balls);
+				handleBrickCollisions(bricks, balls, brickCount);
+				if(isBallDead(balls, GAMESIZEY))
 				{
 					clearStriker(vStriker.position.x,vStriker.position.y, vStriker.length); 
-					updateBallDrawnPosition(vball.position.x,vball.position.y, initialx, initialy - 1);
-					initBall(&vball,initialx, initialy - 1, FCOLOR_WHITE, angle, velocity);
+					updateBallDrawnPosition(balls[0].position.x,balls[0].position.y, initialx, initialy - 1);
+					initBall(&balls[0],initialx, initialy - 1, FCOLOR_WHITE, angle, velocity);
 					initStriker(&vStriker,initialx,initialy ,initl);
 					initNewBall = 1;
 					lives--;

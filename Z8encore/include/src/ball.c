@@ -22,7 +22,7 @@ void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY)
 
 void setBallColor(struct TBall *ball)
 {
-	fgcolor(ball->color);
+	fgcolor(COLOR(ball->data));
 }
 
 //Initialize ball
@@ -31,8 +31,8 @@ void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velo
 	vBall->position.y = TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
-	vBall->color = color;
-	fgcolor(color);
+	vBall->data = (color | (1 << ALIVE_BIT));
+	fgcolor(vBall->data);
 	updateBallDrawnPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
 }
 
@@ -43,51 +43,77 @@ void moveBall(struct TBall *vball)
 }
 
 //Rendering nextstate Ball
-void updateBall(struct TBall *vball) {
-	if(vball->velocity > 0){
-		long oldX = vball->position.x;
-		long oldY = vball->position.y;
-		moveBall(vball);
-		if(FIX14_TO_INT(oldX) != vball->position.x ||
-		   FIX14_TO_INT(oldY) != vball->position.y)
-		{
-			updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
-		}
-	}
-	else 
+void updateBalls(struct TBall balls[6]) {
+	int ballIndex;
+	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		vball->velocity = TO_FIX14(1) >> 1;
-	}
-}
-
-char isBallDead(struct TBall *vball, int gameSizeY){
-	int ballx = FIX14_TO_INT(vball->position.x);//truncation
-	int bally = FIX14_TO_INT(vball->position.y);//truncation
-	if (bally==gameSizeY-1){
-		return 1;
-	}
-	return 0;
-}
-
-void impact(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
-	int ballx=FIX14_TO_INT(vball->position.x);//truncation
-	int bally=FIX14_TO_INT(vball->position.y);//truncation
-	int strx = vStriker->position.x;
-	int stry = vStriker->position.y;
-	int strhl = vStriker->length >> 1;//half length of striker
-
-	//bounce off right and left walls	
-	if (ballx >= gameSizeX - 1 && (vball->angle < 90 || vball->angle > 270) || 
-			ballx <= 2             && vball->angle > 90 && vball->angle < 270) {
-		vball->angle = 180 - vball->angle;
-		if(vball->angle < 0)
+		if(ALIVE(balls[ballIndex].data))
 		{
-			vball->angle = vball->angle + 360;//find better solution
+			struct TBall *ball = &balls[ballIndex];
+			if(ball->velocity > 0){
+				long oldX = ball->position.x;
+				long oldY = ball->position.y;
+				moveBall(ball);
+				if(FIX14_TO_INT(oldX) != ball->position.x ||
+				   FIX14_TO_INT(oldY) != ball->position.y)
+				{
+					setBallColor(ball);
+					updateBallDrawnPosition(oldX, oldY, ball->position.x, ball->position.y);
+				}
+			}
+			else 
+			{
+				ball->velocity = TO_FIX14(1) >> 1;
+			}
 		}
 	}
-	//bounce off top wall and central striker
-	if (bally <= 2){
-		vball->angle= 360 - vball->angle;
+}
+
+char isBallDead(struct TBall balls[6], int gameSizeY){
+	int ballIndex;
+	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	{
+		if(ALIVE(balls[ballIndex].data))
+		{
+			struct TBall *ball = &balls[ballIndex];
+			int ballx = FIX14_TO_INT(ball->position.x);//truncation
+			int bally = FIX14_TO_INT(ball->position.y);//truncation
+			if (bally==gameSizeY-1){
+				ball->data &= ~(1 <<ALIVE_BIT);//ball is dead, set alive bit to 0
+				return 1;
+			}
+			return 0;
+		}
+	}
+}
+
+void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
+	int ballIndex;
+	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	{
+		if(ALIVE(balls[ballIndex].data))
+		{
+			struct TBall *ball = &balls[ballIndex];
+			int ballx=FIX14_TO_INT(ball->position.x);//truncation
+			int bally=FIX14_TO_INT(ball->position.y);//truncation
+			int strx = vStriker->position.x;
+			int stry = vStriker->position.y;
+			int strhl = vStriker->length >> 1;//half length of striker
+		
+			//bounce off right and left walls	
+			if (ballx >= gameSizeX - 1 && (ball->angle < 90 || ball->angle > 270) || 
+				ballx <= 2 && ball->angle > 90 && ball->angle < 270) {
+				ball->angle = 180 - ball->angle;
+				if(ball->angle < 0)
+				{
+					ball->angle = ball->angle + 360;//find better solution
+				}
+			}
+			//bounce off top wall
+			if (bally <= 2){
+				ball->angle= 360 - ball->angle;
+			}
+		}
 	}
 }
 

@@ -9,14 +9,9 @@
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
 
-#define BRICK_WIDTH(size) (size & BRICK_WIDTH_BITS)
-#define BRICK_HEIGHT(size) (size >> BRICK_HEIGHT_BITS)
-#define HEALTH(health) (health & HEALTH_BITS)
-#define INDESTRUCTIBLE(health) ((health & 0x40) >> INDESTRUCTIBLE_BIT) 
-
-char getBrickColor(char health)
+char getBrickColor(char data)
 {
-  health = HEALTH(health);
+  	char health = HEALTH(data);
 	if(health == 1)
 	{
 		return FCOLOR_GREEN;
@@ -31,13 +26,23 @@ char getBrickColor(char health)
 	}
 }
 
+void updateBrickPosition(int oldX, int oldY, int newX, int newY, char brickHeight)
+{
+	char i;
+	for(i = 0; i < brickHeight; i++)
+	{
+		//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
+		printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY + i, oldX, EMPTY_STYLE, ESC, newY + i, newX, BRICK_STYLE);
+	}
+}
+
 void brickdraw(struct TBrick *brick, char c)
 {
 	char brickSizeWidth = BRICK_WIDTH((brick->size));
 	char brickSizeHeight = BRICK_HEIGHT((brick->size));
 	char x;
 	char y;
-	fgcolor(getBrickColor(brick->health));
+	fgcolor(getBrickColor(brick->data));
 	for(y = 0; y < brickSizeHeight; y++)
 	{
 		gotoxy(brick->x, brick->y + y);
@@ -58,121 +63,129 @@ void clearBrick(struct TBrick *brick)
 	brickdraw(brick, EMPTY_STYLE);
 }
 
-void handleBrickCollisions(struct TBrick bricks[], struct TBall *ball, int brickCount)
+void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount)
 {
 	int brickIndex;
-	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
+	int ballIndex;
+	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(bricks[brickIndex].health > 0)
+		if(ALIVE(balls[ballIndex].data))
 		{
-			struct TBrick *brick = &bricks[brickIndex];
-			char ballX = FIX14_TO_INT(ball->position.x);
-			char ballY = FIX14_TO_INT(ball->position.y);
-			char brickX = brick->x;
-			char brickY = brick->y;
-			char brickSizeWidth = BRICK_WIDTH((brick->size));
-			char brickSizeHeight = BRICK_HEIGHT((brick->size));
-			char hit = 0;
-			if((ballX >= brickX && 
-			    ballX < brickX + brickSizeWidth) &&
-			   (ballY == brickY + brickSizeHeight || 
-				ballY == brickY - 1))
+			struct TBall *ball = &balls[ballIndex];
+			for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
 			{
-				hit = 1;
-				ball->angle = 360 - ball->angle;
-			}
-			else if((ballY >= brickY && 
-			         ballY < brickY + brickSizeHeight) &&
-				 	(ballX == brickX + brickSizeWidth || 
-				  	 ballX == brickX - 1))
-			{
-				hit = 1;
-				ball->angle = 180 - ball->angle;
-				if(ball->angle < 0)
+				if(HEALTH(bricks[brickIndex].data) > 0)
 				{
-					ball->angle = ball->angle + 360;//find better solution
-				}
-			}
-			else if(ballX == brickX - 1 &&
-			   ballY == brickY - 1)
-			{
-				hit = 1;
-				if(ball->angle >= 180 && ball->angle <= 270)
-				{
-					ball->angle = 360 - ball->angle;
-				}
-				else
-				{
-					ball->angle = 180 - ball->angle;
-					if(ball->angle < 0)
+					struct TBrick *brick = &bricks[brickIndex];
+					char ballX = FIX14_TO_INT(ball->position.x);
+					char ballY = FIX14_TO_INT(ball->position.y);
+					char brickX = brick->x;
+					char brickY = brick->y;
+					char brickSizeWidth = BRICK_WIDTH((brick->size));
+					char brickSizeHeight = BRICK_HEIGHT((brick->size));
+					char hit = 0;
+					if((ballX >= brickX && 
+					    ballX < brickX + brickSizeWidth) &&
+					   (ballY == brickY + brickSizeHeight || 
+						ballY == brickY - 1))
 					{
-						ball->angle = ball->angle + 360;//find better solution
+						hit = 1;
+						ball->angle = 360 - ball->angle;
 					}
-				}
-			}
-			else if(ballX == brickX + brickSizeWidth &&
-			   		ballY == brickY - 1)
-			{
-				hit = 1;
-				if(ball->angle >= 270 && ball->angle <= 360)
-				{
-					ball->angle = 360 - ball->angle;
-				}
-				else
-				{
-					ball->angle = 180 - ball->angle;
-					if(ball->angle < 0)
+					else if((ballY >= brickY && 
+					         ballY < brickY + brickSizeHeight) &&
+						 	(ballX == brickX + brickSizeWidth || 
+						  	 ballX == brickX - 1))
 					{
-						ball->angle = ball->angle + 360;//find better solution
+						hit = 1;
+						ball->angle = 180 - ball->angle;
+						if(ball->angle < 0)
+						{
+							ball->angle = ball->angle + 360;//find better solution
+						}
 					}
-				}
-			}
-			else if(ballX == brickX &&
-			   		ballY == brickY + brickSizeHeight)
-			{
-				hit = 1;
-				if(ball->angle >= 90 && ball->angle <= 180)
-				{
-					ball->angle = 360 - ball->angle;
-				}
-				else
-				{
-					ball->angle = 180 - ball->angle;
-					if(ball->angle < 0)
+					else if(ballX == brickX - 1 &&
+					   ballY == brickY - 1)
 					{
-						ball->angle = ball->angle + 360;//find better solution
+						hit = 1;
+						if(ball->angle >= 180 && ball->angle <= 270)
+						{
+							ball->angle = 360 - ball->angle;
+						}
+						else
+						{
+							ball->angle = 180 - ball->angle;
+							if(ball->angle < 0)
+							{
+								ball->angle = ball->angle + 360;//find better solution
+							}
+						}
 					}
-				}
-			}
-			else if(ballX == brickX + brickSizeWidth &&
-			   		ballY == brickY + brickSizeHeight)
-			{
-				hit = 1;
-				if(ball->angle >= 0 && ball->angle <= 90)
-				{
-					ball->angle = 360 - ball->angle;
-				}
-				else
-				{
-					ball->angle = 180 - ball->angle;
-					if(ball->angle < 0)
+					else if(ballX == brickX + brickSizeWidth &&
+					   		ballY == brickY - 1)
 					{
-						ball->angle = ball->angle + 360;//find better solution
+						hit = 1;
+						if(ball->angle >= 270 && ball->angle <= 360)
+						{
+							ball->angle = 360 - ball->angle;
+						}
+						else
+						{
+							ball->angle = 180 - ball->angle;
+							if(ball->angle < 0)
+							{
+								ball->angle = ball->angle + 360;//find better solution
+							}
+						}
 					}
-				}
-			}
-			if(hit == 1)
-			{
-				if(!INDESTRUCTIBLE(brick->health))
-				{
-					brick->health--;
-					if(brick->health <= 0)
+					else if(ballX == brickX &&
+					   		ballY == brickY + brickSizeHeight)
 					{
-						clearBrick(brick);
+						hit = 1;
+						if(ball->angle >= 90 && ball->angle <= 180)
+						{
+							ball->angle = 360 - ball->angle;
+						}
+						else
+						{
+							ball->angle = 180 - ball->angle;
+							if(ball->angle < 0)
+							{
+								ball->angle = ball->angle + 360;//find better solution
+							}
+						}
 					}
-					else
+					else if(ballX == brickX + brickSizeWidth &&
+					   		ballY == brickY + brickSizeHeight)
 					{
-						drawBrick(brick);
+						hit = 1;
+						if(ball->angle >= 0 && ball->angle <= 90)
+						{
+							ball->angle = 360 - ball->angle;
+						}
+						else
+						{
+							ball->angle = 180 - ball->angle;
+							if(ball->angle < 0)
+							{
+								ball->angle = ball->angle + 360;//find better solution
+							}
+						}
+					}
+					if(hit == 1)
+					{
+						if(!INDESTRUCTIBLE(brick->data))
+						{
+							brick->data--;
+							if(HEALTH(brick->data) <= 0)
+							{
+								clearBrick(brick);
+							}
+							else
+							{
+								drawBrick(brick);
+							}
+						}
 					}
 				}
 			}
