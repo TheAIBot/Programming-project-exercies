@@ -27,7 +27,7 @@ void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int game
 		long oldY = vball->position.y;
 		vball->position.x += TO_FIX14(1);
 		setBallColor(vball);
-		drawBallnewPosition(oldX, oldY, vball->position.x, vball->position.y);
+		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
 
 		//render new bouncer position
 		moveStrikerRight(vStriker);	
@@ -38,7 +38,7 @@ void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int game
 		long oldY = vball->position.y;
 		vball->position.x -= TO_FIX14(1);
 		setBallColor(vball);
-		drawBallnewPosition(oldX, oldY, vball->position.x, vball->position.y);
+		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
 
 		//render new bouncer position
 		moveStrikerLeft(vStriker);
