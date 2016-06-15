@@ -13,7 +13,7 @@
 void initButtons()
 {
 	//Initialize af knapper
-
+/*
 	//what button is this?
 	PFADDR = 0x01;
 	PFCTL |= 0xC0;
@@ -21,6 +21,13 @@ void initButtons()
 	//what button is this?
 	PDADDR = 0x01;
 	PDCTL |= 0x08;
+*/
+
+	PFADDR = 0x01;
+	PFCTL |= 0x50;
+
+	PHADDR = 0x02;
+	ADCCTL |= 0x88;
 
 	//what button is this?
 	PEADDR = 0x00;
@@ -32,7 +39,9 @@ void initButtons()
 }
 
 char readkeys()
-{	char f7 = (~PFIN & F7_BIT) >> 7;
+{	
+	int aX = (int) ((ADCD_H << 2) | ((ADCD_L & 11000000)) >> 6); //
+	char f7 = (~PFIN & F7_BIT) >> 7;
 	char f6 = (~PFIN & F6_BIT) >> 5;
 	char d3 = (~PDIN & D3_BIT) >> 1;
 	return (f7 | f6 | d3);

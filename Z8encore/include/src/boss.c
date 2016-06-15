@@ -11,34 +11,47 @@
 #define sY (20)
 #define bS (0x26)
 #define hn (1)
-#define hI (hn | INDESTRUCTIBLE_BIT)
-#define hIM (hI | MOVING_BIT)
+#define hI (hn | (1 << INDESTRUCTIBLE_BIT))
+#define hIM (hI | (1 << MOVING_BIT))
 
 #define brickHeight 2
 #define brickWidth 6
 #define bricksize 0x26
 
 
-
+char testA = 0xf6 >> 4;
 void initBoss(struct TBoss *boss)
 {
-    struct TBrick kkk[16] = 
+    struct TBrick bossBricks[16] = 
 	{
 		//{(1) * 1, (1) * 15, 1, 3},
 
-		{sX + 0, sY + 0, bS, hI},{sX + 2, sY + 0, bS, hI},{sX + 3, sY + 0, bS, hI},{sX + 5, sY + 0, bS, hI},
-		{sX + 1, sY + 1, bS, hI},{sX + 2, sY + 1, bS, hI},{sX + 3, sY + 1, bS, hI}, {sX + 4, sY + 1, bS, hI},
-		{sX + 0, sY + 2, bS, hI},{sX + 1, sY + 2, bS, hI},{sX + 2, sY + 2, bS, hn}, {sX + 3, sY + 2, bS, hn},{sX + 4, sY + 2, bS, hI},{sX + 5, sY + 2, bS, hI},
-		{sX + 1, sY + 3, bS, hIM | DIRECTION_BIT},{sX + 4, sY + 3, bS, hIM},
+		{sX + 0 * brickWidth, sY + 0 * brickHeight, bS, hI},
+		{sX + 2 * brickWidth, sY + 0 * brickHeight, bS, hI},
+		{sX + 3 * brickWidth, sY + 0 * brickHeight, bS, hI},
+		{sX + 5 * brickWidth, sY + 0 * brickHeight, bS, hI},
+		{sX + 1 * brickWidth, sY + 1 * brickHeight, bS, hI},
+		{sX + 2 * brickWidth, sY + 1 * brickHeight, bS, hI},
+		{sX + 3 * brickWidth, sY + 1 * brickHeight, bS, hI}, 
+		{sX + 4 * brickWidth, sY + 1 * brickHeight, bS, hI},
+		{sX + 0 * brickWidth, sY + 2 * brickHeight, bS, hI},
+		{sX + 1 * brickWidth, sY + 2 * brickHeight, bS, hI},
+		{sX + 2 * brickWidth, sY + 2 * brickHeight, bS, hn}, 
+		{sX + 3 * brickWidth, sY + 2 * brickHeight, bS, hn},
+		{sX + 4 * brickWidth, sY + 2 * brickHeight, bS, hI},
+		{sX + 5 * brickWidth, sY + 2 * brickHeight, bS, hI},
+		{sX + 1 * brickWidth, sY + 3 * brickHeight, bS, hIM | DIRECTION_BIT},
+		{sX + 4 * brickWidth, sY + 3 * brickHeight, bS, hIM},
 	};
 	int i;
 	for(i = 0; i < 16; i++)
 	{
-		boss->bricks[i] = kkk[i];
+		drawBrick(&bossBricks[i]);
+		boss->bricks[i] = bossBricks[i];
 	}
 	boss->startShotX = sX + 2;
-	boss->startShotY = sY + 3;
-	boss->movement = (0xf0 << X_AXIS_MOVEMENT_BIT) | (bS & BRICK_WIDTH_BITS); // x axis 0000, x axis moves 0000
+	boss->startShotY = sY + 3; //0x26 & 0x0f = 0x06 | 0xf0 = 0xf6 >> 4 = 0x0f
+	boss->movement = (0xf0) | (bS & BRICK_WIDTH_BITS); // x axis 0000, x axis moves 0000
 	boss->currentMovement = boss->movement;
 }
 
@@ -67,15 +80,17 @@ void moveBricks(struct TBoss *boss)
 			   IS_MOVING(brick->data))
 			{
 				int oldX = brick->x;
+				setBrickColor(brick);
 				if(DIRECTION(brick->data))
 				{
 					brick->x++;
+					updateBrickPositionRight(oldX, brick->y,  brick->x, brick->y, BRICK_HEIGHT(brick->size), BRICK_WIDTH(brick->size));
 				}
 				else
 				{
 					brick->x--;
+					updateBrickPositionLeft(oldX, brick->y,  brick->x, brick->y, BRICK_HEIGHT(brick->size), BRICK_WIDTH(brick->size));
 				}
-				updateBrickPosition(oldX, brick->y,  brick->x, brick->y, BRICK_HEIGHT(brick->size));
 				if(invertDirection)
 				{
 					brick->data = brick->data ^ DIRECTION_BIT_SELECT; // inverts Direction with xor
@@ -94,7 +109,7 @@ void shoot(struct TBoss *boss, struct TBall shots[6])
 		if(ALIVE(shots[i].data) == 0)
 		{
 			//void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity)
-			initBall(&shots[i], boss->startShotX, boss->startShotY, FCOLOR_RED, RANDOM(225, 315), TO_FIX14(1) >> 2); 
+			initBall(&shots[i], boss->startShotX, boss->startShotY, FCOLOR_RED, RANDOM(225, 315), TO_FIX14(1) >> 2, 1); 
 		}
 	}
 }

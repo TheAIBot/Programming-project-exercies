@@ -313,6 +313,7 @@
 
 <!-- watch information -->
 <watch-elements>
+<watch-element expression="testA" />
 </watch-elements>
 
 <!-- breakpoint information -->

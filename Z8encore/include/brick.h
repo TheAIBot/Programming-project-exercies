@@ -3,7 +3,7 @@
 
 #include "ansi.h"
 
-#define HEALTH_BITS 0x3f
+#define HEALTH_BITS 0x0f
 #define DROP_BIT 7
 #define INDESTRUCTIBLE_BIT 6
 #define MOVING_BIT 5
@@ -32,6 +32,9 @@ struct TBrick
 
 void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount);
 void initBricks(struct TBrick bricks[], int brickCount);
-void updateBrickPosition(int oldX, int oldY, int newX, int newY, char brickHeight);
+void setBrickColor(struct TBrick *brick);
+void updateBrickPositionRight(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth);
+void updateBrickPositionLeft(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth);
+void drawBrick(struct TBrick *brick);
 
 #endif

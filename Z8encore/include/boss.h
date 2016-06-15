@@ -2,7 +2,7 @@
 #define _BOSS_H_
 
 #define X_AXIS_MOVEMENT_BIT 4
-#define X_AXIS_MOVEMENT(movement) ((movement & 0xf0) >> X_AXIS_MOVEMENT_BIT)
+#define X_AXIS_MOVEMENT(movement) ((movement >> X_AXIS_MOVEMENT_BIT) & 0x0f)
 #define X_MOVED(movement) (movement & 0x0f)
 
 #include "brick.h"
@@ -15,6 +15,9 @@ struct TBoss
 	int startShotX;
 	int startShotY;
 };
+
+void initBoss(struct TBoss *boss);
+void updateBoss(struct TBoss *boss, struct TBall shots[6]);
 
 
 #endif

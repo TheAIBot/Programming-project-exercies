@@ -12,6 +12,10 @@
 char getBrickColor(char data)
 {
   	char health = HEALTH(data);
+	if(INDESTRUCTIBLE(data))
+	{
+		return FCOLOR_LIGHT_GRAY;
+	}
 	if(health == 1)
 	{
 		return FCOLOR_GREEN;
@@ -26,14 +30,29 @@ char getBrickColor(char data)
 	}
 }
 
-void updateBrickPosition(int oldX, int oldY, int newX, int newY, char brickHeight)
+void updateBrickPositionLeft(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth)
 {
 	char i;
 	for(i = 0; i < brickHeight; i++)
 	{
 		//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-		printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY + i, oldX, EMPTY_STYLE, ESC, newY + i, newX, BRICK_STYLE);
+		printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY + i, oldX + brickWidth - 1, EMPTY_STYLE, ESC, newY + i, newX, BRICK_STYLE);
 	}
+}
+
+void updateBrickPositionRight(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth)
+{
+	char i;
+	for(i = 0; i < brickHeight; i++)
+	{
+		//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
+		printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY + i, oldX, EMPTY_STYLE, ESC, newY + i, newX + brickWidth - 1, BRICK_STYLE);
+	}
+}
+
+void setBrickColor(struct TBrick *brick)
+{
+	fgcolor(getBrickColor(brick->data));
 }
 
 void brickdraw(struct TBrick *brick, char c)
@@ -42,7 +61,7 @@ void brickdraw(struct TBrick *brick, char c)
 	char brickSizeHeight = BRICK_HEIGHT((brick->size));
 	char x;
 	char y;
-	fgcolor(getBrickColor(brick->data));
+	setBrickColor(brick);
 	for(y = 0; y < brickSizeHeight; y++)
 	{
 		gotoxy(brick->x, brick->y + y);

@@ -26,14 +26,17 @@ void setBallColor(struct TBall *ball)
 }
 
 //Initialize ball
-void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity){
+void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity, char alive){
 	vBall->position.x = TO_FIX14(x);
 	vBall->position.y = TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
-	vBall->data = (color | (1 << ALIVE_BIT));
+	vBall->data = (color | (alive << ALIVE_BIT));
 	fgcolor(vBall->data);
-	updateBallDrawnPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
+	if(alive)
+	{
+		updateBallDrawnPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
+	}
 }
 
 void moveBall(struct TBall *vball)

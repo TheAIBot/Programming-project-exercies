@@ -23,7 +23,7 @@ struct TBall
 	char data;//ALIVE 0, COLOR 0000000
 };
 
-void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity);
+void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity, char alive);
 void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY);
 char isBallDead(struct TBall balls[6], int gameSize);
 void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int gameSizeY);

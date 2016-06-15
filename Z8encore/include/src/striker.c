@@ -19,10 +19,18 @@ void sdraw(int x, int y, int length, char c)
 	}
 }
 
-void updateStrikerDrawnPosition(int oldX, int oldY, int newX, int newY, int length)
+void updateStrikerDrawnPositionRight(int oldX, int oldY, int newX, int newY, int length)
 {
+	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX, EMPTY_STYLE, ESC, newY, newX + length, STRIKER_STYLE);
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength + 1, EMPTY_STYLE, ESC, newY, newX + halfLength, STRIKER_STYLE);
+}
+
+void updateStrikerDrawnPositionLeft(int oldX, int oldY, int newX, int newY, int length)
+{
+	int halfLength = length >> 1;
+	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength, STRIKER_STYLE, ESC, newY, newX + halfLength + 1, EMPTY_STYLE);
 }
 
 void setStrikerColor()
@@ -72,7 +80,7 @@ void moveStrikerLeft(struct TStriker *vStriker)
 	int oldX = vStriker->position.x;
 	int oldY = vStriker->position.y;
 	vStriker->position.x--;
-	updateStrikerDrawnPosition(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPositionLeft(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
 	//clearStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
 	//vStriker->position.x--;
 	//drawStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
@@ -83,7 +91,7 @@ void moveStrikerRight(struct TStriker *vStriker)
 	int oldX = vStriker->position.x;
 	int oldY = vStriker->position.y;
 	vStriker->position.x++;
-	updateStrikerDrawnPosition(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPositionRight(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
 	//clearStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
 	//vStriker->position.x++;
 	//drawStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
@@ -91,6 +99,7 @@ void moveStrikerRight(struct TStriker *vStriker)
 
 //Rendering nextstate Bouncer
 void moveStriker(struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
+	setStrikerColor();
 	if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
 		moveStrikerRight(vStriker);	
 	}
