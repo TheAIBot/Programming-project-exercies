@@ -82,6 +82,22 @@ void clearBrick(struct TBrick *brick)
 	brickdraw(brick, EMPTY_STYLE);
 }
 
+void handleBrickCornerCollision(struct TBall *ball, int minAngle, int maxAngle)
+{
+	if(ball->angle >= minAngle && ball->angle <= maxAngle)
+	{
+		ball->angle = 360 - ball->angle;
+	}
+	else
+	{
+		ball->angle = 180 - ball->angle;
+		if(ball->angle < 0)
+		{
+			ball->angle = ball->angle + 360;//find better solution
+		}
+	}
+}
+
 void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount)
 {
 	int brickIndex;
@@ -127,69 +143,25 @@ void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 					   ballY == brickY - 1)
 					{
 						hit = 1;
-						if(ball->angle >= 180 && ball->angle <= 270)
-						{
-							ball->angle = 360 - ball->angle;
-						}
-						else
-						{
-							ball->angle = 180 - ball->angle;
-							if(ball->angle < 0)
-							{
-								ball->angle = ball->angle + 360;//find better solution
-							}
-						}
+						handleBrickCornerCollision(ball, 180, 270);
 					}
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY - 1)
 					{
 						hit = 1;
-						if(ball->angle >= 270 && ball->angle <= 360)
-						{
-							ball->angle = 360 - ball->angle;
-						}
-						else
-						{
-							ball->angle = 180 - ball->angle;
-							if(ball->angle < 0)
-							{
-								ball->angle = ball->angle + 360;//find better solution
-							}
-						}
+						handleBrickCornerCollision(ball, 270, 360);
 					}
 					else if(ballX == brickX &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						if(ball->angle >= 90 && ball->angle <= 180)
-						{
-							ball->angle = 360 - ball->angle;
-						}
-						else
-						{
-							ball->angle = 180 - ball->angle;
-							if(ball->angle < 0)
-							{
-								ball->angle = ball->angle + 360;//find better solution
-							}
-						}
+						handleBrickCornerCollision(ball, 90, 180);
 					}
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						if(ball->angle >= 0 && ball->angle <= 90)
-						{
-							ball->angle = 360 - ball->angle;
-						}
-						else
-						{
-							ball->angle = 180 - ball->angle;
-							if(ball->angle < 0)
-							{
-								ball->angle = ball->angle + 360;//find better solution
-							}
-						}
+						handleBrickCornerCollision(ball, 0, 90);
 					}
 					if(hit == 1)
 					{
