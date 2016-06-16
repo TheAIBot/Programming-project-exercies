@@ -20,6 +20,7 @@
 <file filter-key="">Z8encore\include\src\timer.c</file>
 <file filter-key="">Z8encore\include\src\random.c</file>
 <file filter-key="">Z8encore\include\src\joystick.c</file>
+<file filter-key="">Z8encore\include\src\bounce.c</file>
 </files>
 
 <!-- configuration information -->

@@ -76,6 +76,8 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\random.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj
 
 rebuildall: clean Debug
 
@@ -100,7 +102,8 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\striker.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timer.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\random.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -221,6 +224,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\ball.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
@@ -263,6 +267,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\brick.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\brick.c  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\brick.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\color.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
@@ -291,6 +296,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\game.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\color.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\game.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\joystick.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\level.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\powerup.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
@@ -403,4 +409,19 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj :  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
             D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\joystick.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\format.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdarg.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\std\stdio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\defines.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\dmadefs.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\eZ8.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\gpio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\sio.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uart.h  \
+            D:\PROGRA~3\ZiLOG\ZDSIIZ~1\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c
 
