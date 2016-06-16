@@ -5,30 +5,38 @@
 #include "joystick.h"
 #include "game.h"
 #include "clockio.h"
+#include "sound.h"
 
 #define GAME_SIZE_X 150
 #define GAME_SIZE_Y 60
 #define STRIKER_LENGTH 31
 #define GAME_UPDATE_RATE 40
 
-#define D2_BIT 0x04
+#define C1_BIT 0x02
 
 void main() {
+	/*
 	int i = 0;
-	PDADDR = 0x01;
-	PDCTL &= ~0x04;
-	PDOUT = D2_BIT;
+	PCADDR = 0x02;
+	PCCTL &= 0x02;
+	PCOUT = C1_BIT;
 	//char d2 = (~PDOUT & D2_BIT) >> 1;
 	while(1) 
 	{ 
-		for(i = 0; i < 1000; i++)
+
+		PCOUT;
+		printf("%d", PCOUT);
+
+	}
+
+	*/
+		/*	for(i = 0; i < 1000; i++)
 		{
 			PDOUT = (i % 2) << D2_BIT;
 			delay(i);
-		}
-	}
+		}*/
 	//uncomment this to run the game
-	/*
+	
 	struct TGame game;
 
 	init_uart(_UART0,_DEFFREQ,115200);
@@ -38,7 +46,7 @@ void main() {
 	{
 		runGame(&game);
 	}
-	*/	
+	
 
 	/*
 	//to test the joystick

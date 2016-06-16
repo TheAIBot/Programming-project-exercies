@@ -15,7 +15,7 @@ void initLevel(struct TStriker *vStriker, struct TBall *vball, struct TBrick bri
 
 }
 
-void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char leftButtonPressed, char rightButtonPressed) {
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
     if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
 		//render new ball position
 		long oldX = vball->position.x;

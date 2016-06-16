@@ -25,12 +25,12 @@ void initBallStriker(struct TBall *ball, struct TStriker *striker, int gameSize)
 {
 	int initialx = gameSize / 2;
 	int initialStrikerY = gameSize - 1;
-	int initialBallY = initialStrikerY - 1;
+	int initialBallY = initialStrikerY - 2;
 	int velocity = 0;
 	int angle = 40;
 	int strikerLength = 5;
 
-	initBall(ball, initialx, initialBallY, FCOLOR_BLUE, angle, velocity, 1); // need to know why -3 and -2 is needed
+	initBall(ball, initialx, initialBallY, FCOLOR_BLUE, angle, 0, 1); // need to know why -3 and -2 is needed
 	initStriker(striker, initialx, initialStrikerY ,strikerLength);
 }
 
@@ -105,41 +105,42 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 
 void getDifficulty(struct TGame *game)
 {
-	while(1) {
-		// begin main loop, selecting difficulty level
-		clrscr();
-		window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-		gotoxy((game->gameSizeX / 2) - 15, (game->gameSizeY / 2));
-	    printf("Welcome to Brick Breaker!");
-	    gotoxy((game->gameSizeX / 2) - 15, (game->gameSizeY / 2) - 2);
-	    printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
-	    gotoxy((game->gameSizeX / 2) - 15, (game->gameSizeY / 2) - 3);
-	    printf("Press center button to start game.");
-		while(1){
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			scrollText();//10ms
-			//1s / 100ms = 10hz update rate
-			if(isd3Pressed()){
-				game->difficulty++;
-				gotoxy((game->gameSizeX / 2) - 15, (game->gameSizeY / 2) - 2);
-	            printf("Select difficulty level by pressing left/right button: %5d", game->difficulty);
-			}
-			if( isf7Pressed() && game->difficulty > 1){
-				game->difficulty--;
-				gotoxy((game->gameSizeX / 2) - 15, (game->gameSizeY / 2) - 2);
-	        	printf("Select difficulty level by pressing left/right button: %5d", game->difficulty);
-			}
-			if(isf6Pressed() || game->difficulty == 5){
-				break;
-			}
+	game->difficulty = 0;
+	// begin main loop, selecting difficulty level
+	clrscr();
+	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
+	gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2));
+    printf("Welcome to Brick Breaker!");
+    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+    printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 3);
+    printf("Press center button to start game.");
+	while(1){
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		scrollText();//10ms
+		//1s / 100ms = 10hz update rate
+		if(isJoystickRight()){
+			delay(100);
+			(game->difficulty)++;
+			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+            printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+		}
+		if(isJoystickLeft() && game->difficulty > 1){
+			delay(100);
+			(game->difficulty)--;
+			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+        	printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+		}
+		if(isButton1Pressed() || game->difficulty >= 5){
+			break;
 		}
 	}
 }
@@ -186,8 +187,8 @@ void updateGame(struct TGame *game)
 	waitForEvent(&game->timer);
 	if(game->newBall)
 	{
-		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isJoystickLeft(), isJoystickRight());
-		if(!isButton1Pressed())
+		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isJoystickRight(),isJoystickLeft());
+		if(isButton1Pressed())
 		{
 			game->newBall = 0;
 		}
@@ -195,7 +196,7 @@ void updateGame(struct TGame *game)
 	else
 	{
 		updateBalls(game->balls);
-		moveStriker(&game->striker, game->gameSizeX, isJoystickLeft(), isJoystickRight());
+		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
 		impact(game->balls, &game->striker, game->gameSizeX, game->gameSizeY);
 		bounceStriker(&game->striker, game->balls);
 		handleBrickCollisions(game->bricks, game->balls, game->brickCount);
@@ -220,7 +221,7 @@ void updateGame(struct TGame *game)
 
 void runGame(struct TGame *game)
 {
-	//getDifficulty(game);
+	getDifficulty(game);
 	startLevel(game);
 	while(game->lives > 0)
 	{

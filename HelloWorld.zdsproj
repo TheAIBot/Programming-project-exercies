@@ -21,6 +21,7 @@
 <file filter-key="">Z8encore\include\src\bounce.c</file>
 <file filter-key="">Z8encore\include\src\joystick.c</file>
 <file filter-key="">Z8encore\include\src\random.c</file>
+<file filter-key="">Z8encore\include\src\sound.c</file>
 </files>
 
 <!-- configuration information -->
@@ -315,6 +316,9 @@
 
 <!-- watch information -->
 <watch-elements>
+<watch-element expression="game->difficulty" />
+<watch-element expression="isButton1Pressed()" />
+<watch-element expression="IS_BUTTON_1_PRESSED" />
 </watch-elements>
 
 <!-- breakpoint information -->

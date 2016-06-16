@@ -78,6 +78,8 @@ clean:
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\joystick.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\random.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\random.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj
 
 rebuildall: clean Debug
 
@@ -103,7 +105,8 @@ OBJS =  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\timer.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\bounce.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\joystick.obj  \
-            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\random.obj
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\random.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -124,6 +127,7 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\game.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\joystick.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\timer.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
@@ -452,4 +456,21 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\random.h
 	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\random.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\sound.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ansi.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\sound.c
 

@@ -20,14 +20,14 @@ int joystickXAxis()
 	return (((int)ADCD_H << 2) | ((ADCD_L & 0xc0)) >> 6);
 } 
 
-char isJoystickLeft()
-{
-	return joystickXAxis() == JOYSTICK_LEFT;
-}
-
 char isJoystickRight()
 {
 	return joystickXAxis() == JOYSTICK_RIGHT;
+}
+
+char isJoystickLeft()
+{
+	return joystickXAxis() == JOYSTICK_LEFT;
 }
 
 char isButton1Pressed()
