@@ -12,7 +12,7 @@
 #define SIN_SIZE 512
 
 // === LUT DECLARATIONS ===
-extern const signed short SIN[512];
+extern const signed short SIN[SIN_SIZE];
 
 long expand(long);
 void printFix(long);

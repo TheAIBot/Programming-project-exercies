@@ -7,6 +7,7 @@
 #include "timer.h"
 
 #define GAME_NAME "Brick Breaker"
+#define DEFAULT_LIVES 10;
 
 struct TGame
 {

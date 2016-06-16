@@ -15,6 +15,7 @@
 #include "color.h"
 #include "clockio.h"
 #include "joystick.h"
+#include "random.h"
 
 #define brickHeight 2
 #define brickWidth 6
@@ -87,7 +88,7 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 	game->strikerLength = strikerLength;
 	game->gameSizeX = gameSizeX;
 	game->gameSizeY = gameSizeY;
-	game->lives = 10;
+	game->lives = DEFAULT_LIVES;
 	
 	// start a clock with the chosen frequency which means the clock should tick every 1s / freq, 1s == 1000
 	initTimer(&game->timer, 1000 / updateFrequency);
@@ -148,20 +149,21 @@ void startLevel(struct TGame *game)
 	char i;
 	game->newBall = 1;
 	//initialize game objects
-	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, 45, 0, 1);
+	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(45, 135), 0, 1); // starting angle is random between 45 and 135 degrees
 	for(i = 1; i <  6; i++)
 	{
 		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
 	}
-	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
-	initBricks(game->bricks, game->brickCount);
-	initBoss(&game->boss);
 
 	//draw window
 	clrscr();
 	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	fgcolor(FCOLOR_WHITE);
+
+	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
+	initBricks(game->bricks, game->brickCount);
+	initBoss(&game->boss, 1);
 	//TIMER !!!!
 
 	// initialize game data
@@ -172,13 +174,20 @@ void startLevel(struct TGame *game)
 	printf("Lives: %5d",game->lives);
 }
 
+void updateLives(int gameSizeY, int lives)
+{
+	gotoxy(0,gameSizeY + 3);
+	fgcolor(FCOLOR_LIGHT_GRAY);
+	printf("Lives: %5d", lives);
+}
+
 void updateGame(struct TGame *game)
 {
 	waitForEvent(&game->timer);
 	if(game->newBall)
 	{
-		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isd3Pressed(), isf7Pressed());
-		if(!isf6Pressed())
+		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isJoystickLeft(), isJoystickRight());
+		if(!isButton1Pressed())
 		{
 			game->newBall = 0;
 		}
@@ -186,33 +195,36 @@ void updateGame(struct TGame *game)
 	else
 	{
 		updateBalls(game->balls);
-		moveStriker(&game->striker, game->gameSizeX, isf7Pressed(), isd3Pressed());
+		moveStriker(&game->striker, game->gameSizeX, isJoystickLeft(), isJoystickRight());
 		impact(game->balls, &game->striker, game->gameSizeX, game->gameSizeY);
 		bounceStriker(&game->striker, game->balls);
 		handleBrickCollisions(game->bricks, game->balls, game->brickCount);
 		updateBoss(&game->boss, game->balls);
 		if(isBallDead(game->balls, game->gameSizeY))
 		{
-			clearStriker(game->striker.position.x,game->striker.position.y, game->striker.length); 
-			updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, game->gameSizeX >> 1, game->gameSizeY - 2);
-
-			initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, 45, 0, 1);
-			initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
-			game->newBall = 1;
+			if(IS_ALIVE(game->balls[0].data) == 0)
+			{
+				clearStriker(game->striker.position.x,game->striker.position.y, game->striker.length); 
+				updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, game->gameSizeX >> 1, game->gameSizeY - 2);
+	
+				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(45, 135), 0, 1); // starting angle is random between 45 and 135 degrees
+				initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
+				game->newBall = 1;
+			}
 			game->lives--;
 			
-			gotoxy(0,game->gameSizeY + 3);
-			printf("Lives: %5d", game->lives);
+			updateLives(game->gameSizeY, game->lives);
 		}
 	}
 }
 
 void runGame(struct TGame *game)
 {
-	getDifficulty(game);
+	//getDifficulty(game);
 	startLevel(game);
 	while(game->lives > 0)
 	{
 		updateGame(game);
 	}
+	game->lives = DEFAULT_LIVES;
 }

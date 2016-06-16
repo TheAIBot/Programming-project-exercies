@@ -21,6 +21,12 @@ void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY)
 	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oY, oX, EMPY_CHAR, ESC, nY, nX, BALL_STYLE);
 }
 
+void clearBall(long x, long y)
+{
+	gotoxy(ROUND_TO_INT(x), ROUND_TO_INT(y));
+	printf("%c", EMPY_CHAR);
+}
+
 void setBallColor(struct TBall *ball)
 {
 	fgcolor(COLOR(ball->data));
@@ -32,7 +38,7 @@ void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velo
 	vBall->position.y = TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
-	vBall->data = (color | (alive << ALIVE_BIT));
+	vBall->data = (color | (alive << ALIVE_BIT_SHIFT));
 	fgcolor(vBall->data);
 	if(alive)
 	{
@@ -74,6 +80,7 @@ void updateBalls(struct TBall balls[6]) {
 }
 
 char isBallDead(struct TBall balls[6], int gameSizeY){
+	char isBallsDead = 0;
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
@@ -83,13 +90,14 @@ char isBallDead(struct TBall balls[6], int gameSizeY){
 			int ballx = FIX14_TO_INT(ball->position.x);
 			int bally = FIX14_TO_INT(ball->position.y);
 
-			if (bally == gameSizeY - 1){
-				ball->data &= ~(1 << ALIVE_BIT);//ball is dead, set alive bit to 0
-				return 1;
+			if (bally >= gameSizeY - 1){
+				ball->data &= ~(1 << ALIVE_BIT_SHIFT);//ball is dead, set alive bit to 0
+				clearBall(ball->position.x, ball->position.y);
+				isBallsDead = 1;
 			}
-			return 0;
 		}
 	}
+	return isBallsDead;
 }
 
 void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int gameSizeY) {

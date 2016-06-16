@@ -12,7 +12,7 @@ void initJoystick()
 	PFCTL |= 0x50;
 
 	PHADDR = 0x02;
-	ADCCTL |= 0x88;
+	ADCCTL |= 0x98;
 }
 
 int joystickXAxis()
