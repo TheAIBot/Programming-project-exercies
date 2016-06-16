@@ -5,6 +5,7 @@
 #include "SineLUT.h"
 #include "fixedmath.h"
 #include "clockio.h"
+#include "bounce.h"
 
 #define BALL_STYLE 254
 #define EMPY_CHAR ' '
@@ -50,7 +51,7 @@ void updateBalls(struct TBall balls[6]) {
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			if(ball->velocity > 0){
@@ -76,13 +77,14 @@ char isBallDead(struct TBall balls[6], int gameSizeY){
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
-			int ballx = FIX14_TO_INT(ball->position.x);//truncation
-			int bally = FIX14_TO_INT(ball->position.y);//truncation
-			if (bally==gameSizeY-1){
-				ball->data &= ~(1 <<ALIVE_BIT);//ball is dead, set alive bit to 0
+			int ballx = FIX14_TO_INT(ball->position.x);
+			int bally = FIX14_TO_INT(ball->position.y);
+
+			if (bally == gameSizeY - 1){
+				ball->data &= ~(1 << ALIVE_BIT);//ball is dead, set alive bit to 0
 				return 1;
 			}
 			return 0;
@@ -94,7 +96,7 @@ void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			int ballx=FIX14_TO_INT(ball->position.x);//truncation
@@ -106,15 +108,11 @@ void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int
 			//bounce off right and left walls	
 			if (ballx >= gameSizeX - 1 && (ball->angle < 90 || ball->angle > 270) || 
 				ballx <= 2 && ball->angle > 90 && ball->angle < 270) {
-				ball->angle = 180 - ball->angle;
-				if(ball->angle < 0)
-				{
-					ball->angle = ball->angle + 360;//find better solution
-				}
+				ball->angle = bounceVertical(ball->angle);
 			}
 			//bounce off top wall
 			if (bally <= 2){
-				ball->angle= 360 - ball->angle;
+				ball->angle = bounceHorizontal(ball->angle);
 			}
 		}
 	}

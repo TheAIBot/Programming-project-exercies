@@ -121,7 +121,7 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
 	int ballIndex;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
-		if(ALIVE(balls[ballIndex].data))
+		if(IS_ALIVE(balls[ballIndex].data))
 		{
 			struct TBall *ball = &balls[ballIndex];
 			int ballx = FIX14_TO_INT(ball->position.x);//truncation

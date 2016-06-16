@@ -24,6 +24,6 @@ void movecursor(int, int);
 void window(int, int, int, int ,char, char[]);
 void initVector(struct TVector * v, long, long);
 void enablecursor(char on);
-void rotate(struct TVector *v, int angle);
+//void rotate(struct TVector *v, int angle); // is never used
 
 #endif

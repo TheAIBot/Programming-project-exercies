@@ -106,7 +106,7 @@ void shoot(struct TBoss *boss, struct TBall shots[6])
 	int i;
 	for(i = 0; i < 6; i++)
 	{
-		if(ALIVE(shots[i].data) == 0)
+		if(IS_ALIVE(shots[i].data) == 0)
 		{
 			//void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity)
 			initBall(&shots[i], boss->startShotX, boss->startShotY, FCOLOR_RED, RANDOM(225, 315), TO_FIX14(1) >> 2, 1); 
@@ -121,7 +121,7 @@ char shouldShoot(struct TBall shots[6])
 		int i;
 		for(i = 0; i < 6; i++)
 		{
-			if(ALIVE(shots[i].data) == 0)
+			if(IS_ALIVE(shots[i].data) == 0)
 			{
 				return 1;
 			}

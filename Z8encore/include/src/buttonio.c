@@ -13,7 +13,7 @@
 void initButtons()
 {
 	//Initialize af knapper
-/*
+
 	//what button is this?
 	PFADDR = 0x01;
 	PFCTL |= 0xC0;
@@ -21,13 +21,6 @@ void initButtons()
 	//what button is this?
 	PDADDR = 0x01;
 	PDCTL |= 0x08;
-*/
-
-	PFADDR = 0x01;
-	PFCTL |= 0x50;
-
-	PHADDR = 0x02;
-	ADCCTL |= 0x88;
 
 	//what button is this?
 	PEADDR = 0x00;
@@ -39,8 +32,7 @@ void initButtons()
 }
 
 char readkeys()
-{	
-	int aX = (int) ((ADCD_H << 2) | ((ADCD_L & 11000000)) >> 6); //
+{
 	char f7 = (~PFIN & F7_BIT) >> 7;
 	char f6 = (~PFIN & F6_BIT) >> 5;
 	char d3 = (~PDIN & D3_BIT) >> 1;
@@ -49,33 +41,30 @@ char readkeys()
 
 char isf7Pressed()
 {
-	char b1 = IS_F7_PRESSED;
-	if(b1 == 1)
+	if(IS_F7_PRESSED)
 	{
 		delay(10);
-		return b1 & IS_F7_PRESSED;
+		return IS_F7_PRESSED;
 	}
 	return 0;
 }
 
 char isf6Pressed()
 {
-	char b1 = IS_F6_PRESSED;
-	if(b1 == 1)
+	if(IS_F6_PRESSED)
 	{
 		delay(10);
-		return b1 & IS_F6_PRESSED;
+		return IS_F6_PRESSED;
 	}
 	return 0;
 }
 
 char isd3Pressed()
 {
-	char b1 = IS_D3_PRESSED;
-	if(b1 == 1)
+	if(IS_D3_PRESSED)
 	{
 		delay(10);
-		return b1 & IS_D3_PRESSED;
+		return IS_D3_PRESSED;
 	}
 	return 0;
 }

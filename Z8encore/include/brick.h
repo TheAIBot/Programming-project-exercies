@@ -15,7 +15,7 @@
 #define BRICK_WIDTH(size) (size & BRICK_WIDTH_BITS)
 #define BRICK_HEIGHT(size) (size >> BRICK_HEIGHT_BITS)
 #define HEALTH(data) (data & HEALTH_BITS)
-#define INDESTRUCTIBLE(data) ((data & 0x40) >> INDESTRUCTIBLE_BIT) 
+#define IS_INDESTRUCTIBLE(data) ((data & 0x40) >> INDESTRUCTIBLE_BIT) 
 #define IS_MOVING(data) ((data & 0x20) >> MOVING_BIT)
 #define DIRECTION(data) ((data & DIRECTION_BIT_SELECT) >> DIRECTION_BIT)
 
