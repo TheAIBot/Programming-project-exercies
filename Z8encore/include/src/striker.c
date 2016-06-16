@@ -23,14 +23,14 @@ void updateStrikerDrawnPositionRight(int oldX, int oldY, int newX, int newY, int
 {
 	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength + 1, EMPTY_STYLE, ESC, newY, newX + halfLength, STRIKER_STYLE);
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength, EMPTY_STYLE, ESC, newY, newX + halfLength, STRIKER_STYLE);
 }
 
 void updateStrikerDrawnPositionLeft(int oldX, int oldY, int newX, int newY, int length)
 {
 	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength, STRIKER_STYLE, ESC, newY, newX + halfLength + 1, EMPTY_STYLE);
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, newX - halfLength, STRIKER_STYLE, ESC, newY, oldX + halfLength, EMPTY_STYLE);
 }
 
 void setStrikerColor()

@@ -37,6 +37,7 @@ void main() {
 		}*/
 	//uncomment this to run the game
 	
+
 	struct TGame game;
 
 	init_uart(_UART0,_DEFFREQ,115200);
@@ -48,7 +49,7 @@ void main() {
 	}
 	
 
-	/*
+/*	
 	//to test the joystick
 	init_uart(_UART0,_DEFFREQ,115200);
 	initClock();
@@ -56,8 +57,8 @@ void main() {
 	
 	while(1)
 	{
-		printf("%d %d\n", joystickXAxis(), isButton1Pressed());
+		printf("%d %d %d \n", joystickXAxis(), isButton1Pressed(), isButton2Pressed());
 		delay(100);
-	}
-	*/
+	}*/
+	
 }
