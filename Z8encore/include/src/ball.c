@@ -2,7 +2,7 @@
 #include <sio.h>
 #include "ball.h"
 #include "ansi.h"
-#include "SineLUT.h"
+#include "trigonometry.h"
 #include "fixedmath.h"
 #include "clockio.h"
 #include "bounce.h"

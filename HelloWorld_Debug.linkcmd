@@ -27,9 +27,9 @@
 -FORMAT=OMF695
 -NOigcase -map -quiet -warn -NOwarnoverlap -NOxref
 
-RANGE EDATA $100 : $EFF
-RANGE RDATA $20 : $FF
 RANGE ROM $0 : $FFFF
+RANGE RDATA $20 : $FF
+RANGE EDATA $100 : $EFF
 
 CHANGE TEXT=EDATA
 CHANGE TEXT=FAR_DATA
@@ -67,7 +67,6 @@ define __user_frequency = 18432000
  .\zsldevinit.obj, \
  .\main.obj, \
  .\ansi.obj, \
- .\SineLUT.obj, \
  .\screenio.obj, \
  .\buttonio.obj, \
  .\clockio.obj, \
@@ -79,10 +78,10 @@ define __user_frequency = 18432000
  .\powerup.obj, \
  .\striker.obj, \
  .\timer.obj, \
- .\bounce.obj, \
- .\joystick.obj, \
  .\random.obj, \
- .\sound.obj, \
+ .\joystick.obj, \
+ .\bounce.obj, \
+ .\trigonometry.obj, \
  c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\std\crtrevaaLDD.lib, \
  c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\std\fpdumyL.obj, \
  c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\zilog\zslLYD.lib

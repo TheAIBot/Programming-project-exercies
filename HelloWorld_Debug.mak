@@ -48,8 +48,6 @@ clean:
             del M:\Documents\GitHub\Programming-project-exercies\main.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\ansi.obj  \
             del M:\Documents\GitHub\Programming-project-exercies\ansi.obj
-	@if exist M:\Documents\GitHub\Programming-project-exercies\SineLUT.obj  \
-            del M:\Documents\GitHub\Programming-project-exercies\SineLUT.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             del M:\Documents\GitHub\Programming-project-exercies\screenio.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\buttonio.obj  \
@@ -72,14 +70,14 @@ clean:
             del M:\Documents\GitHub\Programming-project-exercies\striker.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\timer.obj  \
             del M:\Documents\GitHub\Programming-project-exercies\timer.obj
-	@if exist M:\Documents\GitHub\Programming-project-exercies\bounce.obj  \
-            del M:\Documents\GitHub\Programming-project-exercies\bounce.obj
-	@if exist M:\Documents\GitHub\Programming-project-exercies\joystick.obj  \
-            del M:\Documents\GitHub\Programming-project-exercies\joystick.obj
 	@if exist M:\Documents\GitHub\Programming-project-exercies\random.obj  \
             del M:\Documents\GitHub\Programming-project-exercies\random.obj
-	@if exist M:\Documents\GitHub\Programming-project-exercies\sound.obj  \
-            del M:\Documents\GitHub\Programming-project-exercies\sound.obj
+	@if exist M:\Documents\GitHub\Programming-project-exercies\joystick.obj  \
+            del M:\Documents\GitHub\Programming-project-exercies\joystick.obj
+	@if exist M:\Documents\GitHub\Programming-project-exercies\bounce.obj  \
+            del M:\Documents\GitHub\Programming-project-exercies\bounce.obj
+	@if exist M:\Documents\GitHub\Programming-project-exercies\trigonometry.obj  \
+            del M:\Documents\GitHub\Programming-project-exercies\trigonometry.obj
 
 rebuildall: clean Debug
 
@@ -91,7 +89,6 @@ OBJS =  \
             M:\Documents\GitHub\Programming-project-exercies\zsldevinit.obj  \
             M:\Documents\GitHub\Programming-project-exercies\main.obj  \
             M:\Documents\GitHub\Programming-project-exercies\ansi.obj  \
-            M:\Documents\GitHub\Programming-project-exercies\SineLUT.obj  \
             M:\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             M:\Documents\GitHub\Programming-project-exercies\buttonio.obj  \
             M:\Documents\GitHub\Programming-project-exercies\clockio.obj  \
@@ -103,10 +100,10 @@ OBJS =  \
             M:\Documents\GitHub\Programming-project-exercies\powerup.obj  \
             M:\Documents\GitHub\Programming-project-exercies\striker.obj  \
             M:\Documents\GitHub\Programming-project-exercies\timer.obj  \
-            M:\Documents\GitHub\Programming-project-exercies\bounce.obj  \
-            M:\Documents\GitHub\Programming-project-exercies\joystick.obj  \
             M:\Documents\GitHub\Programming-project-exercies\random.obj  \
-            M:\Documents\GitHub\Programming-project-exercies\sound.obj
+            M:\Documents\GitHub\Programming-project-exercies\joystick.obj  \
+            M:\Documents\GitHub\Programming-project-exercies\bounce.obj  \
+            M:\Documents\GitHub\Programming-project-exercies\trigonometry.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @M:\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -146,8 +143,8 @@ M:\Documents\GitHub\Programming-project-exercies\main.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\ansi.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\ansi.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
@@ -162,20 +159,6 @@ M:\Documents\GitHub\Programming-project-exercies\ansi.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\ansi.c
-
-M:\Documents\GitHub\Programming-project-exercies\SineLUT.obj :  \
-            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\SineLUT.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\SineLUT.c
 
 M:\Documents\GitHub\Programming-project-exercies\screenio.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c  \
@@ -232,13 +215,13 @@ M:\Documents\GitHub\Programming-project-exercies\clockio.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\ball.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\ball.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
@@ -303,7 +286,6 @@ M:\Documents\GitHub\Programming-project-exercies\brick.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\game.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\game.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SuperIO.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
@@ -320,6 +302,7 @@ M:\Documents\GitHub\Programming-project-exercies\game.obj :  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
@@ -378,12 +361,12 @@ M:\Documents\GitHub\Programming-project-exercies\powerup.obj :  \
 
 M:\Documents\GitHub\Programming-project-exercies\striker.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\striker.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SineLUT.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\color.h  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
@@ -416,22 +399,11 @@ M:\Documents\GitHub\Programming-project-exercies\timer.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\timer.c
 
-M:\Documents\GitHub\Programming-project-exercies\bounce.obj :  \
-            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c
+M:\Documents\GitHub\Programming-project-exercies\random.obj :  \
+            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\random.c  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\random.h
+	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\random.c
 
 M:\Documents\GitHub\Programming-project-exercies\joystick.obj :  \
             M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\joystick.c  \
@@ -451,15 +423,9 @@ M:\Documents\GitHub\Programming-project-exercies\joystick.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\joystick.c
 
-M:\Documents\GitHub\Programming-project-exercies\random.obj :  \
-            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\random.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\random.h
-	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\random.c
-
-M:\Documents\GitHub\Programming-project-exercies\sound.obj :  \
-            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\sound.c  \
-            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
+M:\Documents\GitHub\Programming-project-exercies\bounce.obj :  \
+            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\bounce.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
@@ -472,5 +438,19 @@ M:\Documents\GitHub\Programming-project-exercies\sound.obj :  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\sound.c
+	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\bounce.c
+
+M:\Documents\GitHub\Programming-project-exercies\trigonometry.obj :  \
+            M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\trigonometry.c  \
+            M:\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) M:\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\trigonometry.c
 

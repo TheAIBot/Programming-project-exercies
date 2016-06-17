@@ -23,6 +23,7 @@ struct TBoss
 };
 
 void initBoss(struct TBoss *boss, char useBoss);
+void drawBoss(struct TBoss *boss);
 void updateBoss(struct TBoss *boss, struct TBall shots[6]);
 
 

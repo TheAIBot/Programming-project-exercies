@@ -1,6 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
-#include "SineLUT.h"
+#include "trigonometry.h"
 #include "SuperIO.h"
 #include "screenio.h"
 #include "buttonio.h"
@@ -17,10 +17,6 @@
 #include "joystick.h"
 #include "random.h"
 
-#define brickHeight 2
-#define brickWidth 6
-#define bricksize 0x26
-
 void initBallStriker(struct TBall *ball, struct TStriker *striker, int gameSize)
 {
 	int initialx = gameSize / 2;
@@ -36,52 +32,6 @@ void initBallStriker(struct TBall *ball, struct TStriker *striker, int gameSize)
 
 void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLength, int updateFrequency)
 {
-	char i;
-	struct TBrick bricks[1] = 
-	{
-		{(brickWidth + 1) * 1, (brickHeight + 1) * 15, bricksize, 3},
-		/*{(brickWidth + 1) * 2, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 3, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 4, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 5, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 6, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 7, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 8, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 9, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) *10, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) *11, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) *12, (brickHeight + 1) * 15, bricksize, 3},
-		{(brickWidth + 1) * 1, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 2, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 3, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 4, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 5, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 6, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 7, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 8, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 9, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) *10, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) *11, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) *12, (brickHeight + 1) * 16, bricksize, 3},
-		{(brickWidth + 1) * 1, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 2, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 3, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 4, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 5, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 6, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 7, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 8, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) * 9, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) *10, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) *11, (brickHeight + 1) * 17, bricksize, 3},
-		{(brickWidth + 1) *12, (brickHeight + 1) * 17, bricksize, 3},*/
-	};
-	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
-	for(i = 0; i < brickCount; i++)
-	{
-		game->bricks[i] = bricks[i];
-	}
-	game->brickCount = brickCount;
 	
 		//standard instanser
 	
@@ -105,6 +55,7 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 
 void getDifficulty(struct TGame *game)
 {
+	char i;
 	game->difficulty = 0;
 	// begin main loop, selecting difficulty level
 	clrscr();
@@ -116,25 +67,18 @@ void getDifficulty(struct TGame *game)
     gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 3);
     printf("Press center button to start game.");
 	while(1){
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
-		scrollText();//10ms
+		//wait 100ms
+		for(i = 0; i < 10; i++)
+		{
+			scrollText();//10ms
+		}
 		//1s / 100ms = 10hz update rate
 		if(isJoystickRight()){
-			delay(100);
 			(game->difficulty)++;
 			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
             printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
 		}
 		if(isJoystickLeft() && game->difficulty > 1){
-			delay(100);
 			(game->difficulty)--;
 			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
         	printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
@@ -164,7 +108,7 @@ void startLevel(struct TGame *game)
 
 	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 	initBricks(game->bricks, game->brickCount);
-	initBoss(&game->boss, 1);
+	drawBoss(game->boss);
 	//TIMER !!!!
 
 	// initialize game data
@@ -222,6 +166,7 @@ void updateGame(struct TGame *game)
 void runGame(struct TGame *game)
 {
 	getDifficulty(game);
+	initLevel(game, 1);
 	startLevel(game);
 	while(game->lives > 0)
 	{

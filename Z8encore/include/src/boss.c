@@ -19,6 +19,19 @@
 #define bricksize 0x26
 
 
+void drawBoss(struct TBoss *boss)
+{
+	if(USE_BOSS(boss->data))
+	{
+		char brickCount = sizeof(boss->bricks) / sizeof(bos->bricks[0]);
+		char i;
+		for(i = 0; i < brickCount; i++)
+		{
+			drawBrick(&boss->bricks[i]);
+		}
+	}
+}
+
 void initBoss(struct TBoss *boss, char useBoss)
 {
 	if(useBoss)
@@ -47,7 +60,6 @@ void initBoss(struct TBoss *boss, char useBoss)
 		int i;
 		for(i = 0; i < 16; i++)
 		{
-			drawBrick(&bossBricks[i]);
 			boss->bricks[i] = bossBricks[i];
 		}
 		boss->startShotX = sX + 4 * brickWidth + 1;
@@ -140,10 +152,13 @@ char shouldShoot(struct TBall shots[6])
 
 void updateBoss(struct TBoss *boss, struct TBall shots[6])
 {
-	handleBrickCollisions(boss->bricks, shots, 16);
-	moveBricks(boss);
-	if(shouldShoot(shots))
+	if(USE_BOSS(boss->data))
 	{
-		shoot(boss, shots);
+		handleBrickCollisions(boss->bricks, shots, 16);
+		moveBricks(boss);
+		if(shouldShoot(shots))
+		{
+			shoot(boss, shots);
+		}
 	}
 }

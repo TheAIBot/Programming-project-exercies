@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include "ansi.h"
-#include "SineLUT.h"
+#include "trigonometry.h"
 
 void fgcolor(int foreground) {
 /*  Value      foreground     Value     foreground
