@@ -9,19 +9,20 @@
 #define GAME_NAME "Brick Breaker"
 #define DEFAULT_LIVES 10
 #define LEVEL_COUNT 3
+#define MAX_BRICK_COUNT 80
 
 struct TGame
 {
-	char gameSizeX;
-	char gameSizeY;
+	int gameSizeX;
+	int gameSizeY;
 	struct TBall balls[6];
 	struct TBoss boss;
-	struct TBrick bricks[40];
+	struct TBrick bricks[MAX_BRICK_COUNT];
 	struct TTimer timer;
-	char brickCount;
+	int brickCount;
 	struct TStriker striker;
-	char lives;
-	char strikerLength;
+	int lives;
+	int strikerLength;
 	char newBall;
 	char difficulty;
 	int score;

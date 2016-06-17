@@ -20,22 +20,25 @@
 #define IS_INDESTRUCTIBLE(data) ((data & INDESTRUCTIBLE_MASK) >> INDESTRUCTIBLE_BIT_SHIFT) 
 #define IS_MOVING(data)         ((data & MOVING_MASK) >> MOVING_BIT_SHIFT)
 #define DIRECTION(data)         ((data & DIRECTION_MASK) >> DIRECTION_BIT_SHIFT)
+#define MAKE_SIZE(height, width)((height << BRICK_HEIGHT_BIT_SHIFT) | width)
 
 struct TBrick
 {
 	char x;
 	char y;
+	//can minimum be a 2x2 brick
 	char size;//height 0000, width 0000
 	char data; // drop 0, indestructible 0, is moving 0, direction 0, health 0000
 };
 
 
 
-void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount);
+char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount);
 void initBricks(struct TBrick bricks[], int brickCount);
 void setBrickColor(struct TBrick *brick);
 void updateBrickPositionRight(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth);
 void updateBrickPositionLeft(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth);
 void drawBrick(struct TBrick *brick);
+void clearBrick(struct TBrick *brick);
 
 #endif

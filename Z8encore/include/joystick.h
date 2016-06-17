@@ -9,5 +9,5 @@ int joystickXAxis();
 char isJoystickLeft();
 char isJoystickRight();
 char isButton1Pressed();
-
+char isButton2Pressed();
 #endif

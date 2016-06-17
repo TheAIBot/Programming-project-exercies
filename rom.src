@@ -1,0 +1,9 @@
+; ZiLOG Z8 Encore! ANSI C Compiler Release 3.32
+; -alias -bitfieldsize=32 -charsize=8 -const=RAM -debug
+; -doublesize=32 -floatsize=32 -intsize=16 -intsrc -localcse
+; -longsize=32 -model=L -nooptlink -optsize -peephole
+; -regvar -revaa -nosdiopt -nostkck -swap 
+	DEFINE rom_TEXT,SPACE=ROM
+	FILE	"Z8ENCORE\INCLUDE\SRC\ROM.C"
+.debug "C"
+	END

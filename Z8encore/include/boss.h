@@ -1,9 +1,10 @@
 #ifndef _BOSS_H_
 #define _BOSS_H_
 
-
+#define BOSS_BRICK_COUNT 16
 #define USE_BOSS_MASK 0x01
 #define X_AXIS_MOVEMENT_BIT_SHIFT 4
+#define X_AXIS_MOVEMENT_MASK 0xf0
 #define X_MOVED_MASK 0x0f
 
 #define X_AXIS_MOVEMENT(movement) ((movement >> X_AXIS_MOVEMENT_BIT_SHIFT) & 0x0f)
@@ -22,7 +23,7 @@ struct TBoss
 	char data;
 };
 
-void initBoss(struct TBoss *boss, char useBoss);
+void initBoss(struct TBoss *boss, struct TBrick bossBricks[BOSS_BRICK_COUNT], char startShitX, char startShotY, char movement, char useBoss);
 void drawBoss(struct TBoss *boss);
 void updateBoss(struct TBoss *boss, struct TBall shots[6]);
 
