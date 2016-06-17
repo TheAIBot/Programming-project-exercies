@@ -108,7 +108,7 @@ void startLevel(struct TGame *game)
 
 	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 	initBricks(game->bricks, game->brickCount);
-	drawBoss(game->boss);
+	drawBoss(&game->boss);
 	//TIMER !!!!
 
 	// initialize game data

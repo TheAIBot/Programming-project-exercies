@@ -23,7 +23,7 @@ void drawBoss(struct TBoss *boss)
 {
 	if(USE_BOSS(boss->data))
 	{
-		char brickCount = sizeof(boss->bricks) / sizeof(bos->bricks[0]);
+		char brickCount = sizeof(boss->bricks) / sizeof(boss->bricks[0]);
 		char i;
 		for(i = 0; i < brickCount; i++)
 		{

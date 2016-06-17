@@ -8,6 +8,7 @@
 #include "boss.h"
 #include "brick.h"
 #include "fixedmath.h"
+#include "game.h"
 
 #define BRICK_HEIGHT_1_ 2
 #define BRICK_WIDTH_1_ 6
@@ -16,7 +17,7 @@
 void level1(struct TGame *game)
 {
 	char i;
-	struct TBrick bricks[36] = 
+	struct TBrick bricks[39] = 
 	{
 		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
 		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
@@ -66,12 +67,12 @@ void level1(struct TGame *game)
 	game->brickCount = brickCount;
 }
 
-void level1(struct TGame *game)
+void level2(struct TGame *game)
 {
 
 }
 
-void level1(struct TGame *game)
+void level3(struct TGame *game)
 {
 
 }
