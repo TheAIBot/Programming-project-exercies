@@ -4,7 +4,7 @@
 #include "striker.h"
 #include "ansi.h"
 #include "fixedmath.h"
-#include "SineLUT.h"
+#include "trigonometry.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_STYLE ' '

@@ -9,10 +9,83 @@
 #include "brick.h"
 #include "fixedmath.h"
 
+#define BRICK_HEIGHT_1_ 2
+#define BRICK_WIDTH_1_ 6
+#define BRICK_SIZE_1_ 0x26
 
-void initLevel(struct TStriker *vStriker, struct TBall *vball, struct TBrick bricks[], struct TBoss *boss, struct TPowerUp powerups[])
+void level1(struct TGame *game)
+{
+	char i;
+	struct TBrick bricks[36] = 
+	{
+		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 3, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 4, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 5, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 6, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 7, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 8, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 9, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 15, BRICK_SIZE_1_, 3},
+		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 3, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 4, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 5, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 6, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 7, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 8, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 9, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 16, BRICK_SIZE_1_, 2},
+		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 3, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 4, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 5, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 6, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 7, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 8, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) * 9, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 17, BRICK_SIZE_1_, 1},
+	};
+	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
+	for(i = 0; i < brickCount; i++)
+	{
+		game->bricks[i] = bricks[i];
+	}
+	game->brickCount = brickCount;
+}
+
+void level1(struct TGame *game)
 {
 
+}
+
+void level1(struct TGame *game)
+{
+
+}
+
+
+void initLevel(struct TGame *game, int level)
+{
+	switch(level)
+	{
+		case 1:
+			break;
+		default:
+			break;
+	}
 }
 
 void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
