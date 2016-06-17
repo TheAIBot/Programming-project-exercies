@@ -48,8 +48,6 @@ clean:
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\main.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ansi.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ansi.obj
-	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj  \
-            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj  \
@@ -78,6 +76,12 @@ clean:
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\bounce.obj
 	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\trigonometry.obj  \
             del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\trigonometry.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj
+	@if exist C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\readonlymemory.obj  \
+            del C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\readonlymemory.obj
 
 rebuildall: clean Debug
 
@@ -89,7 +93,6 @@ OBJS =  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\zsldevinit.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\main.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ansi.obj  \
-            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\clockio.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\ball.obj  \
@@ -103,7 +106,10 @@ OBJS =  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\random.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\joystick.obj  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\bounce.obj  \
-            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\trigonometry.obj
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\trigonometry.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\readonlymemory.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -160,24 +166,6 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\ansi.c
 
-C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj :  \
-            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\screenio.c  \
-            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\charset.h  \
-            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
-            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\screenio.c
-
 C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\buttonio.obj :  \
             C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\buttonio.c  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\buttonio.h  \
@@ -220,6 +208,7 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\bounce.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
@@ -269,6 +258,7 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\brick.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\color.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
@@ -300,6 +290,7 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\powerup.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\random.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\screenio.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\timer.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\TRIGON~1.H  \
@@ -367,6 +358,7 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\ball.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\color.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\TRIGON~1.H  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
@@ -455,4 +447,42 @@ C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
             c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\trigonometry.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\screenio.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\screenio.c  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\charset.h  \
+            C:\Users\s153498\Desktop\MICROP~1\HELLOW~1\PROGRA~1\Z8encore\include\clockio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\screenio.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\sound.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\sound.c  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\FORMAT.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std\STDARG.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\defines.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\dmadefs.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\ez8.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\gpio.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\SIO.H  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uart.h  \
+            c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\sound.c
+
+C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\readonlymemory.obj :  \
+            C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
+	 $(CC)  $(CFLAGS) C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
 

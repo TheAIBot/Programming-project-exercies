@@ -16,19 +16,8 @@
 #include "clockio.h"
 #include "joystick.h"
 #include "random.h"
+#include "sound.h"
 
-void initBallStriker(struct TBall *ball, struct TStriker *striker, int gameSize)
-{
-	int initialx = gameSize / 2;
-	int initialStrikerY = gameSize - 1;
-	int initialBallY = initialStrikerY - 2;
-	int velocity = 0;
-	int angle = 40;
-	int strikerLength = 5;
-
-	initBall(ball, initialx, initialBallY, FCOLOR_BLUE, angle, 0, 1); // need to know why -3 and -2 is needed
-	initStriker(striker, initialx, initialStrikerY ,strikerLength);
-}
 
 void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLength, int updateFrequency)
 {
@@ -39,6 +28,9 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 	game->gameSizeX = gameSizeX;
 	game->gameSizeY = gameSizeY;
 	game->lives = DEFAULT_LIVES;
+	game->level = 1;
+	game->levelWon = 0;
+
 	
 	// start a clock with the chosen frequency which means the clock should tick every 1s / freq, 1s == 1000
 	initTimer(&game->timer, 1000 / updateFrequency);
@@ -48,6 +40,9 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 
 	LEDinit(); 
 	LEDsetString(GAME_NAME);
+
+	initSoundPin();
+	initSoundClock();
 
 	color(FCOLOR_WHITE, BCOLOR_BLACK);
 	enablecursor('0');
@@ -60,11 +55,11 @@ void getDifficulty(struct TGame *game)
 	// begin main loop, selecting difficulty level
 	clrscr();
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-	gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2));
+	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
     printf("Welcome to Brick Breaker!");
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+    gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
     printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 3);
+    gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 3);
     printf("Press center button to start game.");
 	while(1){
 		//wait 100ms
@@ -73,17 +68,17 @@ void getDifficulty(struct TGame *game)
 			scrollText();//10ms
 		}
 		//1s / 100ms = 10hz update rate
-		if(isJoystickRight()){
+		if(isButton1Pressed()){
 			(game->difficulty)++;
-			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
             printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
 		}
-		if(isJoystickLeft() && game->difficulty > 1){
+		if(isButton2Pressed() && game->difficulty > 1){
 			(game->difficulty)--;
-			gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
         	printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
 		}
-		if(isButton1Pressed() || game->difficulty >= 5){
+		if(isButton1Pressed() && isButton2Pressed() || game->difficulty >= 5){
 			break;
 		}
 	}
@@ -93,12 +88,7 @@ void startLevel(struct TGame *game)
 {
 	char i;
 	game->newBall = 1;
-	//initialize game objects
-	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(45, 135), 0, 1); // starting angle is random between 45 and 135 degrees
-	for(i = 1; i <  6; i++)
-	{
-		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
-	}
+	game->levelWon = 0;
 
 	//draw window
 	clrscr();
@@ -106,6 +96,13 @@ void startLevel(struct TGame *game)
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	fgcolor(FCOLOR_WHITE);
 
+
+	//initialize game objects
+	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
+	for(i = 1; i <  6; i++)
+	{
+		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
+	}
 	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 	initBricks(game->bricks, game->brickCount);
 	drawBoss(&game->boss);
@@ -129,8 +126,14 @@ void updateLives(int gameSizeY, int lives)
 void updateGame(struct TGame *game)
 {
 	waitForEvent(&game->timer);
+	if(isButton2Pressed())
+	{
+		game->levelWon = 1;
+		return;
+	}
 	if(game->newBall)
 	{
+		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isJoystickRight(),isJoystickLeft());
 		moveStrikerPreShot(&game->balls[0], &game->striker, game->gameSizeX, isJoystickRight(),isJoystickLeft());
 		if(isButton1Pressed())
 		{
@@ -141,10 +144,14 @@ void updateGame(struct TGame *game)
 	{
 		updateBalls(game->balls);
 		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
+		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
 		impact(game->balls, &game->striker, game->gameSizeX, game->gameSizeY);
 		bounceStriker(&game->striker, game->balls);
-		handleBrickCollisions(game->bricks, game->balls, game->brickCount);
 		updateBoss(&game->boss, game->balls);
+		if(handleBrickCollisions(game->bricks, game->balls, game->brickCount))
+		{
+			game->levelWon = 1;
+		}
 		if(isBallDead(game->balls, game->gameSizeY))
 		{
 			if(IS_ALIVE(game->balls[0].data) == 0)
@@ -152,7 +159,7 @@ void updateGame(struct TGame *game)
 				clearStriker(game->striker.position.x,game->striker.position.y, game->striker.length); 
 				updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, game->gameSizeX >> 1, game->gameSizeY - 2);
 	
-				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(45, 135), 0, 1); // starting angle is random between 45 and 135 degrees
+				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
 				initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 				game->newBall = 1;
 			}
@@ -165,12 +172,27 @@ void updateGame(struct TGame *game)
 
 void runGame(struct TGame *game)
 {
-	getDifficulty(game);
-	initLevel(game, 1);
-	startLevel(game);
-	while(game->lives > 0)
-	{
-		updateGame(game);
-	}
 	game->lives = DEFAULT_LIVES;
+	game->level = 0;
+	getDifficulty(game);
+	playStartGameSound();
+	do
+	{
+		game->level++;
+		initLevel(game, game->level);
+		startLevel(game);
+		while(game->lives > 0 && game->levelWon == 0)
+		{
+			updateGame(game);
+		}
+		if(game->lives == 0)
+		{
+			playGameOverSound();
+			break;
+		}
+	} while(game->level < LEVEL_COUNT);
+	if(game->level == LEVEL_COUNT)
+	{
+		//game won
+	}
 }

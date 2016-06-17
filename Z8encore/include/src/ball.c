@@ -6,16 +6,18 @@
 #include "fixedmath.h"
 #include "clockio.h"
 #include "bounce.h"
+#include "sound.h"
+#include "sound.h"
 
 #define BALL_STYLE 254
 #define EMPY_CHAR ' '
 
 void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY)
 {
-	int oX = ROUND_TO_INT(oldX);
-	int oY = ROUND_TO_INT(oldY);
-	int nX = ROUND_TO_INT(newX);
-	int nY = ROUND_TO_INT(newY);
+	int oX = FIX14_TO_INT(oldX);
+	int oY = FIX14_TO_INT(oldY);
+	int nX = FIX14_TO_INT(newX);
+	int nY = FIX14_TO_INT(newY);
 
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
 	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oY, oX, EMPY_CHAR, ESC, nY, nX, BALL_STYLE);
@@ -39,7 +41,7 @@ void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velo
 	vBall->angle = angle;
 	vBall->velocity = velocity;
 	vBall->data = (color | (alive << ALIVE_BIT_SHIFT));
-	fgcolor(vBall->data);
+	setBallColor(vBall);
 	if(alive)
 	{
 		updateBallDrawnPosition(vBall->position.x, vBall->position.y, vBall->position.x, vBall->position.y);
@@ -68,12 +70,14 @@ void updateBalls(struct TBall balls[6]) {
 				   FIX14_TO_INT(oldY) != ball->position.y)
 				{
 					setBallColor(ball);
+					reverse('1');
 					updateBallDrawnPosition(oldX, oldY, ball->position.x, ball->position.y);
+					reverse('0');
 				}
 			}
 			else 
 			{
-				ball->velocity = TO_FIX14(1) >> 1;
+				ball->velocity = TO_FIX14(1);
 			}
 		}
 	}
@@ -94,6 +98,7 @@ char isBallDead(struct TBall balls[6], int gameSizeY){
 				ball->data &= ~(1 << ALIVE_BIT_SHIFT);//ball is dead, set alive bit to 0
 				clearBall(ball->position.x, ball->position.y);
 				isBallsDead = 1;
+				playDeathBallSound();
 			}
 		}
 	}
@@ -117,10 +122,12 @@ void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int
 			if (ballx >= gameSizeX - 1 && (ball->angle < 90 || ball->angle > 270) || 
 				ballx <= 2 && ball->angle > 90 && ball->angle < 270) {
 				ball->angle = bounceVertical(ball->angle);
+				playBounceSound();
 			}
 			//bounce off top wall
 			if (bally <= 2){
 				ball->angle = bounceHorizontal(ball->angle);
+				playBounceSound();
 			}
 		}
 	}

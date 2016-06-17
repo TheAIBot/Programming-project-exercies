@@ -5,6 +5,8 @@
 
 #define BUTTON_1_BIT 0x80
 #define IS_BUTTON_1_PRESSED (((~PFIN & BUTTON_1_BIT) == BUTTON_1_BIT))
+#define BUTTON_2_BIT 0x20
+#define IS_BUTTON_2_PRESSED (((~PFIN & BUTTON_2_BIT) == BUTTON_2_BIT))
 
 void initJoystick()
 {
@@ -36,6 +38,16 @@ char isButton1Pressed()
 	{
 		delay(10);
 		return IS_BUTTON_1_PRESSED;
+	}
+	return 0;
+}
+
+char isButton2Pressed()
+{
+	if(IS_BUTTON_2_PRESSED)
+	{
+		delay(10);
+		return IS_BUTTON_2_PRESSED;
 	}
 	return 0;
 }

@@ -5,6 +5,7 @@
 #include "ansi.h"
 #include "fixedmath.h"
 #include "trigonometry.h"
+#include "sound.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_STYLE ' '
@@ -19,18 +20,18 @@ void sdraw(int x, int y, int length, char c)
 	}
 }
 
-void updateStrikerDrawnPositionRight(int oldX, int oldY, int newX, int newY, int length)
+void updateStrikerDrawnPositionRight(int oldX, int Y, int newX, int length)
 {
 	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength + 1, EMPTY_STYLE, ESC, newY, newX + halfLength, STRIKER_STYLE);
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, Y, oldX - halfLength, EMPTY_STYLE, ESC, Y, newX + halfLength, STRIKER_STYLE);
 }
 
-void updateStrikerDrawnPositionLeft(int oldX, int oldY, int newX, int newY, int length)
+void updateStrikerDrawnPositionLeft(int oldX, int Y, int newX, int length)
 {
 	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength, STRIKER_STYLE, ESC, newY, newX + halfLength + 1, EMPTY_STYLE);
+	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, Y, newX - halfLength, STRIKER_STYLE, ESC, Y, oldX + halfLength, EMPTY_STYLE);
 }
 
 void setStrikerColor()
@@ -78,25 +79,17 @@ void drawStrikerRight(int x, int y, int length)
 void moveStrikerLeft(struct TStriker *vStriker)
 {
 	int oldX = vStriker->position.x;
-	int oldY = vStriker->position.y;
 	setStrikerColor();
 	vStriker->position.x--;
-	updateStrikerDrawnPositionLeft(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
-	//clearStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
-	//vStriker->position.x--;
-	//drawStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPositionLeft(oldX,  vStriker->position.y, vStriker->position.x, vStriker->length);
 }
 
 void moveStrikerRight(struct TStriker *vStriker)
 {
 	int oldX = vStriker->position.x;
-	int oldY = vStriker->position.y;
 	setStrikerColor();
 	vStriker->position.x++;
-	updateStrikerDrawnPositionRight(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
-	//clearStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
-	//vStriker->position.x++;
-	//drawStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
+	updateStrikerDrawnPositionRight(oldX, vStriker->position.y, vStriker->position.x, vStriker->length);
 }
 
 //Rendering nextstate Bouncer
@@ -132,7 +125,7 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
 			int stry = vStriker->position.y;//truncation
 			int strhl = vStriker->length >> 1; //half length of striker
 		
-			if ((bally == stry - 1) && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1 && ball->angle >= 180) 
+			if ((bally == stry - 1) && ballx >= strx - strhl && ballx <= strx + strhl && ball->angle >= 180) 
 			{	
 				int angle = ball->angle - 180;
 				ball->angle = 180 - (angle);
@@ -165,6 +158,7 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
 						ball->angle -= ball->angle / 3;
 					}
 				}
+				playBounceSound();
 			}
 		}
 	}
