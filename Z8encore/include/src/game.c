@@ -62,9 +62,9 @@ void getDifficulty(struct TGame *game)
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2));
     printf("Welcome to Brick Breaker!");
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 2);
+    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) + 2);
     printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) - 3);
+    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) + 3);
     printf("Press center button to start game.");
 	while(1){
 		//wait 100ms
@@ -108,7 +108,7 @@ void startLevel(struct TGame *game)
 
 	initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 	initBricks(game->bricks, game->brickCount);
-	drawBoss(game->boss);
+	drawBoss(&game->boss);
 	//TIMER !!!!
 
 	// initialize game data
