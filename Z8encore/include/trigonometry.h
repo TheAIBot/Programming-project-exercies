@@ -5,14 +5,14 @@
 //
 // =====================================================================
 
-#ifndef SINELUT_H
-#define SINELUT_H
+#ifndef _TRIGONOMETRY_H
+#define _TRIGONOMETRY_H
 
 // === LUT SIZES ===
 #define SIN_SIZE 512
 
 // === LUT DECLARATIONS ===
-extern const signed short SIN[512];
+extern const signed short SIN[SIN_SIZE];
 
 long expand(long);
 void printFix(long);

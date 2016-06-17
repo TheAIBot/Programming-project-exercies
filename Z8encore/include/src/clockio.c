@@ -38,20 +38,27 @@ void initClock() // need to add an argument to set the time interval
 	SET_VECTOR(TIMER0, timer0int);
 
 	//Timer
-	DI();
+	DI(); //Diable interrupt
+
+	//Disable Timer0
 	T0CTL = 0x39; //00111001b -> TEN = 1 TPOL = 0 PRES = 111 TMODE = 001.
-	T0H = 0x00; //00000000; starting value
+	
+	//Set staring value for counter
+	T0H = 0x00; //00000000
 	T0L = 0x01; //00000001 - 0000000000000001
+	
+	//reload value
 	T0RH = 0x00;
 	T0RL = 0x48;
 
 	//Set interrupt
-	IRQ0ENH &= 0xDF; //enable Timer 0 interrupt, and set nominal priority
-	IRQ0ENL |= 0x20; 
+	IRQ0ENL &= 0xDF; //enable Timer 0 interrupt, and set nominal priority
+	IRQ0ENH |= 0x20; 
 
 	//Enable timer
 	T0CTL = 0xB9; //10111001
-	EI();
+
+	EI(); //Enable interrupt
 }
 
 void startClock()

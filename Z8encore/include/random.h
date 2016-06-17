@@ -1,8 +1,8 @@
 #ifndef _RANDOM_H_
 #define _RANDOM_H_
 
-#include "timer.h"
+#include "clockio.h"
 
-#define RANDOM(min, max) ((getElapsedMiliseconds() % (max - min)) + min)
+#define RANDOM(min, max) ((getMiliseconds() % (max - min)) + min)
 
 #endif

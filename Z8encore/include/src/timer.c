@@ -4,6 +4,10 @@
 #include "timer.h"
 #include "clockio.h"
 
+#define ONE_SECOND 1000
+#define ONE_MINUTE ONE_SECOND * 60
+#define ONE_HOUR ONE_MINUTE * 60
+
 unsigned long startMilisecond = 0;
 unsigned long endMilisecond = 0;
 
@@ -17,7 +21,7 @@ void startTimer()
 void stopTimer()
 {
 	endMilisecond = getMiliseconds();
-	startClock();
+	stopClock();
 }
 
 void initTimer(struct TTimer *timer, long interval)
@@ -34,10 +38,6 @@ void waitForEvent(struct TTimer *timer)
 
 struct TTime getStructuredTime()
 {
-	const unsigned long ONE_SECOND = 1000;
-	const unsigned long ONE_MINUTE = ONE_SECOND * 60;
-	const unsigned long ONE_HOUR = ONE_MINUTE * 60;
-
 	unsigned long milisecondsPassed = getElapsedMiliseconds();
 	struct TTime timePassed;
 	timePassed.hours       = (milisecondsPassed) / ONE_HOUR;

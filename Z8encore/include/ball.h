@@ -2,12 +2,13 @@
 #define _BALL_H_
 
 #include "ansi.h"
-#include "striker.h"
+#include "striker.h" 
 
-#define COLOR_BITS (0x7f)
-#define COLOR(data) (data & COLOR_BITS)
-#define ALIVE_BIT (7)
-#define IS_ALIVE(data) (data >> ALIVE_BIT)
+#define COLOR_MASK 0x7f
+#define ALIVE_BIT_SHIFT 7
+
+#define COLOR(data) (data & COLOR_MASK)
+#define IS_ALIVE(data) ((data >> ALIVE_BIT_SHIFT) & 0x01)
 
 struct TPosition
 {

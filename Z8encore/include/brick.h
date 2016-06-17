@@ -3,21 +3,23 @@
 
 #include "ansi.h"
 
-#define HEALTH_BITS 0x0f
-#define DROP_BIT 7
-#define INDESTRUCTIBLE_BIT 6
-#define MOVING_BIT 5
-#define DIRECTION_BIT 4
-#define DIRECTION_BIT_SELECT 0x10
-#define BRICK_WIDTH_BITS 0x0f
-#define BRICK_HEIGHT_BITS 4
+#define HEALTH_MASK 0x0f
+#define DROP_BIT_SHIFT 7
+#define INDESTRUCTIBLE_BIT_SHIFT 6
+#define INDESTRUCTIBLE_MASK 0x40
+#define MOVING_BIT_SHIFT 5
+#define MOVING_MASK 0x20
+#define DIRECTION_BIT_SHIFT 4
+#define DIRECTION_MASK 0x10
+#define BRICK_WIDTH_MASK 0x0f
+#define BRICK_HEIGHT_BIT_SHIFT 4
 
-#define BRICK_WIDTH(size) (size & BRICK_WIDTH_BITS)
-#define BRICK_HEIGHT(size) (size >> BRICK_HEIGHT_BITS)
-#define HEALTH(data) (data & HEALTH_BITS)
-#define IS_INDESTRUCTIBLE(data) ((data & 0x40) >> INDESTRUCTIBLE_BIT) 
-#define IS_MOVING(data) ((data & 0x20) >> MOVING_BIT)
-#define DIRECTION(data) ((data & DIRECTION_BIT_SELECT) >> DIRECTION_BIT)
+#define BRICK_WIDTH(size)        (size & BRICK_WIDTH_MASK)
+#define BRICK_HEIGHT(size)       (size >> BRICK_HEIGHT_BIT_SHIFT)
+#define HEALTH(data) 			 (data & HEALTH_MASK)
+#define IS_INDESTRUCTIBLE(data) ((data & INDESTRUCTIBLE_MASK) >> INDESTRUCTIBLE_BIT_SHIFT) 
+#define IS_MOVING(data)         ((data & MOVING_MASK) >> MOVING_BIT_SHIFT)
+#define DIRECTION(data)         ((data & DIRECTION_MASK) >> DIRECTION_BIT_SHIFT)
 
 struct TBrick
 {
@@ -25,7 +27,6 @@ struct TBrick
 	char y;
 	char size;//height 0000, width 0000
 	char data; // drop 0, indestructible 0, is moving 0, direction 0, health 0000
-	//struct TVector motion;
 };
 
 

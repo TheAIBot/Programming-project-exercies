@@ -4,7 +4,7 @@
 #include "striker.h"
 #include "ansi.h"
 #include "fixedmath.h"
-#include "SineLUT.h"
+#include "trigonometry.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_STYLE ' '
@@ -79,6 +79,7 @@ void moveStrikerLeft(struct TStriker *vStriker)
 {
 	int oldX = vStriker->position.x;
 	int oldY = vStriker->position.y;
+	setStrikerColor();
 	vStriker->position.x--;
 	updateStrikerDrawnPositionLeft(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
 	//clearStrikerLeft(vStriker->position.x, vStriker->position.y, vStriker->length);
@@ -90,6 +91,7 @@ void moveStrikerRight(struct TStriker *vStriker)
 {
 	int oldX = vStriker->position.x;
 	int oldY = vStriker->position.y;
+	setStrikerColor();
 	vStriker->position.x++;
 	updateStrikerDrawnPositionRight(oldX, oldY, vStriker->position.x, vStriker->position.y, vStriker->length);
 	//clearStrikerRight(vStriker->position.x, vStriker->position.y, vStriker->length);
