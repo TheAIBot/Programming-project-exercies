@@ -10,12 +10,13 @@
 #define DEFAULT_LIVES 10
 #define LEVEL_COUNT 3
 #define MAX_BRICK_COUNT 80
+#define MAX_BALL_COUNT 6
 
 struct TGame
 {
 	int gameSizeX;
 	int gameSizeY;
-	struct TBall balls[6];
+	struct TBall balls[MAX_BALL_COUNT];
 	struct TBoss boss;
 	struct TBrick bricks[MAX_BRICK_COUNT];
 	struct TTimer timer;

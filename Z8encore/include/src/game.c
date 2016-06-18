@@ -99,7 +99,7 @@ void startLevel(struct TGame *game)
 
 	//initialize game objects
 	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
-	for(i = 1; i <  6; i++)
+	for(i = 1; i <  MAX_BALL_COUNT; i++)
 	{
 		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
 	}

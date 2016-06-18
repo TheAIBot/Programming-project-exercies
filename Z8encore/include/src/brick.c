@@ -7,6 +7,7 @@
 #include "fixedmath.h"
 #include "bounce.h"
 #include "sound.h"
+#include "game.h"
 
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
@@ -96,12 +97,12 @@ void handleBrickCornerCollision(struct TBall *ball, int minAngle, int maxAngle)
 	}
 }
 
-char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount)
+char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_COUNT], int brickCount)
 {
 	int brickIndex;
 	int ballIndex;
 	int anyBricksAlive = 0;
-	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	for(ballIndex = 0; ballIndex < MAX_BALL_COUNT; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
 		{

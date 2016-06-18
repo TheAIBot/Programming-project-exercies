@@ -6,6 +6,7 @@
 #include "brick.h"
 #include "color.h"
 #include "fixedmath.h"
+#include "game.h"
 
 void drawBoss(struct TBoss *boss)
 {
@@ -98,10 +99,10 @@ void moveBricks(struct TBoss *boss)
 	boss->currentMovement = (xMovement << X_AXIS_MOVEMENT_BIT_SHIFT) | xMoved;
 }
 
-void shoot(struct TBoss *boss, struct TBall shots[6])
+void shoot(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT])
 {
 	int i;
-	for(i = 0; i < 6; i++)
+	for(i = 0; i < MAX_BALL_COUNT; i++)
 	{
 		if(IS_ALIVE(shots[i].data) == 0)
 		{
@@ -112,12 +113,12 @@ void shoot(struct TBoss *boss, struct TBall shots[6])
 	}
 }
 
-char shouldShoot(struct TBall shots[6])
+char shouldShoot(struct TBall shots[MAX_BALL_COUNT])
 {
 	if((RANDOM(0, 200) == 0))
 	{
 		int i;
-		for(i = 0; i < 6; i++)
+		for(i = 0; i < MAX_BALL_COUNT; i++)
 		{
 			if(IS_ALIVE(shots[i].data) == 0)
 			{
@@ -128,7 +129,7 @@ char shouldShoot(struct TBall shots[6])
 	return 0;
 }
 
-void updateBoss(struct TBoss *boss, struct TBall shots[6])
+void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT])
 {
 	if(USE_BOSS(boss->data))
 	{

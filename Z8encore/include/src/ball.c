@@ -7,7 +7,7 @@
 #include "clockio.h"
 #include "bounce.h"
 #include "sound.h"
-#include "sound.h"
+#include "game.h"
 
 #define BALL_STYLE 254
 #define EMPY_CHAR ' '
@@ -55,9 +55,9 @@ void moveBall(struct TBall *vball)
 }
 
 //Rendering nextstate Ball
-void updateBalls(struct TBall balls[6]) {
+void updateBalls(struct TBall balls[MAX_BALL_COUNT]) {
 	int ballIndex;
-	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	for(ballIndex = 0; ballIndex < MAX_BALL_COUNT; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
 		{
@@ -83,10 +83,10 @@ void updateBalls(struct TBall balls[6]) {
 	}
 }
 
-char isBallDead(struct TBall balls[6], int gameSizeY){
+char isBallDead(struct TBall balls[MAX_BALL_COUNT], int gameSizeY){
 	char isBallsDead = 0;
 	int ballIndex;
-	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	for(ballIndex = 0; ballIndex < MAX_BALL_COUNT; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
 		{
@@ -105,9 +105,9 @@ char isBallDead(struct TBall balls[6], int gameSizeY){
 	return isBallsDead;
 }
 
-void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
+void impact(struct TBall balls[MAX_BALL_COUNT], struct TStriker *vStriker, int gameSizeX, int gameSizeY) {
 	int ballIndex;
-	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	for(ballIndex = 0; ballIndex < MAX_BALL_COUNT; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
 		{
