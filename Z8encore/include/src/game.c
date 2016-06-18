@@ -57,15 +57,9 @@ void getDifficulty(struct TGame *game)
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
     printf("Welcome to Brick Breaker!");
-<<<<<<< HEAD
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) + 2);
-    printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
-    gotoxy((game->gameSizeX / 2) - 20, (game->gameSizeY / 2) + 3);
-=======
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
     printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 3);
->>>>>>> refs/remotes/origin/andreas
     printf("Press center button to start game.");
 	while(1){
 		//wait 100ms
@@ -105,7 +99,7 @@ void startLevel(struct TGame *game)
 
 	//initialize game objects
 	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
-	for(i = 1; i <  6; i++)
+	for(i = 1; i <  MAX_BALL_COUNT; i++)
 	{
 		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
 	}

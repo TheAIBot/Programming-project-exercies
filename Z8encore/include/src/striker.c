@@ -24,11 +24,7 @@ void updateStrikerDrawnPositionRight(int oldX, int Y, int newX, int length)
 {
 	int halfLength = length >> 1;
 	//goto(oX,oY) write(EMPY_CHAR) goto(nX,nY) write(BALL_STYLE)
-<<<<<<< HEAD
-	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, oldY, oldX - halfLength, EMPTY_STYLE, ESC, newY, newX + halfLength, STRIKER_STYLE);
-=======
 	printf("%c[%d;%dH%c%c[%d;%dH%c", ESC, Y, oldX - halfLength, EMPTY_STYLE, ESC, Y, newX + halfLength, STRIKER_STYLE);
->>>>>>> refs/remotes/origin/andreas
 }
 
 void updateStrikerDrawnPositionLeft(int oldX, int Y, int newX, int length)
