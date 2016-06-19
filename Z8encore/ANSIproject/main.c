@@ -6,6 +6,7 @@
 #include "game.h"
 #include "clockio.h"
 #include "sound.h"
+#include "tests.h"
 
 #define GAME_SIZE_X 100
 #define GAME_SIZE_Y 40
@@ -15,7 +16,7 @@
 void main() {
 
 	//uncomment this to run the game
-	
+	/*
 	struct TGame game;
 
 	init_uart(_UART0, _DEFFREQ, 115200);
@@ -25,4 +26,6 @@ void main() {
 	{
 		runGame(&game);
 	}
+	*/
+	runAllTests();
 }
