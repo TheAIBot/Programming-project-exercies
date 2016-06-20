@@ -24,6 +24,7 @@
 <file filter-key="">Z8encore\include\src\sound.c</file>
 <file filter-key="">Z8encore\include\src\readonlymemory.c</file>
 <file filter-key="">Z8encore\include\src\tests.c</file>
+<file filter-key="">Z8encore\include\src\charset.c</file>
 </files>
 
 <!-- configuration information -->

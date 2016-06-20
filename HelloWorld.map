@@ -4,7 +4,7 @@ Copyright (C) 1999-2004 ZiLOG, Inc. All Rights Reserved
 
 LINK MAP:
 
-DATE:      Sun Jun 19 12:55:32 2016
+DATE:      Mon Jun 20 13:23:26 2016
 PROCESSOR: assembler
 FILES:     D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\startupL.obj
            .\zsldevinit.obj
@@ -16,7 +16,7 @@ FILES:     D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\startupL.obj
            .\trigonometry.obj
            .\screenio.obj         .\sound.obj            
            .\readonlymemory.obj
-           .\tests.obj            
+           .\tests.obj            .\charset.obj          
            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\crtrevaaLDD.lib
            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\fpdumyL.obj
            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\zslLYD.lib
@@ -89,8 +89,10 @@ define _zsl_g_clock_xdefine = 5529600
 /* Set frequency to 20000000 MHz */
 define __user_frequency = 20000000
 
-"C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld"=  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\buttonio.obj,  .\clockio.obj,  .\ball.obj,  .\boss.obj,  .\brick.obj,  .\game.obj,  .\level.obj,  .\powerup.obj,  .\striker.obj,  .\timer.obj,  .\random.obj,  .\joystick.obj,  .\bounce.obj,  .\trigonometry.obj,  .\screenio.obj,  .\sound.obj,  .\readonlymemory.obj,  .\tests.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\crtrevaaLDD.lib,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\fpdumyL.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\zslLYD.lib
+"C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld"=  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\startupL.obj,  .\zsldevinit.obj,  .\main.obj,  .\ansi.obj,  .\buttonio.obj,  .\clockio.obj,  .\ball.obj,  .\boss.obj,  .\brick.obj,  .\game.obj,  .\level.obj,  .\powerup.obj,  .\striker.obj,  .\timer.obj,  .\random.obj,  .\joystick.obj,  .\bounce.obj,  .\trigonometry.obj,  .\screenio.obj,  .\sound.obj,  .\readonlymemory.obj,  .\tests.obj,  .\charset.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\crtrevaaLDD.lib,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\fpdumyL.obj,  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\zslLYD.lib
+WARNING (909) (00000000 .\charset.obj)--> Public symbol "_character_data" already externally defined.
 
+WARNING (909) (00000ACA .\charset.obj)--> Public symbol "_character_data" already externally defined.
 
 SEGMENT OVERLAYS:
 =================
@@ -104,9 +106,9 @@ SPACE ALLOCATION:
 
 Space              Base        Top         Size
 ------------------ ----------- ----------- ---------
-EDATA                   E:0100      E:0AC9      9cah
+EDATA                   E:0100      E:0CA5      ba6h
 RDATA                     R:E0        R:EF       10h
-ROM                     C:0000      C:6D0E     6d0fh
+ROM                     C:0000      C:720A     720bh
 
 
 SEGMENTS WITHIN SPACE:
@@ -115,7 +117,7 @@ SEGMENTS WITHIN SPACE:
 EDATA              Type                Base        Top         Size
 ------------------ ------------------- ----------- ----------- ---------
 FAR_BSS            normal data              E:0100      E:0140       41h
-FAR_DATA           normal data              E:0141      E:0AC9      989h
+FAR_DATA           normal data              E:0141      E:0CA5      b65h
 
 
 RDATA              Type                Base        Top         Size
@@ -126,41 +128,44 @@ workingreg         absolute data              R:E0        R:EF       10h
 ROM                Type                Base        Top         Size
 ------------------ ------------------- ----------- ----------- ---------
 __VECTORS          absolute data            C:0000      C:0037       38h
-_sputch_TEXT       normal data              C:5F1E      C:5F4C       2fh
-_uputch_TEXT       normal data              C:5EEF      C:5F07       19h
-abs_TEXT           normal data              C:615C      C:6199       3eh
-ansi_TEXT          normal data              C:04F0      C:107E      b8fh
-ball_TEXT          normal data              C:1240      C:1B51      912h
-boss_TEXT          normal data              C:1B52      C:2098      547h
-bounce_TEXT        normal data              C:4936      C:498C       57h
-brick_TEXT         normal data              C:2099      C:294A      8b2h
-clockio_TEXT       normal data              C:1181      C:123F       bfh
+_sputch_TEXT       normal data              C:623E      C:626C       2fh
+_uputch_TEXT       normal data              C:620F      C:6227       19h
+abs_TEXT           normal data              C:647C      C:64B9       3eh
+ansi_TEXT          normal data              C:056F      C:10FD      b8fh
+ball_TEXT          normal data              C:12BF      C:1BD0      912h
+boss_TEXT          normal data              C:1BD1      C:2117      547h
+bounce_TEXT        normal data              C:49B5      C:4A0B       57h
+brick_TEXT         normal data              C:2118      C:29C9      8b2h
+charset_TEXT       normal data              C:58DD      C:5ABF      1e3h
+clockio_TEXT       normal data              C:1200      C:12BE       bfh
 CODE               normal data              C:0038      C:026B      234h
-creenio_TEXT       normal data              C:4BBE      C:4FE2      425h
-FAR_DATA           * segment copy *         C:6386      C:6D0E      989h
-game_TEXT          normal data              C:294B      C:3756      e0ch
-level_TEXT         normal data              C:3757      C:3D07      5b1h
-main_TEXT          normal data              C:04E6      C:04EF        ah
-mstring_TEXT       normal data              C:610F      C:615B       4dh
-nometry_TEXT       normal data              C:498D      C:4BBD      231h
-nt_send_TEXT       normal data              C:5899      C:5A6C      1d4h
-oystick_TEXT       normal data              C:4851      C:4935       e5h
-powerup_TEXT       normal data              C:3D08      C:3D0E        7h
-putch_TEXT         normal data              C:626F      C:62CB       5dh
-reverse_TEXT       normal data              C:619A      C:626E       d5h
+creenio_TEXT       normal data              C:4C3D      C:5026      3eah
+FAR_DATA           * segment copy *         C:66A6      C:720A      b65h
+game_TEXT          normal data              C:29CA      C:37D5      e0ch
+getfreq_TEXT       normal data              C:5D76      C:5D8C       17h
+level_TEXT         normal data              C:37D6      C:3D86      5b1h
+main_TEXT          normal data              C:04E6      C:056E       89h
+mstring_TEXT       normal data              C:642F      C:647B       4dh
+nometry_TEXT       normal data              C:4A0C      C:4C3C      231h
+nt_send_TEXT       normal data              C:5BA2      C:5D75      1d4h
+oystick_TEXT       normal data              C:48D0      C:49B4       e5h
+powerup_TEXT       normal data              C:3D87      C:3D8D        7h
+putch_TEXT         normal data              C:658F      C:65EB       5dh
+reverse_TEXT       normal data              C:64BA      C:658E       d5h
 ROM_TEXT           normal data              C:026C      C:0474      209h
-sound_TEXT         normal data              C:4FE3      C:5191      1afh
+sio_TEXT           normal data              C:5AC0      C:5BA1       e2h
+sound_TEXT         normal data              C:5027      C:51D5      1afh
 startup            normal data              C:0475      C:04E5       71h
-striker_TEXT       normal data              C:3D0F      C:45CB      8bdh
-strlen_TEXT        normal data              C:5E86      C:5EC7       42h
-t_putch_TEXT       normal data              C:5F08      C:5F1D       16h
-tests_TEXT         normal data              C:5192      C:5898      707h
-teuart0_TEXT       normal data              C:62CC      C:6385       bah
-timer_TEXT         normal data              C:45CC      C:4850      285h
-tstring_TEXT       normal data              C:5F4D      C:610E      1c2h
-ultoa_TEXT         normal data              C:5A6D      C:5E85      419h
-ustoa_TEXT         normal data              C:5EC8      C:5EEE       27h
-uttonio_TEXT       normal data              C:107F      C:1180      102h
+striker_TEXT       normal data              C:3D8E      C:464A      8bdh
+strlen_TEXT        normal data              C:61A6      C:61E7       42h
+t_putch_TEXT       normal data              C:6228      C:623D       16h
+tests_TEXT         normal data              C:51D6      C:58DC      707h
+teuart0_TEXT       normal data              C:65EC      C:66A5       bah
+timer_TEXT         normal data              C:464B      C:48CF      285h
+tstring_TEXT       normal data              C:626D      C:642E      1c2h
+ultoa_TEXT         normal data              C:5D8D      C:61A5      419h
+ustoa_TEXT         normal data              C:61E8      C:620E       27h
+uttonio_TEXT       normal data              C:10FE      C:11FF      102h
 
 SEGMENTS WITHIN MODULES:
 ========================
@@ -180,18 +185,18 @@ Module: ..\UART\COMMON\PUTCH.C (Library: zslLYD.lib) Version: 1:0 02/23/2005 13:
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: putch_TEXT                          C:626F      C:62CB       5dh
+    Segment: putch_TEXT                          C:658F      C:65EB       5dh
 
 
 Module: ..\UART\COMMON\WRITEUART0.C (Library: zslLYD.lib) Version: 1:0 02/23/2005 13:32:38
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: FAR_DATA                            E:08F1      E:08F1        1h
-    Segment: teuart0_TEXT                        C:62CC      C:6385       bah
+    Segment: FAR_DATA                            E:0ACD      E:0ACD        1h
+    Segment: teuart0_TEXT                        C:65EC      C:66A5       bah
 
 
-Module: C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\zsldevinit.asm (File: zsldevinit.obj) Version: 1:0 06/18/2016 16:00:32
+Module: C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\zsldevinit.asm (File: zsldevinit.obj) Version: 1:0 06/20/2016 13:17:26
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -203,7 +208,7 @@ Module: COMMON\ABS.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:08
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: abs_TEXT                            C:615C      C:6199       3eh
+    Segment: abs_TEXT                            C:647C      C:64B9       3eh
 
 
 Module: common\fpdumyl.asm (File: fpdumyL.obj) Version: 1:0 02/23/2005 13:22:38
@@ -226,56 +231,64 @@ Module: COMMON\PRINT_GLOBALS.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/200
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: FAR_BSS                             E:0126      E:0140       1bh
-    Segment: FAR_DATA                            E:08EF      E:08F0        2h
+    Segment: FAR_DATA                            E:0ACB      E:0ACC        2h
 
 
 Module: COMMON\PRINT_PUTCH.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:11
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: t_putch_TEXT                        C:5F08      C:5F1D       16h
+    Segment: t_putch_TEXT                        C:6228      C:623D       16h
 
 
 Module: COMMON\PRINT_PUTROMSTRING.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:12
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: mstring_TEXT                        C:610F      C:615B       4dh
+    Segment: mstring_TEXT                        C:642F      C:647B       4dh
 
 
 Module: COMMON\PRINT_PUTSTRING.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:12
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: tstring_TEXT                        C:5F4D      C:610E      1c2h
+    Segment: tstring_TEXT                        C:626D      C:642E      1c2h
 
 
 Module: COMMON\PRINT_SEND.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:12
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: nt_send_TEXT                        C:5899      C:5A6C      1d4h
+    Segment: nt_send_TEXT                        C:5BA2      C:5D75      1d4h
 
 
 Module: COMMON\PRINT_SPUTCH.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:11
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: _sputch_TEXT                        C:5F1E      C:5F4C       2fh
+    Segment: _sputch_TEXT                        C:623E      C:626C       2fh
 
 
 Module: COMMON\PRINT_UPUTCH.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:11
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: _uputch_TEXT                        C:5EEF      C:5F07       19h
+    Segment: _uputch_TEXT                        C:620F      C:6227       19h
+
+
+Module: COMMON\SIO.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:13
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: FAR_DATA                            E:0ACA      E:0ACA        1h
+    Segment: sio_TEXT                            C:5AC0      C:5BA1       e2h
 
 
 Module: COMMON\STRLEN.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:14
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: strlen_TEXT                         C:5E86      C:5EC7       42h
+    Segment: strlen_TEXT                         C:61A6      C:61E7       42h
 
 
 Module: common\swdiv.asm (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:19
@@ -310,21 +323,21 @@ Module: COMMON\ULTOA.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: ultoa_TEXT                          C:5A6D      C:5E85      419h
+    Segment: ultoa_TEXT                          C:5D8D      C:61A5      419h
 
 
 Module: COMMON\UREVERSE.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:17
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: reverse_TEXT                        C:619A      C:626E       d5h
+    Segment: reverse_TEXT                        C:64BA      C:658E       d5h
 
 
 Module: COMMON\USTOA.C (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:18
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: ustoa_TEXT                          C:5EC8      C:5EEE       27h
+    Segment: ustoa_TEXT                          C:61E8      C:620E       27h
 
 
 Module: common\uwdiv.asm (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:19
@@ -341,144 +354,159 @@ Module: common\uwmul.asm (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:2
     Segment: CODE                                C:0175      C:01A7       33h
 
 
-Module: Z8ENCORE\ANSIPROJECT\MAIN.C (File: main.obj) Version: 1:0 06/18/2016 16:00:32
+Module: get_freq.asm (Library: crtrevaaLDD.lib) Version: 1:0 02/23/2005 13:27:19
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: main_TEXT                           C:04E6      C:04EF        ah
+    Segment: getfreq_TEXT                        C:5D76      C:5D8C       17h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\ANSI.C (File: ansi.obj) Version: 1:0 06/18/2016 16:00:33
+Module: Z8ENCORE\ANSIPROJECT\MAIN.C (File: main.obj) Version: 1:0 06/20/2016 13:17:26
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: ansi_TEXT                           C:04F0      C:107E      b8fh
+    Segment: main_TEXT                           C:04E6      C:056E       89h
+
+
+Module: Z8ENCORE\INCLUDE\SRC\ANSI.C (File: ansi.obj) Version: 1:0 06/20/2016 13:17:26
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: ansi_TEXT                           C:056F      C:10FD      b8fh
     Segment: ROM_TEXT                            C:026C      C:027B       10h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BALL.C (File: ball.obj) Version: 1:0 06/19/2016 12:55:30
+Module: Z8ENCORE\INCLUDE\SRC\BALL.C (File: ball.obj) Version: 1:0 06/20/2016 13:17:27
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: ball_TEXT                           C:1240      C:1B51      912h
+    Segment: ball_TEXT                           C:12BF      C:1BD0      912h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BOSS.C (File: boss.obj) Version: 1:0 06/19/2016 12:55:31
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: boss_TEXT                           C:1B52      C:2098      547h
-
-
-Module: Z8ENCORE\INCLUDE\SRC\BOUNCE.C (File: bounce.obj) Version: 1:0 06/18/2016 16:00:36
+Module: Z8ENCORE\INCLUDE\SRC\BOSS.C (File: boss.obj) Version: 1:0 06/20/2016 13:17:27
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: bounce_TEXT                         C:4936      C:498C       57h
+    Segment: boss_TEXT                           C:1BD1      C:2117      547h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\BRICK.C (File: brick.obj) Version: 1:0 06/19/2016 12:55:31
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: brick_TEXT                          C:2099      C:294A      8b2h
-
-
-Module: Z8ENCORE\INCLUDE\SRC\BUTTONIO.C (File: buttonio.obj) Version: 1:0 06/18/2016 16:00:33
+Module: Z8ENCORE\INCLUDE\SRC\BOUNCE.C (File: bounce.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: uttonio_TEXT                        C:107F      C:1180      102h
+    Segment: bounce_TEXT                         C:49B5      C:4A0B       57h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\CLOCKIO.C (File: clockio.obj) Version: 1:0 06/18/2016 16:00:33
+Module: Z8ENCORE\INCLUDE\SRC\BRICK.C (File: brick.obj) Version: 1:0 06/20/2016 13:17:27
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: brick_TEXT                          C:2118      C:29C9      8b2h
+
+
+Module: Z8ENCORE\INCLUDE\SRC\BUTTONIO.C (File: buttonio.obj) Version: 1:0 06/20/2016 13:17:26
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: uttonio_TEXT                        C:10FE      C:11FF      102h
+
+
+Module: Z8ENCORE\INCLUDE\SRC\CHARSET.C (File: charset.obj) Version: 1:0 06/20/2016 13:23:26
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: charset_TEXT                        C:58DD      C:5ABF      1e3h
+    Segment: FAR_DATA                            E:08EF      E:0AC9      1dbh
+
+
+Module: Z8ENCORE\INCLUDE\SRC\CLOCKIO.C (File: clockio.obj) Version: 1:0 06/20/2016 13:17:26
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: __VECTORS                           C:0000      C:000D        eh
-    Segment: clockio_TEXT                        C:1181      C:123F       bfh
+    Segment: clockio_TEXT                        C:1200      C:12BE       bfh
     Segment: FAR_DATA                            E:0147      E:014C        6h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\GAME.C (File: game.obj) Version: 1:0 06/18/2016 16:00:35
+Module: Z8ENCORE\INCLUDE\SRC\GAME.C (File: game.obj) Version: 1:0 06/20/2016 13:17:27
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: FAR_DATA                            E:08F2      E:091B       2ah
-    Segment: game_TEXT                           C:294B      C:3756      e0ch
+    Segment: FAR_DATA                            E:0ACE      E:0AF7       2ah
+    Segment: game_TEXT                           C:29CA      C:37D5      e0ch
     Segment: ROM_TEXT                            C:027C      C:03A6      12bh
 
 
-Module: Z8ENCORE\INCLUDE\SRC\JOYSTICK.C (File: joystick.obj) Version: 1:0 06/18/2016 16:00:36
+Module: Z8ENCORE\INCLUDE\SRC\JOYSTICK.C (File: joystick.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: oystick_TEXT                        C:4851      C:4935       e5h
+    Segment: oystick_TEXT                        C:48D0      C:49B4       e5h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\LEVEL.C (File: level.obj) Version: 1:0 06/19/2016 12:55:31
+Module: Z8ENCORE\INCLUDE\SRC\LEVEL.C (File: level.obj) Version: 1:0 06/20/2016 13:17:27
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: FAR_DATA                            E:014D      E:0304      1b8h
-    Segment: level_TEXT                          C:3757      C:3D07      5b1h
+    Segment: level_TEXT                          C:37D6      C:3D86      5b1h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\POWERUP.C (File: powerup.obj) Version: 1:0 06/18/2016 16:00:35
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: powerup_TEXT                        C:3D08      C:3D0E        7h
-
-
-Module: Z8ENCORE\INCLUDE\SRC\SCREENIO.C (File: screenio.obj) Version: 1:0 06/18/2016 16:00:37
+Module: Z8ENCORE\INCLUDE\SRC\POWERUP.C (File: powerup.obj) Version: 1:0 06/20/2016 13:17:27
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: creenio_TEXT                        C:4BBE      C:4FE2      425h
+    Segment: powerup_TEXT                        C:3D87      C:3D8D        7h
+
+
+Module: Z8ENCORE\INCLUDE\SRC\SCREENIO.C (File: screenio.obj) Version: 1:0 06/20/2016 13:17:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: creenio_TEXT                        C:4C3D      C:5026      3eah
     Segment: FAR_BSS                             E:0102      E:0121       20h
     Segment: FAR_DATA                            E:070D      E:08ED      1e1h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\SOUND.C (File: sound.obj) Version: 1:0 06/18/2016 16:00:37
+Module: Z8ENCORE\INCLUDE\SRC\SOUND.C (File: sound.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: __VECTORS                           C:0000      C:000B        ch
     Segment: FAR_DATA                            E:08EE      E:08EE        1h
-    Segment: sound_TEXT                          C:4FE3      C:5191      1afh
+    Segment: sound_TEXT                          C:5027      C:51D5      1afh
 
 
-Module: Z8ENCORE\INCLUDE\SRC\STRIKER.C (File: striker.obj) Version: 1:0 06/19/2016 12:55:31
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: striker_TEXT                        C:3D0F      C:45CB      8bdh
-
-
-Module: Z8ENCORE\INCLUDE\SRC\TESTS.C (File: tests.obj) Version: 1:0 06/19/2016 12:55:31
+Module: Z8ENCORE\INCLUDE\SRC\STRIKER.C (File: striker.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: FAR_DATA                            E:091C      E:0AC9      1aeh
+    Segment: striker_TEXT                        C:3D8E      C:464A      8bdh
+
+
+Module: Z8ENCORE\INCLUDE\SRC\TESTS.C (File: tests.obj) Version: 1:0 06/20/2016 13:17:28
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: FAR_DATA                            E:0AF8      E:0CA5      1aeh
     Segment: ROM_TEXT                            C:03A7      C:0474       ceh
-    Segment: tests_TEXT                          C:5192      C:5898      707h
+    Segment: tests_TEXT                          C:51D6      C:58DC      707h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\TIMER.C (File: timer.obj) Version: 1:0 06/18/2016 16:00:36
+Module: Z8ENCORE\INCLUDE\SRC\TIMER.C (File: timer.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: FAR_DATA                            E:0305      E:030C        8h
-    Segment: timer_TEXT                          C:45CC      C:4850      285h
+    Segment: timer_TEXT                          C:464B      C:48CF      285h
 
 
-Module: Z8ENCORE\INCLUDE\SRC\TRIGONOMETRY.C (File: trigonometry.obj) Version: 1:0 06/18/2016 16:00:36
+Module: Z8ENCORE\INCLUDE\SRC\TRIGONOMETRY.C (File: trigonometry.obj) Version: 1:0 06/20/2016 13:17:28
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: FAR_DATA                            E:030D      E:070C      400h
-    Segment: nometry_TEXT                        C:498D      C:4BBD      231h
+    Segment: nometry_TEXT                        C:4A0C      C:4C3C      231h
 
 EXTERNAL DEFINITIONS:
 =====================
@@ -541,18 +569,18 @@ ___print_fmt                          E:0132 PRINT_GLOBALS   FAR_BSS
 ___print_leading_char                 E:013E PRINT_GLOBALS   FAR_BSS                         
 ___print_len                          E:013D PRINT_GLOBALS   FAR_BSS                         
 ___print_out                          E:013F PRINT_GLOBALS   FAR_BSS                         
-___print_putch                        C:5F08 PRINT_PUTCH     t_putch_TEXT                    
-___print_putromstring                 C:610F PRINT_PUTROMSTR mstring_TEXT                    
-___print_send                         C:5899 PRINT_SEND      nt_send_TEXT                    
-___print_sendstring                   C:5F4D PRINT_PUTSTRING tstring_TEXT                    
-___print_sputch                       C:5F1E PRINT_SPUTCH    _sputch_TEXT                    
-___print_uputch                       C:5EEF PRINT_UPUTCH    _uputch_TEXT                    
-___print_xputch                       E:08EF PRINT_GLOBALS   FAR_DATA                        
+___print_putch                        C:6228 PRINT_PUTCH     t_putch_TEXT                    
+___print_putromstring                 C:642F PRINT_PUTROMSTR mstring_TEXT                    
+___print_send                         C:5BA2 PRINT_SEND      nt_send_TEXT                    
+___print_sendstring                   C:626D PRINT_PUTSTRING tstring_TEXT                    
+___print_sputch                       C:623E PRINT_SPUTCH    _sputch_TEXT                    
+___print_uputch                       C:620F PRINT_UPUTCH    _uputch_TEXT                    
+___print_xputch                       E:0ACB PRINT_GLOBALS   FAR_DATA                        
 __close_periphdevice                  C:0039 zsldevinit      CODE                            
 __far_atof                            C:003A fpdumyl         CODE                            
 __far_frexp                           C:003A fpdumyl         CODE                            
 __far_modf                            C:003A fpdumyl         CODE                            
-__far_strlen                          C:5E86 STRLEN          strlen_TEXT                     
+__far_strlen                          C:61A6 STRLEN          strlen_TEXT                     
 __far_strtod                          C:003A fpdumyl         CODE                            
 __fpadd                               C:003A fpdumyl         CODE                            
 __fpcmp                               C:003A fpdumyl         CODE                            
@@ -586,202 +614,206 @@ __u_dtof                              C:003A fpdumyl         CODE
 __u_dtog                              C:003A fpdumyl         CODE                            
 __u_flt_info                          C:003A fpdumyl         CODE                            
 __u_flt_rnd                           C:003A fpdumyl         CODE                            
-__u_ltoa                              C:5A6D ULTOA           ultoa_TEXT                      
-__u_reverse                           C:619A UREVERSE        reverse_TEXT                    
-__u_stoa                              C:5EC8 USTOA           ustoa_TEXT                      
+__u_ltoa                              C:5D8D ULTOA           ultoa_TEXT                      
+__u_reverse                           C:64BA UREVERSE        reverse_TEXT                    
+__u_stoa                              C:61E8 USTOA           ustoa_TEXT                      
 __ucase                               C:022E ucase           CODE                            
 __uldiv                               C:01A8 uldiv           CODE                            
 __ulmul                               C:00DD ulmul           CODE                            
 __user_frequency                    01312D00 (User Defined)
 __uwdiv                               C:01FD uwdiv           CODE                            
 __uwmul                               C:0175 uwmul           CODE                            
-_abs                                  C:615C ABS             abs_TEXT                        
+_abs                                  C:647C ABS             abs_TEXT                        
 _acos                                 C:003A fpdumyl         CODE                            
-_applyPowerup                         C:3D08 POWERUP         powerup_TEXT                    
-_areIntsEqual                         C:53C3 TESTS           tests_TEXT                      
-_areLongsEqual                        C:5288 TESTS           tests_TEXT                      
+_applyPowerup                         C:3D87 POWERUP         powerup_TEXT                    
+_areIntsEqual                         C:5407 TESTS           tests_TEXT                      
+_areLongsEqual                        C:52CC TESTS           tests_TEXT                      
 _asin                                 C:003A fpdumyl         CODE                            
 _atan                                 C:003A fpdumyl         CODE                            
 _atan2                                C:003A fpdumyl         CODE                            
-_bgcolor                              C:0586 ANSI            ansi_TEXT                       
-_blink                                C:0802 ANSI            ansi_TEXT                       
-_bounceHorizontal                     C:4936 BOUNCE          bounce_TEXT                     
-_bounceStriker                        C:432F STRIKER         striker_TEXT                    
-_bounceVertical                       C:494B BOUNCE          bounce_TEXT                     
-_brickdraw                            C:22FD BRICK           brick_TEXT                      
+_bgcolor                              C:0605 ANSI            ansi_TEXT                       
+_blink                                C:0881 ANSI            ansi_TEXT                       
+_bounceHorizontal                     C:49B5 BOUNCE          bounce_TEXT                     
+_bounceStriker                        C:43AE STRIKER         striker_TEXT                    
+_bounceVertical                       C:49CA BOUNCE          bounce_TEXT                     
+_brickdraw                            C:237C BRICK           brick_TEXT                      
 _c_startup                            C:0475 startupl        startup                         
 _ceil                                 C:003A fpdumyl         CODE                            
-_character_data                       E:070D SCREENIO        FAR_DATA                        
-_clearBall                            C:1383 BALL            ball_TEXT                       
-_clearBoss                            C:1BA9 BOSS            boss_TEXT                       
-_clearBrick                           C:23D4 BRICK           brick_TEXT                      
-_clearStriker                         C:3F62 STRIKER         striker_TEXT                    
-_clearStrikerLeft                     C:3F9C STRIKER         striker_TEXT                    
-_clearStrikerRight                    C:3FEB STRIKER         striker_TEXT                    
-_clockScreen                          C:4DBA SCREENIO        creenio_TEXT                    
+_character_data                       E:08EF CHARSET         FAR_DATA                        
+_clearBall                            C:1402 BALL            ball_TEXT                       
+_clearBoss                            C:1C28 BOSS            boss_TEXT                       
+_clearBrick                           C:2453 BRICK           brick_TEXT                      
+_clearStriker                         C:3FE1 STRIKER         striker_TEXT                    
+_clearStrikerLeft                     C:401B STRIKER         striker_TEXT                    
+_clearStrikerRight                    C:406A STRIKER         striker_TEXT                    
+_clockScreen                          C:4DFE SCREENIO        creenio_TEXT                    
 _close_periphdevice                   C:0039 zsldevinit      CODE                            
-_clreol                               C:06E9 ANSI            ansi_TEXT                       
-_clrscr                               C:06B8 ANSI            ansi_TEXT                       
-_color                                C:05D1 ANSI            ansi_TEXT                       
+_clreol                               C:0768 ANSI            ansi_TEXT                       
+_clrscr                               C:0737 ANSI            ansi_TEXT                       
+_color                                C:0650 ANSI            ansi_TEXT                       
 _columnScrollOffset                   E:08ED SCREENIO        FAR_DATA                        
-_cos                                  C:4AA6 TRIGONOMETRY    nometry_TEXT                    
+_cos                                  C:4B25 TRIGONOMETRY    nometry_TEXT                    
 _cosh                                 C:003A fpdumyl         CODE                            
-_delay                                C:1181 CLOCKIO         clockio_TEXT                    
-_delaySound                           C:4FF6 SOUND           sound_TEXT                      
-_drawBoss                             C:1B52 BOSS            boss_TEXT                       
-_drawBrick                            C:23B6 BRICK           brick_TEXT                      
-_drawStriker                          C:403A STRIKER         striker_TEXT                    
-_drawStrikerLeft                      C:4077 STRIKER         striker_TEXT                    
-_drawStrikerRight                     C:40C9 STRIKER         striker_TEXT                    
-_enablecursor                         C:0FEA ANSI            ansi_TEXT                       
+_delay                                C:1200 CLOCKIO         clockio_TEXT                    
+_delaySound                           C:503A SOUND           sound_TEXT                      
+_drawBoss                             C:1BD1 BOSS            boss_TEXT                       
+_drawBrick                            C:2435 BRICK           brick_TEXT                      
+_drawStriker                          C:40B9 STRIKER         striker_TEXT                    
+_drawStrikerLeft                      C:40F6 STRIKER         striker_TEXT                    
+_drawStrikerRight                     C:4148 STRIKER         striker_TEXT                    
+_enablecursor                         C:1069 ANSI            ansi_TEXT                       
 _endMilisecond                        E:0309 TIMER           FAR_DATA                        
 _errno                                E:0100 startupl        FAR_BSS                         
 _exit                                 C:04E4 startupl        startup                         
 _exp                                  C:003A fpdumyl         CODE                            
-_expand                               C:498D TRIGONOMETRY    nometry_TEXT                    
+_expand                               C:4A0C TRIGONOMETRY    nometry_TEXT                    
 _fabs                                 C:003A fpdumyl         CODE                            
-_far_heapbot                        00000AC9 (User Defined)
+_far_heapbot                        00000CA5 (User Defined)
 _far_heaptop                        00000EFF (User Defined)
 _far_stack                          00000EFF (User Defined)
-_fgcolor                              C:04F0 ANSI            ansi_TEXT                       
+_fgcolor                              C:056F ANSI            ansi_TEXT                       
 _floor                                C:003A fpdumyl         CODE                            
 _fmod                                 C:003A fpdumyl         CODE                            
 _g_clock0                             E:0143 zsldevinit      FAR_DATA                        
 _g_clock1                             E:0143 zsldevinit      FAR_DATA                        
 _g_simulate                           E:0142 zsldevinit      FAR_DATA                        
-_g_Txflag0                            E:08F1 WRITEUART0      FAR_DATA                        
-_getBrickColor                        C:2099 BRICK           brick_TEXT                      
-_getCharColumnCharArray               C:4BD8 SCREENIO        creenio_TEXT                    
-_getDifficulty                        C:2A3E GAME            game_TEXT                       
-_getElapsedMiliseconds                C:482E TIMER           timer_TEXT                      
-_getMiliseconds                       C:1224 CLOCKIO         clockio_TEXT                    
-_getStructuredTime                    C:46C1 TIMER           timer_TEXT                      
-_gotoxy                               C:071A ANSI            ansi_TEXT                       
+_g_Txflag0                            E:0ACD WRITEUART0      FAR_DATA                        
+_get_freq                             C:5D7A get_freq        getfreq_TEXT                    
+_getBrickColor                        C:2118 BRICK           brick_TEXT                      
+_getCharColumnCharArray               C:58DD CHARSET         charset_TEXT                    
+_getDifficulty                        C:2ABD GAME            game_TEXT                       
+_getElapsedMiliseconds                C:48AD TIMER           timer_TEXT                      
+_getMiliseconds                       C:12A3 CLOCKIO         clockio_TEXT                    
+_getStructuredTime                    C:4740 TIMER           timer_TEXT                      
+_gotoxy                               C:0799 ANSI            ansi_TEXT                       
 _halfmiliseconds                      E:0149 CLOCKIO         FAR_DATA                        
-_handleBrickCollisions                C:2479 BRICK           brick_TEXT                      
-_handleBrickCornerCollision           C:23F2 BRICK           brick_TEXT                      
-_impact                               C:199E BALL            ball_TEXT                       
-_initBall                             C:1444 BALL            ball_TEXT                       
-_initBoss                             C:1BF0 BOSS            boss_TEXT                       
-_initBricks                           C:28FE BRICK           brick_TEXT                      
-_initButtons                          C:107F BUTTONIO        uttonio_TEXT                    
-_initClock                            C:11E5 CLOCKIO         clockio_TEXT                    
-_initGame                             C:294B GAME            game_TEXT                       
-_initJoystick                         C:4851 JOYSTICK        oystick_TEXT                    
-_initLevel                            C:3A33 LEVEL           level_TEXT                      
-_initScreen                           C:4D6D SCREENIO        creenio_TEXT                    
-_initSoundClock                       C:5169 SOUND           sound_TEXT                      
-_initSoundPin                         C:5031 SOUND           sound_TEXT                      
-_initStriker                          C:42CB STRIKER         striker_TEXT                    
-_initTimer                            C:460E TIMER           timer_TEXT                      
-_initVector                           C:0EB4 ANSI            ansi_TEXT                       
-_isBallDead                           C:188B BALL            ball_TEXT                       
-_isButton1Pressed                     C:48C8 JOYSTICK        oystick_TEXT                    
-_isButton2Pressed                     C:48FF JOYSTICK        oystick_TEXT                    
-_isd3Pressed                          C:114A BUTTONIO        uttonio_TEXT                    
-_isf6Pressed                          C:1113 BUTTONIO        uttonio_TEXT                    
-_isf7Pressed                          C:10DC BUTTONIO        uttonio_TEXT                    
-_isJoystickLeft                       C:48AC JOYSTICK        oystick_TEXT                    
-_isJoystickRight                      C:4890 JOYSTICK        oystick_TEXT                    
-_joystickXAxis                        C:4868 JOYSTICK        oystick_TEXT                    
+_handleBrickCollisions                C:24F8 BRICK           brick_TEXT                      
+_handleBrickCornerCollision           C:2471 BRICK           brick_TEXT                      
+_impact                               C:1A1D BALL            ball_TEXT                       
+_init_uart                            C:5AEE SIO             sio_TEXT                        
+_initBall                             C:14C3 BALL            ball_TEXT                       
+_initBoss                             C:1C6F BOSS            boss_TEXT                       
+_initBricks                           C:297D BRICK           brick_TEXT                      
+_initButtons                          C:10FE BUTTONIO        uttonio_TEXT                    
+_initClock                            C:1264 CLOCKIO         clockio_TEXT                    
+_initGame                             C:29CA GAME            game_TEXT                       
+_initJoystick                         C:48D0 JOYSTICK        oystick_TEXT                    
+_initLevel                            C:3AB2 LEVEL           level_TEXT                      
+_initScreen                           C:4DB1 SCREENIO        creenio_TEXT                    
+_initSoundClock                       C:51AD SOUND           sound_TEXT                      
+_initSoundPin                         C:5075 SOUND           sound_TEXT                      
+_initStriker                          C:434A STRIKER         striker_TEXT                    
+_initTimer                            C:468D TIMER           timer_TEXT                      
+_initVector                           C:0F33 ANSI            ansi_TEXT                       
+_isBallDead                           C:190A BALL            ball_TEXT                       
+_isButton1Pressed                     C:4947 JOYSTICK        oystick_TEXT                    
+_isButton2Pressed                     C:497E JOYSTICK        oystick_TEXT                    
+_isd3Pressed                          C:11C9 BUTTONIO        uttonio_TEXT                    
+_isf6Pressed                          C:1192 BUTTONIO        uttonio_TEXT                    
+_isf7Pressed                          C:115B BUTTONIO        uttonio_TEXT                    
+_isJoystickLeft                       C:492B JOYSTICK        oystick_TEXT                    
+_isJoystickRight                      C:490F JOYSTICK        oystick_TEXT                    
+_joystickXAxis                        C:48E7 JOYSTICK        oystick_TEXT                    
 _ldexp                                C:003A fpdumyl         CODE                            
-_LEDinit                              C:4BBE SCREENIO        creenio_TEXT                    
-_LEDsetString                         C:4C13 SCREENIO        creenio_TEXT                    
-_LEDupdate                            C:4EC6 SCREENIO        creenio_TEXT                    
+_LEDinit                              C:4C3D SCREENIO        creenio_TEXT                    
+_LEDsetString                         C:4C57 SCREENIO        creenio_TEXT                    
+_LEDupdate                            C:4F0A SCREENIO        creenio_TEXT                    
 _LEDUpdateCount                       E:08EC SCREENIO        FAR_DATA                        
 _LEDupdateFlag                        E:0147 CLOCKIO         FAR_DATA                        
-_LEDWriteCharColumnsToScreen          C:4E6C SCREENIO        creenio_TEXT                    
+_LEDWriteCharColumnsToScreen          C:4EB0 SCREENIO        creenio_TEXT                    
 _len_farbss                         00000041 (User Defined)
-_len_fardata                        00000989 (User Defined)
+_len_fardata                        00000B65 (User Defined)
 _len_nearbss                        00000000 (User Defined)
 _len_neardata                       00000000 (User Defined)
-_level1                               C:3757 LEVEL           level_TEXT                      
-_level2                               C:3836 LEVEL           level_TEXT                      
-_level3                               C:3915 LEVEL           level_TEXT                      
-_loadCharIntoVideoBuffer              C:4CFA SCREENIO        creenio_TEXT                    
+_level1                               C:37D6 LEVEL           level_TEXT                      
+_level2                               C:38B5 LEVEL           level_TEXT                      
+_level3                               C:3994 LEVEL           level_TEXT                      
+_loadCharIntoVideoBuffer              C:4D3E SCREENIO        creenio_TEXT                    
 _log                                  C:003A fpdumyl         CODE                            
 _log10                                C:003A fpdumyl         CODE                            
-_low_far_romdata                    00006386 (User Defined)
+_low_far_romdata                    000066A6 (User Defined)
 _low_farbss                         00000100 (User Defined)
 _low_fardata                        00000141 (User Defined)
 _low_near_romdata                   00000000 (User Defined)
 _low_nearbss                        00000000 (User Defined)
 _low_neardata                       00000000 (User Defined)
 _main                                 C:04E6 MAIN            main_TEXT                       
-_moveBall                             C:1574 BALL            ball_TEXT                       
-_moveBricks                           C:1CC4 BOSS            boss_TEXT                       
-_movecursor                           C:0914 ANSI            ansi_TEXT                       
-_moveStriker                          C:422D STRIKER         striker_TEXT                    
-_moveStrikerLeft                      C:411B STRIKER         striker_TEXT                    
-_moveStrikerPreShot                   C:3A90 LEVEL           level_TEXT                      
-_moveStrikerRight                     C:41A4 STRIKER         striker_TEXT                    
+_moveBall                             C:15F3 BALL            ball_TEXT                       
+_moveBricks                           C:1D43 BOSS            boss_TEXT                       
+_movecursor                           C:0993 ANSI            ansi_TEXT                       
+_moveStriker                          C:42AC STRIKER         striker_TEXT                    
+_moveStrikerLeft                      C:419A STRIKER         striker_TEXT                    
+_moveStrikerPreShot                   C:3B0F LEVEL           level_TEXT                      
+_moveStrikerRight                     C:4223 STRIKER         striker_TEXT                    
 _near_heapbot                       000000EF (User Defined)
 _near_heaptop                       000000FF (User Defined)
 _near_stack                         000000FF (User Defined)
 _open_periphdevice                    C:0038 zsldevinit      CODE                            
-_playBounceSound                      C:5040 SOUND           sound_TEXT                      
-_playDeathBallSound                   C:507D SOUND           sound_TEXT                      
-_playDeathBrickSound                  C:50BA SOUND           sound_TEXT                      
-_playGameOverSound                    C:5130 SOUND           sound_TEXT                      
-_playStartGameSound                   C:50F7 SOUND           sound_TEXT                      
+_playBounceSound                      C:5084 SOUND           sound_TEXT                      
+_playDeathBallSound                   C:50C1 SOUND           sound_TEXT                      
+_playDeathBrickSound                  C:50FE SOUND           sound_TEXT                      
+_playGameOverSound                    C:5174 SOUND           sound_TEXT                      
+_playStartGameSound                   C:513B SOUND           sound_TEXT                      
 _pow                                  C:003A fpdumyl         CODE                            
-_printFix                             C:49B0 TRIGONOMETRY    nometry_TEXT                    
-_printFix14                           C:5192 TESTS           tests_TEXT                      
-_putch                                C:626F PUTCH           putch_TEXT                      
-_readkeys                             C:10A6 BUTTONIO        uttonio_TEXT                    
-_resetbgcolor                         C:0687 ANSI            ansi_TEXT                       
-_reverse                              C:088B ANSI            ansi_TEXT                       
-_rotate                               C:0EDF ANSI            ansi_TEXT                       
-_runAllTests                          C:588F TESTS           tests_TEXT                      
+_printFix                             C:4A2F TRIGONOMETRY    nometry_TEXT                    
+_printFix14                           C:51D6 TESTS           tests_TEXT                      
+_putch                                C:658F PUTCH           putch_TEXT                      
+_readkeys                             C:1125 BUTTONIO        uttonio_TEXT                    
+_resetbgcolor                         C:0706 ANSI            ansi_TEXT                       
+_reverse                              C:090A ANSI            ansi_TEXT                       
+_rotate                               C:0F5E ANSI            ansi_TEXT                       
+_runAllTests                          C:58D3 TESTS           tests_TEXT                      
 _runClock                             E:0148 CLOCKIO         FAR_DATA                        
-_runGame                              C:362A GAME            game_TEXT                       
-_scrollText                           C:4F16 SCREENIO        creenio_TEXT                    
-_sdraw                                C:3D0F STRIKER         striker_TEXT                    
-_setBallColor                         C:1420 BALL            ball_TEXT                       
-_setBrickColor                        C:22D4 BRICK           brick_TEXT                      
-_setStrikerColor                      C:3F4C STRIKER         striker_TEXT                    
-_shoot                                C:1EB0 BOSS            boss_TEXT                       
-_shouldShoot                          C:1F85 BOSS            boss_TEXT                       
-_sin                                  C:4AC4 TRIGONOMETRY    nometry_TEXT                    
+_runGame                              C:36A9 GAME            game_TEXT                       
+_scrollText                           C:4F5A SCREENIO        creenio_TEXT                    
+_sdraw                                C:3D8E STRIKER         striker_TEXT                    
+_select_port                          C:5AC0 SIO             sio_TEXT                        
+_setBallColor                         C:149F BALL            ball_TEXT                       
+_setBrickColor                        C:2353 BRICK           brick_TEXT                      
+_setStrikerColor                      C:3FCB STRIKER         striker_TEXT                    
+_shoot                                C:1F2F BOSS            boss_TEXT                       
+_shouldShoot                          C:2004 BOSS            boss_TEXT                       
+_sin                                  C:4B43 TRIGONOMETRY    nometry_TEXT                    
 _SIN                                  E:030D TRIGONOMETRY    FAR_DATA                        
 _sinh                                 C:003A fpdumyl         CODE                            
 _SoundUpdateFlag                      E:08EE SOUND           FAR_DATA                        
 _sqrt                                 C:003A fpdumyl         CODE                            
-_startClock                           C:120E CLOCKIO         clockio_TEXT                    
-_startLevel                           C:2D83 GAME            game_TEXT                       
+_startClock                           C:128D CLOCKIO         clockio_TEXT                    
+_startLevel                           C:2E02 GAME            game_TEXT                       
 _startMilisecond                      E:0305 TIMER           FAR_DATA                        
-_startTimer                           C:45CC TIMER           timer_TEXT                      
-_stopClock                            C:1219 CLOCKIO         clockio_TEXT                    
-_stopTimer                            C:45F5 TIMER           timer_TEXT                      
+_startTimer                           C:464B TIMER           timer_TEXT                      
+_stopClock                            C:1298 CLOCKIO         clockio_TEXT                    
+_stopTimer                            C:4674 TIMER           timer_TEXT                      
 _tan                                  C:003A fpdumyl         CODE                            
 _tanh                                 C:003A fpdumyl         CODE                            
-_testMath                             C:54C3 TESTS           tests_TEXT                      
-_timer0int                            C:11C1 CLOCKIO         clockio_TEXT                    
-_timer1int                            C:5023 SOUND           sound_TEXT                      
-_underline                            C:0779 ANSI            ansi_TEXT                       
-_updateBallDrawnPosition              C:1240 BALL            ball_TEXT                       
-_updateBalls                          C:16C1 BALL            ball_TEXT                       
-_updateBoss                           C:1FE9 BOSS            boss_TEXT                       
-_updateBrickPositionLeft              C:20CE BRICK           brick_TEXT                      
-_updateBrickPositionRight             C:21D1 BRICK           brick_TEXT                      
-_updateGame                           C:311A GAME            game_TEXT                       
-_updateLives                          C:30AD GAME            game_TEXT                       
-_updateStrikerDrawnPositionLeft       C:3E69 STRIKER         striker_TEXT                    
-_updateStrikerDrawnPositionRight      C:3D86 STRIKER         striker_TEXT                    
+_testMath                             C:5507 TESTS           tests_TEXT                      
+_timer0int                            C:1240 CLOCKIO         clockio_TEXT                    
+_timer1int                            C:5067 SOUND           sound_TEXT                      
+_underline                            C:07F8 ANSI            ansi_TEXT                       
+_updateBallDrawnPosition              C:12BF BALL            ball_TEXT                       
+_updateBalls                          C:1740 BALL            ball_TEXT                       
+_updateBoss                           C:2068 BOSS            boss_TEXT                       
+_updateBrickPositionLeft              C:214D BRICK           brick_TEXT                      
+_updateBrickPositionRight             C:2250 BRICK           brick_TEXT                      
+_updateGame                           C:3199 GAME            game_TEXT                       
+_updateLives                          C:312C GAME            game_TEXT                       
+_updateStrikerDrawnPositionLeft       C:3EE8 STRIKER         striker_TEXT                    
+_updateStrikerDrawnPositionRight      C:3E05 STRIKER         striker_TEXT                    
 _videoBuffer                          E:0102 SCREENIO        FAR_BSS                         
-_waitForEvent                         C:464D TIMER           timer_TEXT                      
-_waitOnce                             C:11AE CLOCKIO         clockio_TEXT                    
-_waitOnceSound                        C:4FE3 SOUND           sound_TEXT                      
+_waitForEvent                         C:46CC TIMER           timer_TEXT                      
+_waitOnce                             C:122D CLOCKIO         clockio_TEXT                    
+_waitOnceSound                        C:5027 SOUND           sound_TEXT                      
 _wholeString                          E:0120 SCREENIO        FAR_BSS                         
 _wholeStringIndex                     E:08E8 SCREENIO        FAR_DATA                        
 _wholeStringLength                    E:08EA SCREENIO        FAR_DATA                        
-_window                               C:0A8E ANSI            ansi_TEXT                       
-_write_UART0                          C:62CC WRITEUART0      teuart0_TEXT                    
-_writeLED                             C:4E17 SCREENIO        creenio_TEXT                    
-_writeScreen                          C:0A47 ANSI            ansi_TEXT                       
+_window                               C:0B0D ANSI            ansi_TEXT                       
+_write_UART0                          C:65EC WRITEUART0      teuart0_TEXT                    
+_writeLED                             C:4E5B SCREENIO        creenio_TEXT                    
+_writeScreen                          C:0AC6 ANSI            ansi_TEXT                       
+_writeTitle                           C:5918 CHARSET         charset_TEXT                    
 _zsl_g_clock_xdefine                00546000 (User Defined)
 
-295 external symbol(s).
+299 external symbol(s).
 
 
 START ADDRESS:
@@ -792,71 +824,72 @@ CALL GRAPH
 ==========
 Depth Address    CF Function                       Calls Function
 ----- ---------- -- ------------------------------ --------------------------------
-    1 E:0100      0 _f__far_modf                   ->
-    2 R:20        0 _n__floor                      ->
-    3 R:20        0 _n___u_flt_rnd                 ->
-    4 R:20        0 _n__far_modf                   ->
-    5 R:20        0 _n__sqrt                       ->
-    6 R:20        0 _n__near_modf                  ->
-    7 E:0100      0 _f__atan                       ->
-    8 E:0100      0 _f__pow                        ->
-    9 R:20        0 _n__near_strtod                ->
-   10 E:0100      0 _f__atan2                      ->
-   11 R:20        0 _n__far_strtod                 ->
-   12 E:0100      0 _f__far_strtod                 ->
-   13 R:20        0 _n__atan                       ->
-   14 E:0100      0 _f__log10                      ->
-   15 E:0100      0 _f__log                        ->
-   16 E:0100      0 _f__floor                      ->
-   17 R:20        0 _n__exp                        ->
-   18 E:0100      0 _f__fmod                       ->
-   19 E:0100      0 _f__near_modf                  ->
-   20 R:20        0 _n__tan                        ->
-   21 E:0100      0 _f___u_flt_info                ->
-   22 R:20        0 _n__atan2                      ->
-   23 R:20        0 _n__near_atof                  ->
-   24 E:0100      0 _f__far_atof                   ->
-   25 R:20        0 _n__far_atof                   ->
-   26 E:0100      0 _f__acos                       ->
-   27 E:0100      0 _f__cosh                       ->
-   28 R:20        0 _n___u_dtog                    ->
-   29 R:20        0 _n___u_dtof                    ->
-   30 R:20        0 _n___u_dtoe                    ->
-   31 R:20        0 _n__cosh                       ->
-   32 R:20        0 _n__sinh                       ->
-   33 R:20        0 _n__acos                       ->
-   34 E:0100      0 _f__far_frexp                  ->
-   35 E:0100      0 _f__tan                        ->
-   36 R:20        0 _n__ldexp                      ->
-   37 E:0100      0 _f__tanh                       ->
-   38 R:20        0 _n___u_flt_info                ->
-   39 E:0100      0 _f__sinh                       ->
-   40 E:0100      0 _f__near_frexp                 ->
-   41 E:0100      0 _f__near_atof                  ->
-   42 E:0100      0 _f___u__dtog                   ->
-   43 E:0100      0 _f___u__dtof                   ->
-   44 E:0100      0 _f___u__dtoe                   ->
-   45 R:20        0 _n__tanh                       ->
-   46 R:20        0 _n__near_frexp                 ->
-   47 R:20        0 _n__far_frexp                  ->
-   48 E:0100      0 _f__ldexp                      ->
-   49 E:0100      0 _f__asin                       ->
-   50 R:20        0 _n__fabs                       ->
-   51 E:0100      0 _f__ceil                       ->
-   52 R:20        0 _n__pow                        ->
-   53 E:0100      0 _f__near_strtod                ->
-   54 E:0100      0 _f__fabs                       ->
-   55 R:20        0 _n__ceil                       ->
-   56 R:20        0 _n__fmod                       ->
-   57 R:20        0 _n__log10                      ->
-   58 R:20        0 _n__asin                       ->
-   59 E:0100      0 _f__sqrt                       ->
-   60 E:0100      0 _f___u_flt_rnd                 ->
-   61 R:20        0 _n__log                        ->
-   62 E:0100      0 _f__exp                        ->
+    1 R:20        0 _get_freq                      ->
+    2 E:0100      0 _f__far_modf                   ->
+    3 R:20        0 _n__floor                      ->
+    4 R:20        0 _n___u_flt_rnd                 ->
+    5 R:20        0 _n__far_modf                   ->
+    6 R:20        0 _n__sqrt                       ->
+    7 R:20        0 _n__near_modf                  ->
+    8 E:0100      0 _f__atan                       ->
+    9 E:0100      0 _f__pow                        ->
+   10 R:20        0 _n__near_strtod                ->
+   11 E:0100      0 _f__atan2                      ->
+   12 R:20        0 _n__far_strtod                 ->
+   13 E:0100      0 _f__far_strtod                 ->
+   14 R:20        0 _n__atan                       ->
+   15 E:0100      0 _f__log10                      ->
+   16 E:0100      0 _f__log                        ->
+   17 E:0100      0 _f__floor                      ->
+   18 R:20        0 _n__exp                        ->
+   19 E:0100      0 _f__fmod                       ->
+   20 E:0100      0 _f__near_modf                  ->
+   21 R:20        0 _n__tan                        ->
+   22 E:0100      0 _f___u_flt_info                ->
+   23 R:20        0 _n__atan2                      ->
+   24 R:20        0 _n__near_atof                  ->
+   25 E:0100      0 _f__far_atof                   ->
+   26 R:20        0 _n__far_atof                   ->
+   27 E:0100      0 _f__acos                       ->
+   28 E:0100      0 _f__cosh                       ->
+   29 R:20        0 _n___u_dtog                    ->
+   30 R:20        0 _n___u_dtof                    ->
+   31 R:20        0 _n___u_dtoe                    ->
+   32 R:20        0 _n__cosh                       ->
+   33 R:20        0 _n__sinh                       ->
+   34 R:20        0 _n__acos                       ->
+   35 E:0100      0 _f__far_frexp                  ->
+   36 E:0100      0 _f__tan                        ->
+   37 R:20        0 _n__ldexp                      ->
+   38 E:0100      0 _f__tanh                       ->
+   39 R:20        0 _n___u_flt_info                ->
+   40 E:0100      0 _f__sinh                       ->
+   41 E:0100      0 _f__near_frexp                 ->
+   42 E:0100      0 _f__near_atof                  ->
+   43 E:0100      0 _f___u__dtog                   ->
+   44 E:0100      0 _f___u__dtof                   ->
+   45 E:0100      0 _f___u__dtoe                   ->
+   46 R:20        0 _n__tanh                       ->
+   47 R:20        0 _n__near_frexp                 ->
+   48 R:20        0 _n__far_frexp                  ->
+   49 E:0100      0 _f__ldexp                      ->
+   50 E:0100      0 _f__asin                       ->
+   51 R:20        0 _n__fabs                       ->
+   52 E:0100      0 _f__ceil                       ->
+   53 R:20        0 _n__pow                        ->
+   54 E:0100      0 _f__near_strtod                ->
+   55 E:0100      0 _f__fabs                       ->
+   56 R:20        0 _n__ceil                       ->
+   57 R:20        0 _n__fmod                       ->
+   58 R:20        0 _n__log10                      ->
+   59 R:20        0 _n__asin                       ->
+   60 E:0100      0 _f__sqrt                       ->
+   61 E:0100      0 _f___u_flt_rnd                 ->
+   62 R:20        0 _n__log                        ->
+   63 E:0100      0 _f__exp                        ->
 
 
 END OF LINK MAP:
 ================
 0 Errors
-0 Warnings
+2 Warnings

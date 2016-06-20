@@ -85,6 +85,8 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
 
 rebuildall: clean Debug
 
@@ -113,7 +115,8 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -481,4 +484,20 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj :  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\tests.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\charset.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\charset.c
 

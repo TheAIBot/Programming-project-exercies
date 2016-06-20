@@ -1,5 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
+#include "charset.h"
 #include "ansi.h"
 
 #define COLUMN_COUNT 5
@@ -28,13 +29,13 @@ void writeTitle(int startX, int startY, char title[])
 		for(column = 0; column < COLUMN_COUNT; column++)
 		{
 			char columnBits = getCharColumnCharArray(title[x - startX], column);
-			for(row = 0, row < ROW_COUNT; row++)
+			for(row = 0; row < ROW_COUNT; row++)
 			{
 				if(columnBits & (1 << row) == 1)
 				{
-					gotoxy(x + column, startY + y - (2 * row));
+					gotoxy(x + column, startY - (2 * row));
 					printf("%c", TITLE_CHAR);
-					gotoxy(x + column, startY + y - (2 * row) + 1);
+					gotoxy(x + column, startY - (2 * row) - 1);
 					printf("%c", TITLE_CHAR);
 				}
 				

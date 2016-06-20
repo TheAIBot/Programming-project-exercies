@@ -16,7 +16,7 @@
 void main() {
 
 	//uncomment this to run the game
-	/*
+	
 	struct TGame game;
 
 	init_uart(_UART0, _DEFFREQ, 115200);
@@ -26,6 +26,6 @@ void main() {
 	{
 		runGame(&game);
 	}
-	*/
-	runAllTests();
+	
+	//runAllTests();
 }
