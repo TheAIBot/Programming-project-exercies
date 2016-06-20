@@ -18,12 +18,6 @@ void LEDinit()
 	initClock();
 }
 
-
-char getCharColumnCharArray(char c, int index)
-{
-	return character_data[c - 32][index];
-}
-
 void LEDsetString(char string[])
 {
 	int length = 0;

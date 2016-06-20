@@ -847,7 +847,28 @@ Title=HelloWorld -- ZDS II - Z8 Encore! Family -- fixedmath.h - [fixedmath.h]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKLJPPPPPNGAAAAAABEGAAAAAKODAAAAA
 
 [WorkState_v1_1.ToolBarMgr]
+1=59140
+Bar#2=0
+BarID=59420
+Bars=3
+ClassName=
 CoolLook=True
+DockingStyle=0
+ExStyle=0
 LargeButtons=False
+MDIChild=False
+MRUDockingState=0
+MRUFloatCX=0
+MRUFloatCY=0
+MRUHorzDockCX=0
+MRUHorzDockCY=0
+MRUVertDockCX=0
+MRUVertDockCY=0
+PctWidth=0
+PrevFloating=False
+ResourceID=0
+Style=0
 ToolTips=True
+TypeID=0
+WindowName=
 
