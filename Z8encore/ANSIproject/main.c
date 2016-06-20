@@ -7,25 +7,27 @@
 #include "clockio.h"
 #include "sound.h"
 #include "tests.h"
-
-#define GAME_SIZE_X 100
-#define GAME_SIZE_Y 40
-#define STRIKER_LENGTH 21
-#define GAME_UPDATE_RATE 30
+#include "charset.h"
 
 void main() {
-
 	//uncomment this to run the game
 	
 	struct TGame game;
 
 	init_uart(_UART0, _DEFFREQ, 115200);
 
-	initGame(&game, GAME_SIZE_X, GAME_SIZE_Y, STRIKER_LENGTH, GAME_UPDATE_RATE);
+	initGame(&game);
 	while(1)
 	{
 		runGame(&game);
 	}
+	/*
+	initSoundPin();
+	initClock();
+	initSoundClock();
 	
+	playGameWinSound();
+	while(1){}
+*/
 	//runAllTests();
 }

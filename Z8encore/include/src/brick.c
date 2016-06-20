@@ -11,6 +11,7 @@
 
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
+#define SCORE_KILL_BRICK 50
 
 char getBrickColor(char data)
 {
@@ -97,7 +98,7 @@ void handleBrickCornerCollision(struct TBall *ball, int minAngle, int maxAngle)
 	}
 }
 
-char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_COUNT], int brickCount)
+char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_COUNT], int brickCount, unsigned int *score)
 {
 	int brickIndex;
 	int ballIndex;
@@ -199,13 +200,14 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 							brick->data--;
 							if(HEALTH(brick->data) <= 0)
 							{
+								*score += SCORE_KILL_BRICK;
 								clearBrick(brick);
 								playDeathBrickSound();
 							}
 							else
 							{
 								drawBrick(brick);
-								playBounceSound();
+								playBounceSound(HEALTH(brick->data));
 							}
 						}
 					}

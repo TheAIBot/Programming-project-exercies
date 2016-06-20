@@ -18,22 +18,23 @@
 #include "random.h"
 #include "sound.h"
 #include "fixedmath.h"
+#include "charset.h"
 
 
-void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLength, int updateFrequency)
+void initGame(struct TGame *game)
 {
 		//standard instanser
 	
-	game->strikerLength = strikerLength;
-	game->gameSizeX = gameSizeX;
-	game->gameSizeY = gameSizeY;
+	game->strikerLength = STRIKER_LENGTH;
+	game->gameSizeX = GAME_SIZE_X;
+	game->gameSizeY = GAME_SIZE_Y;
 	game->lives = DEFAULT_LIVES;
 	game->level = 1;
 	game->levelWon = 0;
 
 	
 	// start a clock with the chosen frequency which means the clock should tick every 1s / freq, 1s == 1000
-	initTimer(&game->timer, 1000 / updateFrequency);
+	initTimer(&game->timer, 1000 / GAME_UPDATE_RATE);
 
 	//initButtons();
 	initJoystick();
@@ -48,12 +49,20 @@ void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLengt
 	enablecursor('0');
 }
 
+void resetGame(struct TGame *game)
+{
+	game->level = 0;
+	game->score = 0;
+	game->strikerLength = STRIKER_LENGTH;
+}
+
 void getDifficulty(struct TGame *game)
 {
 	char i;
-	game->difficulty = 0;
+	game->difficulty = 1;
 	// begin main loop, selecting difficulty level
 	clrscr();
+	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
     printf("Welcome to Brick Breaker!");
@@ -83,6 +92,7 @@ void getDifficulty(struct TGame *game)
 		}
 	}
 	game->lives = DEFAULT_LIVES - (game->difficulty << 1);
+	game->strikerLength -= 2 * game->difficulty;
 }
 
 int getAngle() {
@@ -93,6 +103,15 @@ int getAngle() {
 	return angle;
 }
 
+void updateGameInfo(int gameSizeY, int lives, int score)
+{
+	gotoxy(0,gameSizeY);
+	fgcolor(FCOLOR_LIGHT_GRAY);
+	printf("Total score: %5d", score);
+	gotoxy(0,gameSizeY + 1);
+	printf("Lives: %5d", lives);
+}
+
 void startLevel(struct TGame *game)
 {
 	char i;
@@ -100,10 +119,9 @@ void startLevel(struct TGame *game)
 	game->levelWon = 0;
 
 	//draw window
+	color(FCOLOR_WHITE, BCOLOR_BLACK);
 	clrscr();
-	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-	fgcolor(FCOLOR_WHITE);
 
 
 	//initialize game objects
@@ -122,15 +140,7 @@ void startLevel(struct TGame *game)
 	//TID??
 	fgcolor(FCOLOR_LIGHT_GRAY);
 	printf("Difficulty: %5d\n", game->difficulty);
-	printf("Total score: %5d\n",game->score);
-	printf("Lives: %5d",game->lives);
-}
-
-void updateLives(int gameSizeY, int lives)
-{
-	gotoxy(0,gameSizeY + 3);
-	fgcolor(FCOLOR_LIGHT_GRAY);
-	printf("Lives: %5d", lives);
+	updateGameInfo(game->gameSizeY + 2, game->lives, game->score);
 }
 
 void updateGame(struct TGame *game)
@@ -157,12 +167,12 @@ void updateGame(struct TGame *game)
 		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
 		impact(game->balls, &game->striker, game->gameSizeX, game->gameSizeY);
 		bounceStriker(&game->striker, game->balls);
-		updateBoss(&game->boss, game->balls);
-		if(handleBrickCollisions(game->bricks, game->balls, game->brickCount))
+		updateBoss(&game->boss, game->balls, &game->score, game->difficulty);
+		if(handleBrickCollisions(game->bricks, game->balls, game->brickCount, &game->score) && isBossDead(&game->boss))
 		{
 			game->levelWon = 1;
 		}
-		if(isBallDead(game->balls, game->gameSizeY))
+		else if(isBallDead(game->balls, game->gameSizeY))
 		{
 			if(IS_ALIVE(game->balls[0].data) == 0)
 			{
@@ -170,19 +180,39 @@ void updateGame(struct TGame *game)
 				updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, TO_FIX14(game->gameSizeX >> 1), TO_FIX14(game->gameSizeY - 2));
 	
 				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, getAngle(), 0, 1); // starting angle is random between 45 and 135 degrees
-				initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
+				initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 , game->strikerLength);
 				game->newBall = 1;
 			}
 			game->lives--;
-			
-			updateLives(game->gameSizeY, game->lives);
 		}
+		updateGameInfo(game->gameSizeY + 2, game->lives, game->score);
 	}
+}
+
+void gameLost(struct TGame *game)
+{
+	clrscr();
+	fgcolor(FCOLOR_WHITE);
+	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
+    writeTitle((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1), "GAME OVER", FCOLOR_RED);
+	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 8);
+	printf("Score: %d", game->score);
+}
+
+void gameWon(struct TGame *game)
+{
+	
+	clrscr();
+	fgcolor(FCOLOR_WHITE);
+	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
+    writeTitle((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1), "YOU WIN!!!!", FCOLOR_GREEN);
+	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 8);
+	printf("Score: %d + %d * 500 * %d = %d", game->score, game->lives, game->score + game->lives * 500, game->difficulty);
 }
 
 void runGame(struct TGame *game)
 {
-	game->level = 0;
+	resetGame(game);
 	getDifficulty(game);
 	playStartGameSound();
 	do
@@ -196,18 +226,17 @@ void runGame(struct TGame *game)
 		}
 		if(game->lives == 0)
 		{
-			playGameOverSound();
 			break;
 		}
 	} while(game->level < LEVEL_COUNT);
-	if(game->level == LEVEL_COUNT)
+	if(game->level == LEVEL_COUNT && game->lives > 0)
 	{
-		//game won
+		gameWon(game);
+		playGameWinSound();
 	}
 	else {
-		clrscr();
-	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
-    printf("Game Over!");
+		gameLost(game);
+		playGameOverSound();
 	}
+	while(!isButton2Pressed()) {}
 }

@@ -15,7 +15,7 @@
 
 struct TBoss
 {
-	struct TBrick bricks[16];
+	struct TBrick bricks[BOSS_BRICK_COUNT];
 	char movement; // x axis 0000, x axis moves 0000
 	char currentMovement; // x axis 0000, x axis movement 0000 // alle brick der kan bevæge sig skal have den samme størrlse
 	int startShotX;
@@ -25,7 +25,8 @@ struct TBoss
 
 void initBoss(struct TBoss *boss, struct TBrick bossBricks[BOSS_BRICK_COUNT], char startShitX, char startShotY, char movement, char useBoss);
 void drawBoss(struct TBoss *boss);
-void updateBoss(struct TBoss *boss, struct TBall shots[6]);
+void updateBoss(struct TBoss *boss, struct TBall shots[], unsigned int *score, char difficulty);
+char isBossDead(struct TBoss *boss);
 
 
 #endif

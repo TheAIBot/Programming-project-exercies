@@ -8,6 +8,8 @@
 #include "fixedmath.h"
 #include "game.h"
 
+#define SCORE_KILL_BOSS 2000
+
 void drawBoss(struct TBoss *boss)
 {
 	if(USE_BOSS(boss->data))
@@ -114,9 +116,9 @@ void shoot(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT])
 	}
 }
 
-char shouldShoot(struct TBall shots[MAX_BALL_COUNT])
+char shouldShoot(struct TBall shots[MAX_BALL_COUNT], char difficulty)
 {
-	if((RANDOM(0, 200) == 0))
+	if((RANDOM(0, 200 - 20 * (int)difficulty) == 0))
 	{
 		int i;
 		for(i = 0; i < MAX_BALL_COUNT; i++)
@@ -130,17 +132,35 @@ char shouldShoot(struct TBall shots[MAX_BALL_COUNT])
 	return 0;
 }
 
-void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT])
+char isBossDead(struct TBoss *boss)
 {
 	if(USE_BOSS(boss->data))
 	{
-		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT) == 1)
+		int i;
+		for(i = 0; i < BOSS_BRICK_COUNT; i++)
 		{
+			if(IS_ALIVE(boss->bricks[i].data) && 
+			   IS_INDESTRUCTIBLE(boss->bricks[i].data) == 0)
+			{
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT], unsigned int *score, char difficulty)
+{
+	if(USE_BOSS(boss->data))
+	{
+		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT, score) == 1)
+		{
+			*score += SCORE_KILL_BOSS;
 			clearBoss(boss);
 			boss->data = boss->data ^ USE_BOSS_MASK;
 		}
 		moveBricks(boss);
-		if(shouldShoot(shots))
+		if(shouldShoot(shots, difficulty))
 		{
 			shoot(boss, shots);
 		}

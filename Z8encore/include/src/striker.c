@@ -159,7 +159,7 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[MAX_BALL_COUNT]
 						ball->angle -= ball->angle / 3;
 					}
 				}
-				playBounceSound();
+				playWallSound();
 			}
 		}
 	}

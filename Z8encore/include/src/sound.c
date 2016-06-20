@@ -1,5 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
+#include "clockio.h"
 
 volatile char SoundUpdateFlag = 0;
 
@@ -35,13 +36,18 @@ void initSoundPin()
 	PDCTL = ~0x04;
 }
 
-void playBounceSound()
+void playBounceSound(char h)
 {
 	int i;
-	for (i = 0; i<100;i++){
+	for (i = 0; i<100 - h * 10;i++){
 		PDOUT = ~PDOUT;
-		delaySound(20);
+		delaySound(20 + h * 10);
 	}
+}
+
+void playWallSound()
+{
+	playBounceSound(0);
 }
 
 void playDeathBallSound() {
@@ -78,6 +84,24 @@ void playGameOverSound()
 	}
 }
 
+void playGameWinSound()
+{
+	int i;
+	for (i = 80; i>-10000;i--){
+		PDOUT = ~PDOUT;
+		delaySound(i);
+	}
+	delay(100);
+	for (i = 0; i<100;i++){
+		PDOUT = ~PDOUT;
+		delaySound(40);
+	}
+	delay(100);
+	for (i = 0; i<600;i++){
+		PDOUT = ~PDOUT;
+		delaySound(20);
+	}
+}
 
 
 void initSoundClock() // need to add an argument to set the time interval

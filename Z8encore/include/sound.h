@@ -3,14 +3,15 @@
 
 #include "ansi.h"
 
-void timer1int();
 void initSoundPin();
 void initSoundClock();
 
-void playBounceSound();
+void playBounceSound(char h);
+void playWallSound();
 void playDeathBallSound();
 void playDeathBrickSound();
 void playStartGameSound();
 void playGameOverSound();
+void playGameWinSound();
 
 #endif

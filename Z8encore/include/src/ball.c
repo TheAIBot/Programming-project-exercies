@@ -120,12 +120,12 @@ void impact(struct TBall balls[MAX_BALL_COUNT], struct TStriker *vStriker, int g
 			if (ballx >= gameSizeX - 1 && (ball->angle < 90 || ball->angle > 270) || 
 				ballx <= 2 && ball->angle > 90 && ball->angle < 270) {
 				ball->angle = bounceVertical(ball->angle);
-				playBounceSound();
+				playWallSound();
 			}
 			//bounce off top wall
 			if (bally <= 2 && ball->angle > 0 && ball->angle < 180){
 				ball->angle = bounceHorizontal(ball->angle);
-				playBounceSound();
+				playWallSound();
 			}
 		}
 	}
