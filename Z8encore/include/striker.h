@@ -16,4 +16,5 @@ void moveStrikerLeft(struct TStriker *vStriker);
 void moveStrikerRight(struct TStriker *vStriker);
 void moveStriker(struct TStriker *vStriker, int gameSize, char rightButtonPressed, char leftButtonPressed);
 void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]);
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed);
 #endif

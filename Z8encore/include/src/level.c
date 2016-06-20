@@ -219,27 +219,4 @@ void initLevel(struct TGame *game, int level)
 	}
 }
 
-void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
-    if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
-		//render new ball position
-		long oldX = vball->position.x;
-		long oldY = vball->position.y;
-		vball->position.x += TO_FIX14(1);
-		setBallColor(vball);
-		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
 
-		//render new bouncer position
-		moveStrikerRight(vStriker);	
-	}
-	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
-		//render new ball position
-		long oldX = vball->position.x;
-		long oldY = vball->position.y;
-		vball->position.x -= TO_FIX14(1);
-		setBallColor(vball);
-		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
-
-		//render new bouncer position
-		moveStrikerLeft(vStriker);
-	}
-}

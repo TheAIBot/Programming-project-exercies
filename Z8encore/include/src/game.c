@@ -17,11 +17,11 @@
 #include "joystick.h"
 #include "random.h"
 #include "sound.h"
+#include "fixedmath.h"
 
 
 void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerLength, int updateFrequency)
 {
-	
 		//standard instanser
 	
 	game->strikerLength = strikerLength;
@@ -58,9 +58,9 @@ void getDifficulty(struct TGame *game)
 	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
     printf("Welcome to Brick Breaker!");
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-    printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+    printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 3);
-    printf("Press center button to start game.");
+    printf("Press both buttons to start game.");
 	while(1){
 		//wait 100ms
 		for(i = 0; i < 10; i++)
@@ -71,17 +71,26 @@ void getDifficulty(struct TGame *game)
 		if(isButton1Pressed()){
 			(game->difficulty)++;
 			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-            printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+            printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
 		}
 		if(isButton2Pressed() && game->difficulty > 1){
 			(game->difficulty)--;
 			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-        	printf("Select difficulty level by pressing left/right button (max. 5): %5d", game->difficulty);
+        	printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
 		}
 		if(isButton1Pressed() && isButton2Pressed() || game->difficulty >= 5){
 			break;
 		}
 	}
+	game->lives = DEFAULT_LIVES - (game->difficulty << 1);
+}
+
+int getAngle() {
+	int angle = RANDOM(10,170);
+	if (angle <= 95 && angle >= 85) {
+		angle = RANDOM(10,84);
+	}
+	return angle;
 }
 
 void startLevel(struct TGame *game)
@@ -98,7 +107,7 @@ void startLevel(struct TGame *game)
 
 
 	//initialize game objects
-	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
+	initBall(&game->balls[0],game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, getAngle(), 0, 1); // starting angle is random between 45 and 135 degrees
 	for(i = 1; i <  MAX_BALL_COUNT; i++)
 	{
 		initBall(&game->balls[i], 0, 0, FCOLOR_RED, 0, 0, 0);
@@ -111,6 +120,7 @@ void startLevel(struct TGame *game)
 	// initialize game data
 	gotoxy(0,game->gameSizeY + 1);
 	//TID??
+	fgcolor(FCOLOR_LIGHT_GRAY);
 	printf("Difficulty: %5d\n", game->difficulty);
 	printf("Total score: %5d\n",game->score);
 	printf("Lives: %5d",game->lives);
@@ -157,9 +167,9 @@ void updateGame(struct TGame *game)
 			if(IS_ALIVE(game->balls[0].data) == 0)
 			{
 				clearStriker(game->striker.position.x,game->striker.position.y, game->striker.length); 
-				updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, game->gameSizeX >> 1, game->gameSizeY - 2);
+				updateBallDrawnPosition(game->balls[0].position.x, game->balls[0].position.y, TO_FIX14(game->gameSizeX >> 1), TO_FIX14(game->gameSizeY - 2));
 	
-				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, RANDOM(10, 170), 0, 1); // starting angle is random between 45 and 135 degrees
+				initBall(&game->balls[0], game->gameSizeX >> 1, game->gameSizeY - 2, FCOLOR_WHITE, getAngle(), 0, 1); // starting angle is random between 45 and 135 degrees
 				initStriker(&game->striker, game->gameSizeX >> 1, game->gameSizeY - 1 ,game->strikerLength);
 				game->newBall = 1;
 			}
@@ -172,7 +182,6 @@ void updateGame(struct TGame *game)
 
 void runGame(struct TGame *game)
 {
-	game->lives = DEFAULT_LIVES;
 	game->level = 0;
 	getDifficulty(game);
 	playStartGameSound();
@@ -194,5 +203,11 @@ void runGame(struct TGame *game)
 	if(game->level == LEVEL_COUNT)
 	{
 		//game won
+	}
+	else {
+		clrscr();
+	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
+	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
+    printf("Game Over!");
 	}
 }

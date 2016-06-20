@@ -133,7 +133,7 @@ void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT])
 {
 	if(USE_BOSS(boss->data))
 	{
-		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT) == 0)
+		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT) == 1)
 		{
 			clearBoss(boss);
 			boss->data = boss->data ^ USE_BOSS_MASK;

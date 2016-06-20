@@ -6,6 +6,7 @@
 #include "fixedmath.h"
 #include "trigonometry.h"
 #include "sound.h"
+#include "game.h"
 
 #define STRIKER_STYLE 178
 #define EMPTY_STYLE ' '
@@ -112,9 +113,9 @@ void initStriker(struct TStriker *vStriker, int x, int y, int l){
 }
 
 //bounce off striker at different angles
-void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
+void bounceStriker(struct TStriker *vStriker, struct TBall balls[MAX_BALL_COUNT]){
 	int ballIndex;
-	for(ballIndex = 0; ballIndex < 6; ballIndex++)
+	for(ballIndex = 0; ballIndex < MAX_BALL_COUNT; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
 		{
@@ -125,7 +126,7 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
 			int stry = vStriker->position.y;//truncation
 			int strhl = vStriker->length >> 1; //half length of striker
 		
-			if ((bally == stry - 1) && ballx >= strx - strhl && ballx <= strx + strhl && ball->angle >= 180) 
+			if ((bally == stry - 1) && ballx >= strx - strhl - 1 && ballx <= strx + strhl + 1 && ball->angle >= 180) 
 			{	
 				int angle = ball->angle - 180;
 				ball->angle = 180 - (angle);
@@ -161,5 +162,30 @@ void bounceStriker(struct TStriker *vStriker, struct TBall balls[6]){
 				playBounceSound();
 			}
 		}
+	}
+}
+
+void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
+    if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
+		//render new ball position
+		long oldX = vball->position.x;
+		long oldY = vball->position.y;
+		vball->position.x += TO_FIX14(1);
+		setBallColor(vball);
+		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
+
+		//render new bouncer position
+		moveStrikerRight(vStriker);	
+	}
+	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
+		//render new ball position
+		long oldX = vball->position.x;
+		long oldY = vball->position.y;
+		vball->position.x -= TO_FIX14(1);
+		setBallColor(vball);
+		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
+
+		//render new bouncer position
+		moveStrikerLeft(vStriker);
 	}
 }

@@ -123,7 +123,35 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 					{
 						anyBricksAlive = 1; // atleast one brick is alive
 					}
-					if((ballX >= brickX && 
+					if(ballX >= brickX && 
+					    ballX < brickX + brickSizeWidth)
+					{
+						if(ballY == brickY - 1 && ball->angle > 180 && ball->angle < 360)
+						{
+							hit = 1;
+							ball->angle = bounceHorizontal(ball->angle);
+						}
+						else if(ballY == brickY + brickSizeHeight && ball->angle > 0 && ball->angle < 180)
+						{
+							hit = 1;
+							ball->angle = bounceHorizontal(ball->angle);
+						}
+					}
+					else if(ballY >= brickY && 
+					        ballY < brickY + brickSizeHeight)
+					{
+						if(ballX == brickX - 1 && (ball->angle < 90 || ball->angle > 270))
+						{
+							hit = 1;
+							ball->angle = bounceVertical(ball->angle);
+						}
+						else if(ballX == brickX + brickSizeWidth && ball->angle > 90 && ball->angle < 270)
+						{
+							hit = 1;
+							ball->angle = bounceVertical(ball->angle);
+						}
+					}
+					/*if((ballX >= brickX && 
 					    ballX < brickX + brickSizeWidth ) &&
 					   (ballY <= brickY + brickSizeHeight && 
 						ballY >= brickY - 1))
@@ -139,6 +167,7 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 						hit = 1;
 						ball->angle = bounceVertical(ball->angle);
 					}
+					*/
 					else if(ballX == brickX - 1 &&
 					   		ballY == brickY - 1)
 					{
