@@ -5,8 +5,8 @@
 //
 // =====================================================================
 
-#ifndef SINELUT_H
-#define SINELUT_H
+#ifndef _TRIGONOMETRY_H
+#define _TRIGONOMETRY_H
 
 // === LUT SIZES ===
 #define SIN_SIZE 512
