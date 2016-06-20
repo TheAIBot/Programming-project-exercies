@@ -7,48 +7,58 @@
 #include "color.h"
 #include "fixedmath.h"
 
-void drawBoss(struct TBoss *boss)
-{
-	if(USE_BOSS(boss->data))
-	{
-		char brickCount = sizeof(boss->bricks) / sizeof(boss->bricks[0]);
-		char i;
-		for(i = 0; i < brickCount; i++)
-		{
-			drawBrick(&boss->bricks[i]);
-		}
-	}
-}
+#define sX (60)
+#define sY (20)
+#define bS (0x26)
+#define hn (1)
+#define hI (hn | (1 << INDESTRUCTIBLE_BIT_SHIFT))
+#define hIM (hI | (1 << MOVING_BIT_SHIFT))
+
+#define brickHeight 2
+#define brickWidth 6
+#define bricksize 0x26
 
 
-void clearBoss(struct TBoss *boss)
-{
-	char brickCount = sizeof(boss->bricks) / sizeof(boss->bricks[0]);
-	char i;
-	for(i = 0; i < brickCount; i++)
-	{
-		clearBrick(&boss->bricks[i]);
-	}
-}
-
-void initBoss(struct TBoss *boss, struct TBrick bossBricks[BOSS_BRICK_COUNT], char startShotX, char startShotY, char movement, char useBoss)
+void initBoss(struct TBoss *boss, char useBoss)
 {
 	if(useBoss)
 	{
-		int i;
-		for(i = 0; i < BOSS_BRICK_COUNT; i++)
+		struct TBrick bossBricks[16] = 
 		{
+			//{(1) * 1, (1) * 15, 1, 3},
+	
+			{sX + 0 * brickWidth, sY + 0 * brickHeight, bS, hI},
+			{sX + 2 * brickWidth, sY + 0 * brickHeight, bS, hI},
+			{sX + 3 * brickWidth, sY + 0 * brickHeight, bS, hI},
+			{sX + 5 * brickWidth, sY + 0 * brickHeight, bS, hI},
+			{sX + 1 * brickWidth, sY + 1 * brickHeight, bS, hI},
+			{sX + 2 * brickWidth, sY + 1 * brickHeight, bS, hI},
+			{sX + 3 * brickWidth, sY + 1 * brickHeight, bS, hI}, 
+			{sX + 4 * brickWidth, sY + 1 * brickHeight, bS, hI},
+			{sX + 0 * brickWidth, sY + 2 * brickHeight, bS, hI},
+			{sX + 1 * brickWidth, sY + 2 * brickHeight, bS, hI},
+			{sX + 2 * brickWidth, sY + 2 * brickHeight, bS, hn}, 
+			{sX + 3 * brickWidth, sY + 2 * brickHeight, bS, hn},
+			{sX + 4 * brickWidth, sY + 2 * brickHeight, bS, hI},
+			{sX + 5 * brickWidth, sY + 2 * brickHeight, bS, hI},
+			{sX + 1 * brickWidth, sY + 3 * brickHeight, bS, hIM | DIRECTION_MASK},
+			{sX + 4 * brickWidth, sY + 3 * brickHeight, bS, hIM},
+		};
+		int i;
+		for(i = 0; i < 16; i++)
+		{
+			drawBrick(&bossBricks[i]);
 			boss->bricks[i] = bossBricks[i];
 		}
-		boss->startShotX = startShotX;
-		boss->startShotY = startShotY;
-		boss->movement = movement;
+		boss->startShotX = sX + 4 * brickWidth + 1;
+		boss->startShotY = 3 * brickHeight + 1; //0x26 & 0x0f = 0x06 | 0xf0 = 0xf6 >> 4 = 0x0f
+		boss->movement = (0xf0) | (bS & BRICK_WIDTH_MASK); // x axis 0000, x axis moves 0000
 		boss->currentMovement = boss->movement;
 		boss->data |= USE_BOSS_MASK;
 	}
 	else
 	{
-		boss->data &= ~USE_BOSS_MASK; // set USE_BOSS bit to 0
+		boss->data &= ~USE_BOSS_MASK; // set bit to 0
 	}
 }
 
@@ -106,7 +116,7 @@ void shoot(struct TBoss *boss, struct TBall shots[6])
 		if(IS_ALIVE(shots[i].data) == 0)
 		{
 			//void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity)
-			initBall(&shots[i], boss->startShotX, boss->startShotY, FCOLOR_RED, RANDOM(190, 350), TO_FIX14(1) >> 2, 1); 
+			initBall(&shots[i], boss->startShotX, boss->startShotY, FCOLOR_RED, RANDOM(225, 315), TO_FIX14(1) >> 2, 1); 
 			break;
 		}
 	}
@@ -130,17 +140,10 @@ char shouldShoot(struct TBall shots[6])
 
 void updateBoss(struct TBoss *boss, struct TBall shots[6])
 {
-	if(USE_BOSS(boss->data))
+	handleBrickCollisions(boss->bricks, shots, 16);
+	moveBricks(boss);
+	if(shouldShoot(shots))
 	{
-		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT) == 0)
-		{
-			clearBoss(boss);
-			boss->data = boss->data ^ USE_BOSS_MASK;
-		}
-		moveBricks(boss);
-		if(shouldShoot(shots))
-		{
-			shoot(boss, shots);
-		}
+		shoot(boss, shots);
 	}
 }

@@ -1,84 +1,11 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
-
-volatile char SoundUpdateFlag = 0;
-
-
-void waitOnceSound()
-{
-	while(SoundUpdateFlag == 0) 
-	{	
-	}
-	SoundUpdateFlag = 0;
-}
-
-void delaySound(int times)
-{
-	int i;
-	for(i = 0; i < times; i++)
-	{
-		waitOnceSound();
-	}
-}
-
+#include "ansi.h"
 
 #pragma interrupt
 void timer1int() {
-	SoundUpdateFlag = 1;
+
 }
-
-void initSoundPin()
-{
-	//Initialize af knapper
-	//Button PD2 output
-	PDADDR = 0x01;
-	PDCTL = ~0x04;
-}
-
-void playBounceSound()
-{
-	int i;
-	for (i = 0; i<100;i++){
-		PDOUT = ~PDOUT;
-		delaySound(20);
-	}
-}
-
-void playDeathBallSound() {
-	int i;
-	for (i = 0; i<50;i++){
-		PDOUT = ~PDOUT;
-		delaySound(100);
-	}
-}
-
-void playDeathBrickSound(){
-	int i;
-	for (i = 0; i<50;i++){
-		PDOUT = ~PDOUT;
-		delaySound(50);
-	}
-}
-
-void playStartGameSound()
-{
-	int i;
-	for (i = 100; i>-400;i--){
-		PDOUT = ~PDOUT;
-		delaySound(i);
-	}
-}
-
-void playGameOverSound()
-{
-	int i;
-	for (i = 40; i<350;i++){
-		PDOUT = ~PDOUT;
-		delaySound(i);
-	}
-}
-
-
 
 void initSoundClock() // need to add an argument to set the time interval
 {
@@ -88,27 +15,27 @@ void initSoundClock() // need to add an argument to set the time interval
 	//Disable interupt
 	DI();
 	//Disable timer
-	T1CTL = 0x39; //00111001b -> TEN = 1 TPOL = 0 PRES = 111 TMODE = 001.
+	T1CTL = 0x3B; //00111011b -> TEN = 1 TPOL = 0 PRES = 111 TMODE = 001.
 
 	//Set timer High and Low
 	T1H = 0x00; //00000000; starting value
 	T1L = 0x01; //00000001
 
-	/*PWM value
+	//PWM value
 	T1PWMH = 0x00;
-	T1PWML = 0x40;*/
+	T1PWML = 0x40;
 
 
 	//reload value
 	T1RH = 0x00;
-	T1RL = 0x04;
+	T1RL = 0x80;
 
 	//Set interrupt
 	IRQ0ENL &= 0xBF; //enable Timer 0 interrupt, and set nominal priority
 	IRQ0ENH |= 0x40; 
 
 	//Enable timer
-	T1CTL = 0xB9; //10111001
+	T1CTL = 0xBB; //10111011
 
 	//Enable Interupt
 	EI();

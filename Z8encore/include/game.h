@@ -7,9 +7,7 @@
 #include "timer.h"
 
 #define GAME_NAME "Brick Breaker"
-#define DEFAULT_LIVES 10
-#define LEVEL_COUNT 3
-#define MAX_BRICK_COUNT 80
+#define DEFAULT_LIVES 10;
 
 struct TGame
 {
@@ -17,17 +15,15 @@ struct TGame
 	int gameSizeY;
 	struct TBall balls[6];
 	struct TBoss boss;
-	struct TBrick bricks[MAX_BRICK_COUNT];
+	struct TBrick bricks[40];
 	struct TTimer timer;
-	int brickCount;
+	char brickCount;
 	struct TStriker striker;
 	int lives;
 	int strikerLength;
-	char newBall;
-	char difficulty;
+	int newBall;
+	int difficulty;
 	int score;
-	char level;
-	char levelWon;
 };
 
 void initGame(struct TGame *game, int gameSizeX, int gameSizeY, int strikerSize, int updateFrequency);

@@ -6,7 +6,6 @@
 #include "ball.h"
 #include "fixedmath.h"
 #include "bounce.h"
-#include "sound.h"
 
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
@@ -96,11 +95,10 @@ void handleBrickCornerCollision(struct TBall *ball, int minAngle, int maxAngle)
 	}
 }
 
-char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount)
+void handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount)
 {
 	int brickIndex;
 	int ballIndex;
-	int anyBricksAlive = 0;
 	for(ballIndex = 0; ballIndex < 6; ballIndex++)
 	{
 		if(IS_ALIVE(balls[ballIndex].data))
@@ -118,28 +116,24 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 					char brickSizeWidth = BRICK_WIDTH((brick->size));
 					char brickSizeHeight = BRICK_HEIGHT((brick->size));
 					char hit = 0;
-					if(!IS_INDESTRUCTIBLE(brick->data))
-					{
-						anyBricksAlive = 1; // atleast one brick is alive
-					}
 					if((ballX >= brickX && 
-					    ballX < brickX + brickSizeWidth ) &&
-					   (ballY <= brickY + brickSizeHeight && 
-						ballY >= brickY - 1))
+					    ballX < brickX + brickSizeWidth) &&
+					   (ballY == brickY + brickSizeHeight || 
+						ballY == brickY - 1))
 					{
 						hit = 1;
 						ball->angle = bounceHorizontal(ball->angle);
 					}
 					else if((ballY >= brickY && 
 					         ballY < brickY + brickSizeHeight) &&
-						 	(ballX <= brickX + brickSizeWidth && 
-						  	 ballX >= brickX - 1))
+						 	(ballX == brickX + brickSizeWidth || 
+						  	 ballX == brickX - 1))
 					{
 						hit = 1;
 						ball->angle = bounceVertical(ball->angle);
 					}
 					else if(ballX == brickX - 1 &&
-					   		ballY == brickY - 1)
+					   ballY == brickY - 1)
 					{
 						hit = 1;
 						handleBrickCornerCollision(ball, 180, 270);
@@ -150,7 +144,7 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 						hit = 1;
 						handleBrickCornerCollision(ball, 270, 360);
 					}
-					else if(ballX == brickX - 1 &&
+					else if(ballX == brickX &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
@@ -170,12 +164,10 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 							if(HEALTH(brick->data) <= 0)
 							{
 								clearBrick(brick);
-								playDeathBrickSound();
 							}
 							else
 							{
 								drawBrick(brick);
-								playBounceSound();
 							}
 						}
 					}
@@ -183,11 +175,6 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int br
 			}
 		}
 	}
-	if(brickCount > 0 && anyBricksAlive == 0)
-	{
-		return 1;
-	}
-	return 0;
 }
 
 void initBricks(struct TBrick bricks[], int brickCount)
