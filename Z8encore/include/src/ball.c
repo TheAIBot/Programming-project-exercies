@@ -25,7 +25,7 @@ void updateBallDrawnPosition(long oldX, long oldY, long newX, long newY)
 
 void clearBall(long x, long y)
 {
-	gotoxy(ROUND_TO_INT(x), ROUND_TO_INT(y));
+	gotoxy(x, y);
 	printf("%c", EMPY_CHAR);
 }
 
@@ -36,8 +36,8 @@ void setBallColor(struct TBall *ball)
 
 //Initialize ball
 void initBall(struct TBall *vBall,int x, int y, char color, int angle, long velocity, char alive){
-	vBall->position.x = TO_FIX14(x);
-	vBall->position.y = TO_FIX14(y);
+	vBall->position.x = FIX14_TO_FIX14(x);
+	vBall->position.y = FIX14_TO_FIX14(y);
 	vBall->angle = angle;
 	vBall->velocity = velocity;
 	vBall->data = (color | (alive << ALIVE_BIT_SHIFT));
@@ -120,12 +120,12 @@ void impact(struct TBall balls[6], struct TStriker *vStriker, int gameSizeX, int
 		
 			//bounce off right and left walls	
 			if (ballx >= gameSizeX - 1 && (ball->angle < 90 || ball->angle > 270) || 
-				ballx <= 2 && ball->angle > 90 && ball->angle < 270) {
+				ballx <= 1 && ball->angle > 90 && ball->angle < 270) {
 				ball->angle = bounceVertical(ball->angle);
 				playBounceSound();
 			}
 			//bounce off top wall
-			if (bally <= 2){
+			if (bally <= 2 && ball->angle > 0 && ball->angle < 180){
 				ball->angle = bounceHorizontal(ball->angle);
 				playBounceSound();
 			}
