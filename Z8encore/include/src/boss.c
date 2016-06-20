@@ -53,6 +53,7 @@ void initBoss(struct TBoss *boss, struct TBrick bossBricks[BOSS_BRICK_COUNT], ch
 	}
 }
 
+//Moves boss bricks acording to the bosses movement specifications
 void moveBricks(struct TBoss *boss)
 {
 	int i;

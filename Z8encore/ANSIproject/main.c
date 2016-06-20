@@ -6,6 +6,7 @@
 #include "game.h"
 #include "clockio.h"
 #include "sound.h"
+#include "tests.h"
 
 #define GAME_SIZE_X 100
 #define GAME_SIZE_Y 40
@@ -25,4 +26,6 @@ void main() {
 	{
 		runGame(&game);
 	}
+	
+	//runAllTests();
 }
