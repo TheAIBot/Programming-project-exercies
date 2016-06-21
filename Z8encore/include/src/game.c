@@ -166,7 +166,7 @@ void updateGame(struct TGame *game)
 		updateBalls(game->balls);
 		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
 		moveStriker(&game->striker, game->gameSizeX, isJoystickRight(), isJoystickLeft());
-		impact(game->balls, &game->striker, game->gameSizeX, game->gameSizeY);
+		impact(game->balls, game->gameSizeX, game->gameSizeY);
 		bounceStriker(&game->striker, game->balls);
 		updateBoss(&game->boss, game->balls, &game->score, game->difficulty);
 		if(handleBrickCollisions(game->bricks, game->balls, game->brickCount, &game->score) && isBossDead(&game->boss))
