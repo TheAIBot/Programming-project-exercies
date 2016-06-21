@@ -35,12 +35,12 @@ All moving bricks are moved at once when a specified amount of ticks has passed 
 The bricks are moved one position to the left or right depending on the bricks direction.
 When the bricks have moved a certain amount of positions the bricks direction changes to the opposite way.
 This way the moving bricks ocilates moving between two points on the screen.
-The first four bits are used to store the number of ticks that are left until the bricks move again.
-When the bricks move again this value of updated with the first four bits from movement.
-The first four bits can be extracted with the macro TICKS_UNTIL_MOVE
-The last four bits are used to store the amount of movements are left before the bricks direction has to change again.
-When the last four bits reaches zero the value is updated from the last four bits from movement.
-The last four bits can be extracted with the macro X_MOVED
+The last four bits are used to store the number of ticks that are left until the bricks move again.
+When the bricks move again this value of updated with the last four bits from movement.
+The last four bits can be extracted with the macro TICKS_UNTIL_MOVE
+The first four bits are used to store the amount of movements are left before the bricks direction has to change again.
+When the first four bits reaches zero the value is updated from the last four bits from movement.
+The first four bits can be extracted with the macro X_MOVED
 
 
 movement:
@@ -62,7 +62,7 @@ The bit can be extracted with the macro USE_BOSS.
 struct TBoss
 {
 	struct TBrick bricks[BOSS_BRICK_COUNT];
-	char currentMovement; // x axis 0000, x axis movement 0000 // alle brick der kan bevæge sig skal have den samme størrlse
+	char currentMovement; // x axis 0000, x axis movement 0000
 	char movement; // x axis 0000, x axis moves 0000
 	int startShotX;
 	int startShotY;

@@ -45,7 +45,7 @@ Data:
 This char contains different settings specific to this ball that doesn't require a char for its self.
 
 Color:
-The last 7 bits are reserved to specify the color of the ball although only 15 colors exist.
+The first 7 bits are reserved to specify the color of the ball although only 15 colors exist.
 The color can be extracted from the char with the macro COLOR.
 
 Alive:

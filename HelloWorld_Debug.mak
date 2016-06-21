@@ -63,8 +63,6 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\game.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\level.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\level.obj
-	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\powerup.obj  \
-            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\powerup.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\striker.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\striker.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timer.obj  \
@@ -81,12 +79,12 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj
-	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
-            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
 
 rebuildall: clean Debug
 
@@ -105,7 +103,6 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\brick.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\game.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\level.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\powerup.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\striker.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\timer.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\random.obj  \
@@ -114,9 +111,9 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -336,22 +333,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\level.obj :  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\level.c
 
-C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\powerup.obj :  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\powerup.c  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\powerup.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\powerup.c
-
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\striker.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\striker.c  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
@@ -473,10 +454,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj :  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\sound.c
 
-C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj :  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
-	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
-
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\tests.c  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
@@ -509,4 +486,18 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj :  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\charset.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\readonlymemory.c  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
 

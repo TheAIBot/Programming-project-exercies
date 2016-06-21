@@ -250,7 +250,7 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 }
 
 //init all bricks by drawing them all on the screen
-void initBricks(struct TBrick bricks[], int brickCount)
+void drawBricks(struct TBrick bricks[], int brickCount)
 {
 	int brickIndex;
 	for(brickIndex = 0; brickIndex < brickCount; brickIndex++)
