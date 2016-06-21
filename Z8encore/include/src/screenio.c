@@ -129,7 +129,6 @@ void LEDWriteCharColumnsToScreen(int column, char toWrite[5][6]) // need to make
 	{
 		waitOnce();
 		writeLED(column, screen, toWrite[screen - 1]);
-		LEDupdateFlag = 0;
 	}
 }
 

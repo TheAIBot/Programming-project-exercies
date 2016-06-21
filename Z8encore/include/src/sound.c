@@ -91,7 +91,7 @@ void playGameOverSound()
 	}
 }
 
-void playBoosDeathSound()
+void playBossDeathSound()
 {
 	tone(100, 500);
 	delay(10);
