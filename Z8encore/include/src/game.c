@@ -12,7 +12,6 @@
 #include "striker.h"
 #include "brick.h"
 #include "boss.h"
-#include "powerup.h"
 #include "color.h"
 #include "clockio.h"
 #include "joystick.h"

@@ -521,6 +521,7 @@ ptn_Child35=Document-34
 ptn_Child36=Document-35
 ptn_Child37=Document-36
 ptn_Child38=Document-37
+ptn_Child39=Document-38
 ptn_Child4=Document-3
 ptn_Child5=Document-4
 ptn_Child6=Document-5
@@ -755,8 +756,8 @@ ptn_Child1=ViewFrame-0
 DocPathName=Z8ENCORE\INCLUDE\SRC\GAME.C
 DocTemplateIndex=0
 DocumentString=IDE Document
-IsActiveChildFrame=True
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKOAAAAAAKOAAAAAAOEFAAAAAEEDAAAAA
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKOAAAAAAKOAAAAAAOEFAAAAAEEDAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-3]
 ptn_Child1=ViewFrame-0
@@ -848,6 +849,16 @@ DocumentString=IDE Document
 IsActiveChildFrame=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPCIAAAAAACIAAAAAACBFAAAAAAPBAAAAA
 
+[WorkState_v1_1.Frames.ChildFrames.Document-38]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-38.ViewFrame-0]
+DocPathName=Z8encore\include\powerup.h
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=True
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAMCFAAAAAKACAAAAA
+
 [WorkState_v1_1.Frames.ChildFrames.Document-4]
 ptn_Child1=ViewFrame-0
 
@@ -909,7 +920,7 @@ IsActiveChildFrame=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKOAAAAAAKOAAAAAAGMGAAAAAEADAAAAA
 
 [WorkState_v1_1.Frames.MainFrame]
-Title=HelloWorld -- ZDS II - Z8 Encore! Family -- GAME.C - [GAME.C]
+Title=HelloWorld -- ZDS II - Z8 Encore! Family -- powerup.h - [powerup.h]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAADIPPPPAADIPPPPPPPPPPPPPPPPPPPPKLJPPPPPNGAAAAAABEGAAAAAKODAAAAA
 
 [WorkState_v1_1.ToolBarMgr]
