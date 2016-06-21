@@ -60,6 +60,11 @@ void playWallSound()
 	playBounceSound(0);
 }
 
+void playIndestructibleBrickSound()
+{
+	playBounceSound(5);
+}
+
 void playDeathBallSound() {
 	tone(90, 400);
 }

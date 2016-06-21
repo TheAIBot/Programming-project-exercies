@@ -189,7 +189,7 @@ void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT], unsigned
 			clearBoss(boss);
 			//set the bit USE_BOSS to 0 as the boss isn't needed anymore
 			boss->data = boss->data ^ USE_BOSS_MASK;
-			playBoosDeathSound();
+			playBossDeathSound();
 		}
 	}
 }

@@ -8,11 +8,12 @@ void initSoundClock();
 
 void playBounceSound(char h);
 void playWallSound();
+void playIndestructibleBrickSound();
 void playDeathBallSound();
 void playDeathBrickSound();
 void playStartGameSound();
 void playGameOverSound();
 void playGameWinSound();
-void playBoosDeathSound();
+void playBossDeathSound();
 
 #endif
