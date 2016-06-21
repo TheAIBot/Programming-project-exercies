@@ -202,7 +202,7 @@ void level3(struct TGame *game)
 	};
 	char startX = BOSS_START_X_3_ + 3 * BRICK_WIDTH_1_ + 1;
 	char startY = BOSS_START_Y_3_ + 5 * BRICK_HEIGHT_1_ + 1;
-	char movement = X_AXIS_MOVEMENT_MASK | (BRICK_SIZE_1_ & BRICK_WIDTH_MASK);
+	char movement = TICKS_UNTIL_MOVE_MASK | (BRICK_SIZE_1_ & BRICK_WIDTH_MASK);
 	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
 	for(i = 0; i < brickCount; i++)
 	{

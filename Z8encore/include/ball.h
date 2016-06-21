@@ -33,7 +33,9 @@ by the velocity, which determines how fast the ball is moving, and the angle whi
 
 Velocity:
 The game itself isn't able to detect if a ball moves more than one position in the x and y axis at a time.
-To prevent that from happening the velocity can't be more than 1
+To prevent that from happening the velocity can't be more than 1. The velocity is stored as a signed int in the FIX14 format
+which means that the max value for a balls speed is 1.9998779296875 as only two bits aren't used as decimals and onle of those are used 
+to sign the int.
 
 Angle:
 Is a number between 0 and 360. 

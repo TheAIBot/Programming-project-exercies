@@ -9,6 +9,7 @@
 #include "sound.h"
 #include "game.h"
 
+//char a ball is drawn on the screen with
 #define BALL_STYLE 254
 #define EMPY_CHAR ' '
 
