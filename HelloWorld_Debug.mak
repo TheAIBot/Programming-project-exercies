@@ -79,8 +79,6 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj
-	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
-            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
@@ -111,7 +109,6 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
 
@@ -452,23 +449,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj :  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\sound.c
-
-C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\tests.obj :  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\tests.c  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\tests.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\TRIGON~1.H  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\tests.c
 
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\charset.c  \

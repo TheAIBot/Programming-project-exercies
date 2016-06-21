@@ -6,6 +6,12 @@
 #define DISPLAY_COUNT 4
 #define DISPLAY_COLUMN_COUNT 5
 
+//The string there is shown in the displays is always the same
+//and it's always set the the start of the problem
+//so it doesn't really matter wether this is a global or
+//inside of a struct in the game stuct because it's basically
+//gives the same effect on the memory comsumption
+//All the values are private
 char videoBuffer[5][6];
 char* wholeString;
 int wholeStringIndex = 0;
@@ -13,25 +19,32 @@ int wholeStringLength = 0;
 char LEDUpdateCount = 0;
 char columnScrollOffset = 0;
 
+//turn on the displays
 void LEDinit()
 {
 	PEDD = 0x00;
 	PGDD = 0x00;
 
+	//to run the displays the clock is required to update the different columns
+	//of the displays at a certains interval
 	initClock();
 }
 
+//set the string the displays show
 void LEDsetString(char string[])
 {
 	int length = 0;
 	int y = 0;
+	//get the length of the string to show in the displays
 	while (string[++length] != '\0') { }
+	//for the first 5 chars copy their columns over into the videoBuffer
 	for(wholeStringIndex = 0; wholeStringIndex < 5; wholeStringIndex++) // doesn't support strings that are smaller than 5 chars
 	{
 		for(y = 0; y < 6; y++) //maybe this hould be 5 instead of 6. look at loadCharIntoVideoBuffer which has correct code
 		{
 			videoBuffer[wholeStringIndex][y] = getCharColumnCharArray(string[wholeStringIndex], y);
 		}
+		//there is a space between each char which is a single turned off column of lights
 		videoBuffer[wholeStringIndex][5] = 0x00;
 	}
 	wholeString = string;

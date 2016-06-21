@@ -82,7 +82,6 @@ define __user_frequency = 20000000
  .\trigonometry.obj, \
  .\screenio.obj, \
  .\sound.obj, \
- .\tests.obj, \
  .\charset.obj, \
  .\readonlymemory.obj, \
  D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\crtrevaaLDD.lib, \

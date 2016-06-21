@@ -7,7 +7,7 @@
 #define CHAR_OFFSET 32
 
 //an array of all characters between 32-255
-//as a 5 7x5 1bpp image
+//as a 5 5x7 1bpp image
 const char character_data[95][5] = {
   {0x00, 0x00, 0x00, 0x00, 0x00},
   {0x00, 0x5F, 0x5F, 0x00, 0x00},
