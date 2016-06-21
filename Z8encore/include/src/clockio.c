@@ -45,14 +45,14 @@ void initClock() // need to add an argument to set the time interval
 	
 	//Set staring value for counter
 	T0H = 0x00; //00000000
-	T0L = 0x01; //00000001 - 0000000000000001
+	T0L = 0x01; //00000001 
 	
 	//reload value
 	T0RH = 0x00;
 	T0RL = 0x48;
 
 	//Set interrupt
-	IRQ0ENL &= 0xDF; //enable Timer 0 interrupt, and set nominal priority
+	IRQ0ENL &= 0xFF; //enable Timer 0 interrupt, and set HIGH priority
 	IRQ0ENH |= 0x20; 
 
 	//Enable timer
