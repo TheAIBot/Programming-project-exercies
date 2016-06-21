@@ -3,24 +3,24 @@
 /* compiler options */
 /* -alias -asm -bitfieldsize:32 -charsize:8 -const:RAM -debug */
 /* -define:_Z8F6403 -define:_Z8ENCORE_640_FAMILY */
-/* -define:_Z8ENCORE_F640X -define:_MODEL_LARGE -define:_SIMULATE */
-/* -doublesize:32 -NOexpmac -floatsize:32 -NOfplib -genprintf */
-/* -NOglobalcopy -NOglobalcse -NOglobalfold -intrinsic -intsize:16 */
-/* -intsrc -NOjmpopt -NOkeepasm -NOkeeplst -NOlist -NOlistinc */
-/* -localcopy -localcse -localfold -longsize:32 -NOloopopt */
-/* -maxerrs:50 -model:L -NOoptlink -optsize -peephole -NOpromote */
-/* -quiet -regvar -revaa -NOsdiopt -shortsize:16 */
-/* -stdinc:"D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\Z8Encore_F640X" */
+/* -define:_Z8ENCORE_F640X -define:_MODEL_LARGE -doublesize:32 */
+/* -NOexpmac -floatsize:32 -NOfplib -genprintf -NOglobalcopy */
+/* -NOglobalcse -NOglobalfold -intrinsic -intsize:16 -intsrc */
+/* -NOjmpopt -NOkeepasm -NOkeeplst -NOlist -NOlistinc -localcopy */
+/* -localcse -localfold -longsize:32 -NOloopopt -maxerrs:50 -model:L */
+/* -NOoptlink -optsize -peephole -NOpromote -quiet -regvar -revaa */
+/* -NOsdiopt -shortsize:16 */
+/* -stdinc:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X" */
 /* -strict */
 /* -usrinc:"M:\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include;C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\Z8encore\include" */
 /* -NOwatch -cpu:Z8F6403 */
-/* -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -define:_SIMULATE=1 -include:D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\Z8Encore_F640X -revaa" */
+/* -asmsw:" -cpu:Z8F6403 -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -include:c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X -revaa" */
 
 /* assembler options */
 /* -debug -define:_Z8F6403=1 -define:_Z8ENCORE_640_FAMILY=1 */
-/* -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 */
-/* -define:_SIMULATE=1 -genobj -NOigcase */
-/* -include:"D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog;D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\Z8Encore_F640X" */
+/* -define:_Z8ENCORE_F640X=1 -define:_MODEL_LARGE=1 -genobj */
+/* -NOigcase */
+/* -include:"c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\std;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog;c:\PROGRA~2\ZiLOG\ZDSII_~1.3\include\zilog\Z8Encore_F640X" */
 /* -list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt */
 /* -warn -NOzmasm -revaa -cpu:Z8F6403 */
 
@@ -57,36 +57,35 @@ define _far_heapbot = top of EDATA
 define _near_heaptop = highaddr of RDATA
 define _near_heapbot = top of RDATA
 
-define _zsl_g_clock_xdefine = 5529600
+define _zsl_g_clock_xdefine = 18432000
 
-/* Set frequency to 20000000 MHz */
-define __user_frequency = 20000000
+/* Set frequency to 18432000 Hz */
+define __user_frequency = 18432000
 
-"C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld"= \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\startupL.obj, \
+"C:\Users\s153498\Desktop\Microprocessorprogrammer\HelloWorld\Programming-project-exercies\HelloWorld"= \
+ c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\zilog\startupL.obj, \
  .\zsldevinit.obj, \
- .\main.obj, \
  .\ansi.obj, \
- .\buttonio.obj, \
- .\clockio.obj, \
  .\ball.obj, \
  .\boss.obj, \
+ .\bounce.obj, \
  .\brick.obj, \
+ .\buttonio.obj, \
+ .\clockio.obj, \
  .\game.obj, \
+ .\joystick.obj, \
  .\level.obj, \
  .\powerup.obj, \
- .\striker.obj, \
- .\timer.obj, \
  .\random.obj, \
- .\joystick.obj, \
- .\bounce.obj, \
- .\trigonometry.obj, \
+ .\readonlymemory.obj, \
  .\screenio.obj, \
  .\sound.obj, \
- .\readonlymemory.obj, \
- .\tests.obj, \
+ .\striker.obj, \
+ .\timer.obj, \
+ .\trigonometry.obj, \
+ .\main.obj, \
  .\charset.obj, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\crtrevaaLDD.lib, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\std\fpdumyL.obj, \
- D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\lib\zilog\zslLYD.lib
+ c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\std\crtrevaaLDD.lib, \
+ c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\std\fpdumyL.obj, \
+ c:\PROGRA~2\ZiLOG\ZDSII_~1.3\lib\zilog\zslLYD.lib
 

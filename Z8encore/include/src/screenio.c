@@ -3,6 +3,9 @@
 #include "clockio.h"
 #include "charset.h"
 
+#define DISPLAY_COUNT 4
+#define DISPLAY_COLUMN_COUNT 5
+
 char videoBuffer[5][6];
 char* wholeString;
 int wholeStringIndex = 0;
@@ -113,29 +116,29 @@ void writeLED(int column, int screen, char shape[])
 		initScreen(screen);
 
 		PEOUT &=  ~(1 << column);
-		PGOUT |= shape[4 - column];
+		PGOUT |= shape[DISPLAY_COUNT - column];
 		
 		// Clock D1
 		clockScreen(screen);
 }
 
-void LEDWriteCharColumnsToScreen(int screen, char toWrite[]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
+void LEDWriteCharColumnsToScreen(int column, char toWrite[5][6]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
 {
-	int column = 0;
-	for(column = 0; column < 5; column++)
+	int screen = 0;
+	for(screen = 1; screen <= DISPLAY_COUNT; screen++)
 	{
 		waitOnce();
-		writeLED(column, screen, toWrite);
+		writeLED(column, screen, toWrite[screen - 1]);
 		LEDupdateFlag = 0;
 	}
 }
 
 void LEDupdate()
 {
-	int screen = 0;
-	for(screen = 1; screen <= 4; screen++) // doesn't support strings that are smaller than 4 chars
+	int column = 0;
+	for(column = 0; column < DISPLAY_COLUMN_COUNT; column++) // doesn't support strings that are smaller than 4 chars
 	{
-		LEDWriteCharColumnsToScreen(screen, videoBuffer[screen - 1]);
+		LEDWriteCharColumnsToScreen(column, videoBuffer);
 	}
 }
 

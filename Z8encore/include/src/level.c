@@ -146,25 +146,39 @@ void level2(struct TGame *game)
 void level3(struct TGame *game)
 {
 	char i;
-	struct TBrick bricks[16] = 
+	struct TBrick bricks[32] = 
 	{
-		{BOSS_START_X_3_ - 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ - 3 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ - 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ + 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ + 3 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ + 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ + 7 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
-		{BOSS_START_X_3_ + 9 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 - 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 - 3 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 - 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 3 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 7 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 9 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 5 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
 
-		{BOSS_START_X_3_ - 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ - 2 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ - 0 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ + 2 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ + 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ + 6 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ + 8 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
-		{BOSS_START_X_3_ + 10 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 - 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 - 2 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 - 0 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 2 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 6 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 8 * BRICK_WIDTH_1_, BOSS_START_Y_3_ - 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+
+		{BOSS_START_X_3_ + 2 - 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 - 3 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 - 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 5 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 7 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+		{BOSS_START_X_3_ + 2 + 9 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 9 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 2},
+
+		{BOSS_START_X_3_ + 2 - 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 - 2 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 - 0 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 6 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+		{BOSS_START_X_3_ + 2 + 8 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 7 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, 3},
+
 
 	};
 	struct TBrick bossBricks[BOSS_BRICK_COUNT] = 
@@ -219,27 +233,4 @@ void initLevel(struct TGame *game, int level)
 	}
 }
 
-void moveStrikerPreShot(struct TBall *vball, struct TStriker *vStriker, int gameSizeX, char rightButtonPressed, char leftButtonPressed) {
-    if (rightButtonPressed && vStriker->position.x + (vStriker->length >> 1) + 1 < gameSizeX) {
-		//render new ball position
-		long oldX = vball->position.x;
-		long oldY = vball->position.y;
-		vball->position.x += TO_FIX14(1);
-		setBallColor(vball);
-		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
 
-		//render new bouncer position
-		moveStrikerRight(vStriker);	
-	}
-	else if(leftButtonPressed && vStriker->position.x - (vStriker->length >> 1) - 2 > 0) {
-		//render new ball position
-		long oldX = vball->position.x;
-		long oldY = vball->position.y;
-		vball->position.x -= TO_FIX14(1);
-		setBallColor(vball);
-		updateBallDrawnPosition(oldX, oldY, vball->position.x, vball->position.y);
-
-		//render new bouncer position
-		moveStrikerLeft(vStriker);
-	}
-}

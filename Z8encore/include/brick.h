@@ -33,7 +33,7 @@ struct TBrick
 
 
 
-char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[6], int brickCount);
+char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[], int brickCount, unsigned int *score);
 void initBricks(struct TBrick bricks[], int brickCount);
 void setBrickColor(struct TBrick *brick);
 void updateBrickPositionRight(int oldX, int oldY, int newX, int newY, char brickHeight, char brickWidth);

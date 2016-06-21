@@ -11,6 +11,7 @@
 
 #define BRICK_STYLE 219
 #define EMPTY_STYLE ' '
+#define SCORE_KILL_BRICK 50
 
 char getBrickColor(char data)
 {
@@ -85,19 +86,19 @@ void clearBrick(struct TBrick *brick)
 	brickdraw(brick, EMPTY_STYLE);
 }
 
-void handleBrickCornerCollision(struct TBall *ball, int minAngle, int maxAngle)
+void handleBrickCornerCollision(struct TBall *ball, int minAngleHorizontal, int maxAngleHorizontal, int illigalMinAngleVeritcal, int illigalMaxAngleVeritcal)
 {
-	if(ball->angle >= minAngle && ball->angle <= maxAngle)
+	if(ball->angle >= minAngleHorizontal && ball->angle <= maxAngleHorizontal)
 	{
 		ball->angle = bounceHorizontal(ball->angle);
 	}
-	else
+	else if(!(ball->angle >= illigalMinAngleVeritcal && ball->angle <= illigalMaxAngleVeritcal))
 	{
 		ball->angle = bounceVertical(ball->angle);
 	}
 }
 
-char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_COUNT], int brickCount)
+char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_COUNT], int brickCount, unsigned int *score)
 {
 	int brickIndex;
 	int ballIndex;
@@ -123,7 +124,35 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 					{
 						anyBricksAlive = 1; // atleast one brick is alive
 					}
-					if((ballX >= brickX && 
+					if(ballX >= brickX && 
+					    ballX < brickX + brickSizeWidth)
+					{
+						if(ballY == brickY - 1 && ball->angle > 180 && ball->angle < 360)
+						{
+							hit = 1;
+							ball->angle = bounceHorizontal(ball->angle);
+						}
+						else if(ballY == brickY + brickSizeHeight && ball->angle > 0 && ball->angle < 180)
+						{
+							hit = 1;
+							ball->angle = bounceHorizontal(ball->angle);
+						}
+					}
+					else if(ballY >= brickY && 
+					        ballY < brickY + brickSizeHeight)
+					{
+						if(ballX == brickX - 1 && (ball->angle < 90 || ball->angle > 270))
+						{
+							hit = 1;
+							ball->angle = bounceVertical(ball->angle);
+						}
+						else if(ballX == brickX + brickSizeWidth && ball->angle > 90 && ball->angle < 270)
+						{
+							hit = 1;
+							ball->angle = bounceVertical(ball->angle);
+						}
+					}
+					/*if((ballX >= brickX && 
 					    ballX < brickX + brickSizeWidth ) &&
 					   (ballY <= brickY + brickSizeHeight && 
 						ballY >= brickY - 1))
@@ -139,29 +168,30 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 						hit = 1;
 						ball->angle = bounceVertical(ball->angle);
 					}
+					*/
 					else if(ballX == brickX - 1 &&
 					   		ballY == brickY - 1)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 180, 270);
+						handleBrickCornerCollision(ball, 180, 270, 90, 180);
 					}
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY - 1)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 270, 360);
+						handleBrickCornerCollision(ball, 270, 360, 0, 90);
 					}
 					else if(ballX == brickX - 1 &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 90, 180);
+						handleBrickCornerCollision(ball, 90, 180, 180, 270);
 					}
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 0, 90);
+						handleBrickCornerCollision(ball, 0, 90, 270, 360);
 					}
 					if(hit == 1)
 					{
@@ -170,14 +200,19 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 							brick->data--;
 							if(HEALTH(brick->data) <= 0)
 							{
+								*score += SCORE_KILL_BRICK;
 								clearBrick(brick);
 								playDeathBrickSound();
 							}
 							else
 							{
 								drawBrick(brick);
-								playBounceSound();
+								playBounceSound(HEALTH(brick->data));
 							}
+						}
+						else
+						{
+							playBounceSound(5);
 						}
 					}
 				}
