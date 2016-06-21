@@ -6,7 +6,8 @@
 #include "boss.h"
 #include "timer.h"
 
-#define GAME_NAME "Brick Breaker   "
+#define GAME_NAME "Brick Breaker"
+#define GAME_NAME_LED "Brick Breaker    "
 #define DEFAULT_LIVES 12
 #define LEVEL_COUNT 3
 #define MAX_BRICK_COUNT 40

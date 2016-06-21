@@ -38,7 +38,10 @@ Note:
 #ifndef _CHARSET_H_
 #define _CHARSET_H_
 
+#define COLUMN_COUNT 5
+#define ROW_COUNT 7
+
 char getCharColumnCharArray(char c, int index);
-void writeTitle(int startX, int startY, char title[], char color);
+void writeTitle(int screenXLength, int startY, char title[], char color);
 
 #endif /*! _ACHARSET_H_ */

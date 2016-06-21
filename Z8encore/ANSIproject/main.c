@@ -21,13 +21,14 @@ void main() {
 	{
 		runGame(&game);
 	}
+	
 	/*
 	initSoundPin();
 	initClock();
 	initSoundClock();
 	
-	playGameWinSound();
+	playBoosDeathSound();
 	while(1){}
-*/
+	*/
 	//runAllTests();
 }

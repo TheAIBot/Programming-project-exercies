@@ -7,6 +7,7 @@
 #include "color.h"
 #include "fixedmath.h"
 #include "game.h"
+#include "sound.h"
 
 #define SCORE_KILL_BOSS 2000
 
@@ -153,13 +154,14 @@ void updateBoss(struct TBoss *boss, struct TBall shots[MAX_BALL_COUNT], unsigned
 {
 	if(USE_BOSS(boss->data))
 	{
+		moveBricks(boss);
 		if(handleBrickCollisions(boss->bricks, shots, BOSS_BRICK_COUNT, score) == 1)
 		{
 			*score += SCORE_KILL_BOSS;
 			clearBoss(boss);
 			boss->data = boss->data ^ USE_BOSS_MASK;
+			playBoosDeathSound();
 		}
-		moveBricks(boss);
 		if(shouldShoot(shots, difficulty))
 		{
 			shoot(boss, shots);

@@ -1,5 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines
+#include <stdio.h>
 #include "trigonometry.h"
 #include "SuperIO.h"
 #include "screenio.h"
@@ -24,7 +25,6 @@
 void initGame(struct TGame *game)
 {
 		//standard instanser
-	
 	game->strikerLength = STRIKER_LENGTH;
 	game->gameSizeX = GAME_SIZE_X;
 	game->gameSizeY = GAME_SIZE_Y;
@@ -40,7 +40,7 @@ void initGame(struct TGame *game)
 	initJoystick();
 
 	LEDinit(); 
-	LEDsetString(GAME_NAME);
+	LEDsetString(GAME_NAME_LED);
 
 	initSoundPin();
 	initSoundClock();
@@ -65,7 +65,8 @@ void getDifficulty(struct TGame *game)
 	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
 	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1));
-    printf("Welcome to Brick Breaker!");
+	writeTitle(game->gameSizeX,5, "Welcome to", FCOLOR_WHITE);
+	writeTitle(game->gameSizeX,5 + ROW_COUNT + 1, "Brick Breaker!", FCOLOR_WHITE);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
     printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 3);
@@ -97,7 +98,7 @@ void getDifficulty(struct TGame *game)
 
 int getAngle() {
 	int angle = RANDOM(10,170);
-	if (angle <= 95 && angle >= 85) {
+	if (angle <= 100 && angle >= 80) {
 		angle = RANDOM(10,84);
 	}
 	return angle;
@@ -191,23 +192,28 @@ void updateGame(struct TGame *game)
 
 void gameLost(struct TGame *game)
 {
+	char formattedString[13];
 	clrscr();
 	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-    writeTitle((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1), "GAME OVER", FCOLOR_RED);
-	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 8);
-	printf("Score: %d", game->score);
+    writeTitle(game->gameSizeX, (game->gameSizeY >> 1) - COLUMN_COUNT, "GAME OVER", FCOLOR_RED);
+	sprintf(formattedString, "Score: %5d", game->score);
+	writeTitle(game->gameSizeX, (game->gameSizeY >> 1) + 3, formattedString, FCOLOR_RED);
+	gotoxy(0, game->gameSizeY + 1);
+	printf("Score = points + lives * 500 * difficulty");
 }
 
 void gameWon(struct TGame *game)
 {
-	
+	char formattedString[13];
 	clrscr();
 	fgcolor(FCOLOR_WHITE);
 	window(0, 0, game->gameSizeX, game->gameSizeY, '0', GAME_NAME);
-    writeTitle((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1), "YOU WIN!!!!", FCOLOR_GREEN);
-	gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 8);
-	printf("Score: %d + %d * 500 * %d = %d", game->score, game->lives, game->score + game->lives * 500, game->difficulty);
+    writeTitle(game->gameSizeX, (game->gameSizeY >> 1) - 5, "YOU WIN!!!!", FCOLOR_GREEN);
+	sprintf(formattedString, "Score: %5d", game->score + game->lives * 500 * game->difficulty);
+	writeTitle(game->gameSizeX, (game->gameSizeY >> 1) + 3, formattedString, FCOLOR_GREEN);
+	gotoxy(0, game->gameSizeY + 1);
+	printf("Score = points + lives * 500 * difficulty");
 }
 
 void runGame(struct TGame *game)

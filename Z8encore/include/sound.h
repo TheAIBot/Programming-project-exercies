@@ -13,5 +13,6 @@ void playDeathBrickSound();
 void playStartGameSound();
 void playGameOverSound();
 void playGameWinSound();
+void playBoosDeathSound();
 
 #endif

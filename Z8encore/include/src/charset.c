@@ -3,8 +3,6 @@
 #include "charset.h"
 #include "ansi.h"
 
-#define COLUMN_COUNT 5
-#define ROW_COUNT 7
 #define TITLE_CHAR '#'
 #define CHAR_OFFSET 32
 
@@ -110,29 +108,31 @@ char getCharColumnCharArray(char c, int index)
 	return character_data[c - CHAR_OFFSET][index];
 }
 
-void writeTitle(int startX, int startY, char title[], char color)
+void writeTitle(int screenXLength, int startY, char title[], char color)
 {
 	char titleLength = 0;
 	char column = 0;
 	char x;
 	char row;
+	char centeredStartX;
 
 
 	while ((title[titleLength]) != '\0'){
 		titleLength++;
 	}
+	centeredStartX = ((screenXLength) >> 1) - ((titleLength * COLUMN_COUNT) >> 1) - 1 * COLUMN_COUNT; // no diea why the last - 1 * COLUMN_COUNT is needed to center it
 
 	fgcolor(color);
-	for(x = startX; x < startX + titleLength; x++)
+	for(x = centeredStartX; x < centeredStartX + titleLength; x++)
 	{
 		for(column = 0; column < COLUMN_COUNT; column++)
 		{
-			char columnBits = getCharColumnCharArray(title[x - startX], column);
+			char columnBits = getCharColumnCharArray(title[x - centeredStartX], column);
 			for(row = 0; row < ROW_COUNT; row++)
 			{
 				if((columnBits & (1 << row)) >> row == 1)
 				{
-					int x1 = x + column + ((x - startX) * COLUMN_COUNT);
+					int x1 = x + column + ((x - centeredStartX) * COLUMN_COUNT);
 					int y = startY + row;
 					gotoxy(x1, y);
 					printf("%c", TITLE_CHAR);

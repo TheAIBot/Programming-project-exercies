@@ -2,6 +2,8 @@
 #include <sio.h>             // special encore serial i/o routines
 #include "clockio.h"
 
+#define MAX_SOUND_FREQUENCY 9000
+
 volatile char SoundUpdateFlag = 0;
 
 
@@ -36,13 +38,21 @@ void initSoundPin()
 	PDCTL = ~0x04;
 }
 
+void tone(int freq, int msLength)
+{
+	int sleep = MAX_SOUND_FREQUENCY / freq;
+	long loops = ((long)msLength * freq / 1000);
+	int i;
+	for(i = 0; i < loops; i++)
+	{
+		PDOUT = ~PDOUT;
+		delaySound(sleep);
+	}
+}
+
 void playBounceSound(char h)
 {
-	int i;
-	for (i = 0; i<100 - h * 10;i++){
-		PDOUT = ~PDOUT;
-		delaySound(20 + h * 10);
-	}
+	tone(MAX_SOUND_FREQUENCY / (20 + h * 10), 400);
 }
 
 void playWallSound()
@@ -51,19 +61,11 @@ void playWallSound()
 }
 
 void playDeathBallSound() {
-	int i;
-	for (i = 0; i<50;i++){
-		PDOUT = ~PDOUT;
-		delaySound(100);
-	}
+	tone(90, 400);
 }
 
 void playDeathBrickSound(){
-	int i;
-	for (i = 0; i<50;i++){
-		PDOUT = ~PDOUT;
-		delaySound(50);
-	}
+	tone(180, 400);
 }
 
 void playStartGameSound()
@@ -84,6 +86,17 @@ void playGameOverSound()
 	}
 }
 
+void playBoosDeathSound()
+{
+	tone(100, 500);
+	delay(10);
+	tone(100, 500);
+	delay(10);
+	tone(100, 500);
+	delay(10);
+	tone(50, 2000);
+}
+
 void playGameWinSound()
 {
 	int i;
@@ -92,15 +105,9 @@ void playGameWinSound()
 		delaySound(i);
 	}
 	delay(100);
-	for (i = 0; i<100;i++){
-		PDOUT = ~PDOUT;
-		delaySound(40);
-	}
+	tone(225, 400);
 	delay(100);
-	for (i = 0; i<600;i++){
-		PDOUT = ~PDOUT;
-		delaySound(20);
-	}
+	tone(450, 400);
 }
 
 
@@ -122,7 +129,7 @@ void initSoundClock() // need to add an argument to set the time interval
 	T1PWMH = 0x00;
 	T1PWML = 0x40;*/
 
-
+	//18k hz
 	//reload value
 	T1RH = 0x00;
 	T1RL = 0x04;
