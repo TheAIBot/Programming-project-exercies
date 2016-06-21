@@ -16,6 +16,10 @@ struct TPosition
 	long y;
 };
 
+//Represents a ball on the screen that can hit bricks and will bounce of the games edges
+//and the striker
+//to make it possible for a ball to move at an angle the ball needs to store its position as a decimal number.
+//
 struct TBall
 {	
 	struct TPosition position;
