@@ -71,13 +71,14 @@ void level1(struct TGame *game)
 	};
 	struct TBrick bossBricks[0];
 	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
+	//copy all bricks into level
 	for(i = 0; i < brickCount; i++)
 	{
 		game->bricks[i] = bricks[i];
 	}
-	initBoss(&game->boss, bossBricks, 0, 0, 0, 0);
-
 	game->brickCount = brickCount;
+
+	initBoss(&game->boss, bossBricks, 0, 0, 0, 0);
 }
 
 void level2(struct TGame *game)
@@ -134,13 +135,14 @@ void level2(struct TGame *game)
 	};
 	struct TBrick bossBricks[0];
 	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
+	//copy all bricks into game
 	for(i = 0; i < brickCount; i++)
 	{
 		game->bricks[i] = bricks[i];
 	}
-	initBoss(&game->boss, bossBricks, 0, 0, 0, 0);
-
 	game->brickCount = brickCount;
+
+	initBoss(&game->boss, bossBricks, 0, 0, 0, 0);
 }
 
 void level3(struct TGame *game)
@@ -200,23 +202,29 @@ void level3(struct TGame *game)
 		{BOSS_START_X_3_ + 1 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, BOSS_BRICK_MOVING_INVULNERABLE_3_ | DIRECTION_MASK},
 		{BOSS_START_X_3_ + 4 * BRICK_WIDTH_1_, BOSS_START_Y_3_ + 3 * BRICK_HEIGHT_1_, BRICK_SIZE_1_, BOSS_BRICK_MOVING_INVULNERABLE_3_},
 	};
+	//start shooting position for the boss
 	char startX = BOSS_START_X_3_ + 3 * BRICK_WIDTH_1_ + 1;
 	char startY = BOSS_START_Y_3_ + 5 * BRICK_HEIGHT_1_ + 1;
+	//the movement the moving brick in the boss has
+	//which in this case is 15 ticks for every move and move the brick equivalent to the bricks size
 	char movement = TICKS_UNTIL_MOVE_MASK | (BRICK_SIZE_1_ & BRICK_WIDTH_MASK);
+
 	int brickCount = sizeof(bricks) / sizeof(bricks[0]);
+	//copy all bricks into game
 	for(i = 0; i < brickCount; i++)
 	{
 		game->bricks[i] = bricks[i];
 	}
+	game->brickCount = brickCount;
 
 	initBoss(&game->boss, bossBricks, startX, startY, movement, 1);
-
-	game->brickCount = brickCount;
 }
 
 
+//load a level into game
 void initLevel(struct TGame *game, int level)
 {
+	//determine which level to load
 	switch(level)
 	{
 		case 1:
