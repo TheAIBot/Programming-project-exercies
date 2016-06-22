@@ -267,7 +267,7 @@
 </tool>
 <tool name="General">
 <options>
-<option name="outputdir" type="string" change-action="compile">.</option>
+<option name="outputdir" type="string" change-action="compile">Z8encore\include\</option>
 <option name="tempath" type="string" change-action="none"></option>
 </options>
 </tool>
@@ -322,6 +322,20 @@
 
 <!-- breakpoint information -->
 <breakpoints>
+<breakpoint temporary="false" enabled="true" >
+<line-number>179</line-number>
+<pathname>C:\Users\QuantumX\Documents\GitHub\Programming-project-exercies\Z8ENCORE\INCLUDE\SRC\GAME.C</pathname>
+<address>13536</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>210</line-number>
+<pathname>C:\Users\QuantumX\Documents\GitHub\Programming-project-exercies\Z8ENCORE\INCLUDE\SRC\GAME.C</pathname>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 <!-- ice event information -->
