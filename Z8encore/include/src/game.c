@@ -86,10 +86,10 @@ void getDifficulty(struct TGame *game)
 			scrollText();
 		}
 		//if button 1 and 2 is pressed or ifthe difficulty is 5 then the difficulty has been chosen 
-		if(isButton1Pressed() && isButton2Pressed() || game->difficulty >= 5){
+		if(isButton1Pressed() && isButton2Pressed() || game->difficulty >= MAX_DIFFICULTY){
 			break;
 		}
-		if(isButton1Pressed() < MAX_DIFFICULTY){
+		if(isButton1Pressed() && game->difficulty < MAX_DIFFICULTY){
 			//increment difficulty and redraw the difficulty on the screen
 			game->difficulty++;
 			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
