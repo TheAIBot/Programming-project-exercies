@@ -12,9 +12,9 @@
 //The scrolling effect is achieved by moving every column in the video buffer 
 //one to the left so when the text is shown on the displays again
 //then it will be shown as having moved one column to the left.
-//When scrolling the next character has to gradually be shown on the last screen
+//When scrolling the next character has to gradually be shown on the last display
 //when scrolling so it seems like it's scrolling in and to do that
-//the video buffer loads in one additional character that at first won't be shown on the screen but 
+//the video buffer loads in one additional character that at first won't be shown on the display but 
 //when scrolling gradually will move sint o the last screem so it seems like it's scrolling in.
 //That's why the video buffers length is one more than the amount of displays
 #define VIDEO_BUFFER_LENGTH (DISPLAY_COUNT + 1)
@@ -85,7 +85,7 @@ void loadCharIntoVideoBuffer()
 		videoBuffer[DISPLAY_COUNT][y] = getCharColumnCharArray(wholeString[wholeStringIndex], y);
 	}
 	//the last column in every char is empty so there is a column of space
-	//between each char when the chars are scrolling on the screens
+	//between each char when the chars are scrolling on the displays
 	videoBuffer[DISPLAY_COUNT][DISPLAY_COLUMN_COUNT] = 0x00;
 	//Move the character that will beloaded next and ifthe index is more than the length fo the string
 	//then start with loading the first character again which is located at index 0
@@ -97,9 +97,9 @@ void loadCharIntoVideoBuffer()
 }
 
 //prepares the selected display for drawing a column on it
-void initScreen(char screen)
+void initDisplay(char display)
 {
-	switch(screen)
+	switch(display)
 	{
 		case 1:
 			PGOUT &= ~0x7f; //01111111
@@ -121,9 +121,9 @@ void initScreen(char screen)
 }
 
 //sends a clock signal the selected display so it shows the column
-void clockScreen(char screen)
+void clockDisplay(char display)
 {
-	switch(screen)
+	switch(display)
 	{
 		case 1:
 			PEOUT &= ~(1 << 7);
@@ -149,10 +149,10 @@ void clockScreen(char screen)
 }
 
 //writes to a specific column to a specific display
-void writeLED(int column, int screen, char shape[])
+void writeLED(int column, int display, char shape[])
 {		
 		//need to init the screen for writing
-		initScreen(screen);
+		initDisplay(display);
 
 		//write what column to write to
 		PEOUT &=  ~(1 << column);
@@ -160,11 +160,11 @@ void writeLED(int column, int screen, char shape[])
 		PGOUT |= shape[DISPLAY_COUNT - column];
 		
 		// Clock the screen to display the column on it
-		clockScreen(screen);
+		clockDisplay(display);
 }
 
 //writes a column to all displays
-void LEDWriteCharColumnsToScreen(int column, char toWrite[VIDEO_BUFFER_LENGTH][VIDEO_BUFFER_COLUMNS])
+void LEDWriteCharColumnsToDisplay(int column, char toWrite[VIDEO_BUFFER_LENGTH][VIDEO_BUFFER_COLUMNS])
 {
 	int display;
 	//display is index 1 based
@@ -187,7 +187,7 @@ void LEDupdate()
 	int column = 0;
 	for(column = 0; column < DISPLAY_COLUMN_COUNT; column++)
 	{
-		LEDWriteCharColumnsToScreen(column, videoBuffer);
+		LEDWriteCharColumnsToDisplay(column, videoBuffer);
 	}
 }
 
