@@ -52,7 +52,7 @@ void initClock() // need to add an argument to set the time interval
 	T0RL = 0x48;
 
 	//Set interrupt
-	IRQ0ENL &= 0xFF; //enable Timer 0 interrupt, and set HIGH priority
+	IRQ0ENL |= 0x20; //enable Timer 0 interrupt, and set HIGH priority
 	IRQ0ENH |= 0x20; 
 
 	//Enable timer
