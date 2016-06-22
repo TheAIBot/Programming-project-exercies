@@ -38,14 +38,10 @@ char isJoystickLeft()
 
 //returns wether button 1 is pressed
 char isButton1Pressed()
-<<<<<<< HEAD
-{   //Implementing a debounce function to read if button is pressed
-=======
 {
 	//it's checked twice if the button is pressed with a delay inbetween
 	//because if the button was just stopped being pressed then the button 
 	//can oscillate between pressed and not pressed for a short while
->>>>>>> refs/remotes/origin/andreas
 	if(IS_BUTTON_1_PRESSED)
 	{
 		delay(10);
@@ -56,14 +52,10 @@ char isButton1Pressed()
 
 //returns wether button 2 is pressed
 char isButton2Pressed()
-<<<<<<< HEAD
-{	//Implementing a debounce function to read if button is pressed
-=======
 {
 	//it's checked twice if the button is pressed with a delay inbetween
 	//because if the button was just stopped being pressed then the button 
 	//can oscillate between pressed and not pressed for a short while
->>>>>>> refs/remotes/origin/andreas
 	if(IS_BUTTON_2_PRESSED)
 	{
 		delay(10);
