@@ -5,17 +5,34 @@
 
 #define DISPLAY_COUNT 4
 #define DISPLAY_COLUMN_COUNT 5
+//Ever display can at show one char at a time.
+//To allow a a scrolling effect a char has to seem like it's
+//being loaded in from the right.
+//The scrolling effect is achieved by moving every column in the video buffer 
+//one to the left so when the text is shown on the displays again
+//then it will be shown as having moved one column to the left.
+//When scrolling the next character has to gradually be shown on the last screen
+//when scrolling so it seems like it's scrolling in and to do that
+//the video buffer loads in one additional character that at first won't be shown on the screen but 
+//when scrolling gradually will move sint o the last screem so it seems like it's scrolling in.
+//That's why the video buffers length is one more than the amount of displays
+#define VIDEO_BUFFER_LENGTH (DISPLAY_COUNT + 1)
+//When scrolling it looks better if there is a columns space between each character
+//So when loading the columns of a char into the video buffer the last column will be 0 which will turn off that column when shown.
+#define VIDEO_BUFFER_COLUMNS (DISPLAY_COLUMN_COUNT + 1)
+#define UPDATES_BEFORE_SCROLL 5
 
 //The string there is shown in the displays is always the same
 //and it's always set the the start of the problem
 //so it doesn't really matter wether this is a global or
 //inside of a struct in the game stuct because it's basically
 //gives the same effect on the memory comsumption
-//All the values are private
-char videoBuffer[5][6];
+//
+char videoBuffer[VIDEO_BUFFER_LENGTH][VIDEO_BUFFER_COLUMNS];
 char* wholeString;
 int wholeStringIndex = 0;
 int wholeStringLength = 0;
+
 char LEDUpdateCount = 0;
 char columnScrollOffset = 0;
 
@@ -38,7 +55,7 @@ void LEDsetString(char string[])
 	//get the length of the string to show in the displays
 	while (string[++length] != '\0') { }
 	//for the first 5 chars copy their columns over into the videoBuffer
-	for(wholeStringIndex = 0; wholeStringIndex < 5; wholeStringIndex++) // doesn't support strings that are smaller than 5 chars
+	for(wholeStringIndex = 0; wholeStringIndex < DISPLAY_COLUMN_COUNT; wholeStringIndex++) // doesn't support strings that are smaller than 5 chars
 	{
 		for(y = 0; y < 6; y++) //maybe this hould be 5 instead of 6. look at loadCharIntoVideoBuffer which has correct code
 		{
@@ -47,19 +64,30 @@ void LEDsetString(char string[])
 		//there is a space between each char which is a single turned off column of lights
 		videoBuffer[wholeStringIndex][5] = 0x00;
 	}
+	//need to save the whole string so if there will be scrolled in the future
+	//then the new chars can be taken from the whole string
+	//the length of the string is saved here aswell as a performance
+	//optimization and to reduce  duplication of code that finds the length
+	//of the same string
 	wholeString = string;
 	wholeStringLength = length;
 }
 
-
+//loads a single char into the end of the video buffer
 void loadCharIntoVideoBuffer()
 {
 	int y;
-	for(y = 0; y < 5; y++)
+	//loads the next char columns into the end of the video buffer
+	//which is determined by the number of displays
+	for(y = 0; y < DISPLAY_COLUMN_COUNT; y++)
 	{
-		videoBuffer[4][y] = getCharColumnCharArray(wholeString[wholeStringIndex], y);
+		videoBuffer[DISPLAY_COUNT][y] = getCharColumnCharArray(wholeString[wholeStringIndex], y);
 	}
-	videoBuffer[4][5] = 0x00;
+	//the last column in every char is empty so there is a column of space
+	//between each char when the chars are scrolling on the screens
+	videoBuffer[DISPLAY_COUNT][DISPLAY_COLUMN_COUNT] = 0x00;
+	//Move the character that will beloaded next and ifthe index is more than the length fo the string
+	//then start with loading the first character again which is located at index 0
 	wholeStringIndex++;
 	if(wholeStringIndex >= wholeStringLength)
 	{
@@ -67,75 +95,74 @@ void loadCharIntoVideoBuffer()
 	}
 }
 
+//prepares the selected display for drawing a column on it
 void initScreen(char screen)
 {
-	if (screen == 1)
+	switch(screen)
 	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 7); //10011111
-	}
-	else if(screen == 2)
-	{
-		PGOUT &= ~0x7f | (1 << 7);//11111111
-		PEOUT |= 0x1f; //00011111
-	}
-	else if(screen == 3)
-	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 5); //00111111
-	}
-	else if(screen == 4)
-	{
-		PGOUT &= ~0x7f; //01111111
-		PEOUT |= 0x1f | (1 << 6);//01011111
+		case 1:
+			PGOUT &= ~0x7f; //01111111
+			PEOUT |= 0x1f | (1 << 7); //10011111
+			break;
+		case 2:
+			PGOUT &= ~0x7f | (1 << 7);//11111111
+			PEOUT |= 0x1f; //00011111
+			break;
+		case 3:
+			PGOUT &= ~0x7f; //01111111
+			PEOUT |= 0x1f | (1 << 5); //00111111
+			break;
+		case 4:
+			PGOUT &= ~0x7f; //01111111
+			PEOUT |= 0x1f | (1 << 6);//01011111
+			break;
 	}
 }
 
+//sends a clock signal the selected display so it shows the column
 void clockScreen(char screen)
 {
-	if (screen == 1)
+	switch(screen)
 	{
-    //clock
-		PEOUT &= ~(1 << 7);
-		PEOUT |= (1 << 7);
-		PEOUT &= ~(1 << 7);
-	}
-	else if(screen == 2)
-	{
-	  //clock
-		PGOUT &= ~(1 << 7);
-		PGOUT |= (1 << 7);
-		PGOUT &= ~(1 << 7);
-	}
-	else if(screen == 3)
-	{
-	  //clock
-		PEOUT &= ~(1 << 5);
-		PEOUT |= (1 << 5);
-		PEOUT &= ~(1 << 5);
-	}
-	else if(screen == 4)
-	{
-	  //clock
-		PEOUT &= ~(1 << 6);
-		PEOUT |= (1 << 6);
-		PEOUT &= ~(1 << 6);
+		case 1:
+			PEOUT &= ~(1 << 7);
+			PEOUT |= (1 << 7);
+			PEOUT &= ~(1 << 7);
+			break;
+		case 2:
+			PGOUT &= ~(1 << 7);
+			PGOUT |= (1 << 7);
+			PGOUT &= ~(1 << 7);
+			break;
+		case 3:
+			PEOUT &= ~(1 << 5);
+			PEOUT |= (1 << 5);
+			PEOUT &= ~(1 << 5);
+			break;
+		case 4:
+			PEOUT &= ~(1 << 6);
+			PEOUT |= (1 << 6);
+			PEOUT &= ~(1 << 6);
+			break;
 	}
 }
 
-
+//writes to a specific column to a specific display
 void writeLED(int column, int screen, char shape[])
 {		
+		//need to init the screen for writing
 		initScreen(screen);
 
+		//write what column to write to
 		PEOUT &=  ~(1 << column);
+		//write the column to the display
 		PGOUT |= shape[DISPLAY_COUNT - column];
 		
-		// Clock D1
+		// Clock the screen to display it
 		clockScreen(screen);
 }
 
-void LEDWriteCharColumnsToScreen(int column, char toWrite[5][6]) // need to make another method that load a char from the big char array and uses that so i don't have to supply the columns
+void LEDWriteCharColumnsToScreen(int column, char toWrite[5][6])
 {
 	int screen = 0;
 	for(screen = 1; screen <= DISPLAY_COUNT; screen++)
@@ -159,31 +186,31 @@ void scrollText()
 	int i;
 	int j;
 	int k;
-	if(columnScrollOffset < 6)
+	if(columnScrollOffset < VIDEO_BUFFER_COLUMNS)
 	{
-		if (LEDUpdateCount < 5)
+		if (LEDUpdateCount < UPDATES_BEFORE_SCROLL)
 		{
 			LEDupdate();
 			LEDUpdateCount++;
 		}
-		if (LEDUpdateCount == 5)
+		else
 		{
 			for(i = 0; i < 5; i++)
 			{
-				for(k = 1; k < 6; k++)
+				for(k = 1; k < VIDEO_BUFFER_COLUMNS; k++)
 				{
 					videoBuffer[i][k - 1] = videoBuffer[i][k];
 				}
 				if(i < 5)
 				{
-					videoBuffer[i][5] = videoBuffer[i + 1][0];
+					videoBuffer[i][DISPLAY_COLUMN_COUNT] = videoBuffer[i + 1][0];
 				}
 			}
 			LEDUpdateCount = 0;
 			columnScrollOffset++;
 		}
 	}
-	if(columnScrollOffset == 6)
+	if(columnScrollOffset == VIDEO_BUFFER_COLUMNS)
 	{
 		loadCharIntoVideoBuffer();
 		columnScrollOffset = 0;
