@@ -27,6 +27,8 @@ void initGame(struct TGame *game)
 	game->gameSizeX = GAME_SIZE_X;
 	game->gameSizeY = GAME_SIZE_Y;
 	game->lives = DEFAULT_LIVES;
+	game->level = 0;
+	game->score = 0;
 
 	
 	// start a clock with the chosen frequency which means the clock should tick every 1s / freq, 1s == 1000
@@ -55,6 +57,7 @@ void resetGame(struct TGame *game)
 	game->level = 0;
 	game->score = 0;
 	game->strikerLength = STRIKER_LENGTH;
+	game->lives = DEFAULT_LIVES;
 }
 
 //get difficulty from player input
