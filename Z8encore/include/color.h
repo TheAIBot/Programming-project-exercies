@@ -2,7 +2,7 @@
 #define _COLOR_H_
 
 
-//foreground
+//foreground colors
 #define FCOLOR_BLACK 0
 #define FCOLOR_RED 1
 #define FCOLOR_GREEN 2
@@ -18,9 +18,9 @@
 #define FCOLOR_LIGHT_BLUE 12
 #define FCOLOR_LIGHT_PURPLE 13
 #define FCOLOR_LIGHT_CYAN 14
-#define FCOLOR_WHITE 14
+#define FCOLOR_WHITE 15
 
-//background
+//background colors
 #define BCOLOR_BLACK 0
 #define BCOLOR_RED 1
 #define BCOLOR_GREEN 2

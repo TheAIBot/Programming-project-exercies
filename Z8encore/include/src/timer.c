@@ -4,52 +4,27 @@
 #include "timer.h"
 #include "clockio.h"
 
-#define ONE_SECOND 1000
-#define ONE_MINUTE ONE_SECOND * 60
-#define ONE_HOUR ONE_MINUTE * 60
 
-unsigned long startMilisecond = 0;
-unsigned long endMilisecond = 0;
-
-void startTimer()
-{
-	startMilisecond = getMiliseconds();
-	endMilisecond = 0;
-	startClock();
-}
-
-void stopTimer()
-{
-	endMilisecond = getMiliseconds();
-	stopClock();
-}
-
+//init the timer with a specific interval
 void initTimer(struct TTimer *timer, long interval)
 {
 	timer->lastEvent = 0;
 	timer->interval = interval;
 }
 
+//waits for interval in ms has passed since this method was last run
+//This makes it possible to have code run with the same frequency even though
+//the code takes a different amount of time to execute unless ofcource 
+//the code takes more time to execute than the interval and if that's the case
+//then this method will return immediatly
 void waitForEvent(struct TTimer *timer)
 {
+	//wait for interval in ms to pass since this method was last run
+	//by continiously polling the clock forthe amount of miliseconds since
+	//the timer started
 	while(timer->lastEvent + timer->interval > getMiliseconds()) {}
+	//sets the current time to the time this method was last run
 	timer->lastEvent = getMiliseconds();
-}
-
-struct TTime getStructuredTime()
-{
-	unsigned long milisecondsPassed = getElapsedMiliseconds();
-	struct TTime timePassed;
-	timePassed.hours       = (milisecondsPassed) / ONE_HOUR;
-	timePassed.minutes     = (milisecondsPassed - timePassed.hours * ONE_HOUR) / ONE_MINUTE;
-	timePassed.seconds     = (milisecondsPassed - timePassed.hours * ONE_HOUR - timePassed.minutes * ONE_MINUTE) / ONE_SECOND;
-	timePassed.miliseconds = (milisecondsPassed - timePassed.hours * ONE_HOUR - timePassed.minutes * ONE_MINUTE - timePassed.seconds * ONE_SECOND);
-	return timePassed;
-}
-
-unsigned long getElapsedMiliseconds()
-{
-	return endMilisecond - startMilisecond;
 }
 
 

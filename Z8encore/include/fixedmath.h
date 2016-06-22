@@ -1,6 +1,7 @@
 #ifndef _FIXEDMATH_H_
 #define _FIXEDMATH_H_
 
+//bits dedicated to decimals
 #define FIX14_BIT_SHIFT 14
 
 #define FIX14_MULT(a, b) ( (a)*(b) >> FIX14_BIT_SHIFT )

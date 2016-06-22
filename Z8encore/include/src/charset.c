@@ -6,6 +6,8 @@
 #define TITLE_CHAR '#'
 #define CHAR_OFFSET 32
 
+//an array of all characters between 32-255
+//as a 5 5x7 1bpp image
 const char character_data[95][5] = {
   {0x00, 0x00, 0x00, 0x00, 0x00},
   {0x00, 0x5F, 0x5F, 0x00, 0x00},
@@ -103,11 +105,14 @@ const char character_data[95][5] = {
   {0x00, 0x41, 0x36, 0x08, 0x00},
   {0x08, 0x04, 0x08, 0x10, 0x08}};
 
+ //returns a char which determines what LED's should be on and off
 char getCharColumnCharArray(char c, int index)
 {
+	//the first 32 characters aren't included in character_data so offset the wanted char with 32
 	return character_data[c - CHAR_OFFSET][index];
 }
 
+//writes the title as ascii art in the middle of the screen x axis wise with the specified color
 void writeTitle(int screenXLength, int startY, char title[], char color)
 {
 	char titleLength = 0;
@@ -116,22 +121,28 @@ void writeTitle(int screenXLength, int startY, char title[], char color)
 	char row;
 	char centeredStartX;
 
-
+	//get the length of the title
 	while ((title[titleLength]) != '\0'){
 		titleLength++;
 	}
-	centeredStartX = ((screenXLength) >> 1) - ((titleLength * COLUMN_COUNT) >> 1) - 1 * COLUMN_COUNT; // no diea why the last - 1 * COLUMN_COUNT is needed to center it
+
+	centeredStartX = ((screenXLength) >> 1) - ((titleLength * COLUMN_COUNT) >> 1) - 1 * COLUMN_COUNT;
 
 	fgcolor(color);
+	//foreach char in title
 	for(x = centeredStartX; x < centeredStartX + titleLength; x++)
 	{
+		//foreach column that char is made out of
 		for(column = 0; column < COLUMN_COUNT; column++)
 		{
 			char columnBits = getCharColumnCharArray(title[x - centeredStartX], column);
+			//foreach row in columnBits
 			for(row = 0; row < ROW_COUNT; row++)
 			{
+				//if the bit in the row == 1
 				if((columnBits & (1 << row)) >> row == 1)
 				{
+					//write TITLE_CHAR to that bits position
 					int x1 = x + column + ((x - centeredStartX) * COLUMN_COUNT);
 					int y = startY + row;
 					gotoxy(x1, y);
