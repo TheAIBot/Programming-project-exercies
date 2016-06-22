@@ -75,14 +75,14 @@ clean:
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj
-	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
-            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj
 	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
             del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
+	@if exist C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\display.obj  \
+            del C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\display.obj
 
 rebuildall: clean Debug
 
@@ -107,10 +107,10 @@ OBJS =  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\joystick.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\bounce.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\charset.obj  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.obj  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\display.obj
 
 HelloWorld: $(OBJS)
 	 $(LINK)  @C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\HelloWorld_Debug.linkcmd
@@ -283,12 +283,12 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\game.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\color.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\display.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\game.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\joystick.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\level.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\random.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\screenio.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
@@ -419,22 +419,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\trigonometry.obj 
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\trigonometry.c
 
-C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\screenio.obj :  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
-            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
-	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\screenio.c
-
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\sound.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\sound.c  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
@@ -479,4 +463,21 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\readonlymemory.ob
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
 	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\readonlymemory.c
+
+C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\display.obj :  \
+            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\display.c  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\charset.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\clockio.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\display.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\defines.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\dmadefs.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\eZ8.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\gpio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\sio.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uart.h  \
+            D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\zilog\uartdefs.h
+	 $(CC)  $(CFLAGS) C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\display.c
 

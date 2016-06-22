@@ -523,6 +523,7 @@ ptn_Child37=Document-36
 ptn_Child38=Document-37
 ptn_Child39=Document-38
 ptn_Child4=Document-3
+ptn_Child40=Document-39
 ptn_Child5=Document-4
 ptn_Child6=Document-5
 ptn_Child7=Document-6
@@ -746,8 +747,8 @@ ptn_Child1=ViewFrame-0
 DocPathName=Z8encore\include\src\screenio.c
 DocTemplateIndex=0
 DocumentString=IDE Document
-IsActiveChildFrame=True
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPANAAAAAAANAAAAAAMKGAAAAANNCAAAAA
+IsActiveChildFrame=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPANAAAAAAANAAAAAAMKGAAAAANNCAAAAA
 
 [WorkState_v1_1.Frames.ChildFrames.Document-29]
 ptn_Child1=ViewFrame-0
@@ -859,6 +860,16 @@ DocumentString=IDE Document
 IsActiveChildFrame=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPMJAAAAAAMJAAAAAAMCFAAAAAKACAAAAA
 
+[WorkState_v1_1.Frames.ChildFrames.Document-39]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_1.Frames.ChildFrames.Document-39.ViewFrame-0]
+DocPathName=Z8encore\include\src\display.c
+DocTemplateIndex=0
+DocumentString=IDE Document
+IsActiveChildFrame=True
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPGLAAAAAAGLAAAAAAGEFAAAAAECCAAAAA
+
 [WorkState_v1_1.Frames.ChildFrames.Document-4]
 ptn_Child1=ViewFrame-0
 
@@ -920,7 +931,7 @@ IsActiveChildFrame=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKOAAAAAAKOAAAAAAGMGAAAAAEADAAAAA
 
 [WorkState_v1_1.Frames.MainFrame]
-Title=HelloWorld -- ZDS II - Z8 Encore! Family -- screenio.c - [screenio.c]
+Title=HelloWorld -- ZDS II - Z8 Encore! Family -- display.c - [display.c]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAADIPPPPAADIPPPPPPPPPPPPPPPPPPPPKLJPPPPPNGAAAAAABEGAAAAAKODAAAAA
 
 [WorkState_v1_1.ToolBarMgr]

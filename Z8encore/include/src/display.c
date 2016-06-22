@@ -1,5 +1,6 @@
 #include <eZ8.h>             // special encore constants, macros and flash routines
 #include <sio.h>             // special encore serial i/o routines#include "screenio.h"
+#include "display.h"
 #include "clockio.h"
 #include "charset.h"
 
@@ -158,36 +159,53 @@ void writeLED(int column, int screen, char shape[])
 		//write the column to the display
 		PGOUT |= shape[DISPLAY_COUNT - column];
 		
-		// Clock the screen to display it
+		// Clock the screen to display the column on it
 		clockScreen(screen);
 }
 
-void LEDWriteCharColumnsToScreen(int column, char toWrite[5][6])
+//writes a column to all displays
+void LEDWriteCharColumnsToScreen(int column, char toWrite[VIDEO_BUFFER_LENGTH][VIDEO_BUFFER_COLUMNS])
 {
-	int screen = 0;
-	for(screen = 1; screen <= DISPLAY_COUNT; screen++)
+	int display;
+	//display is index 1 based
+	for(display = 1; display <= DISPLAY_COUNT; display++)
 	{
+		//wait for the clock to run and then update another display
+		//which means the column of the display will be turned on for
+		//~0.5ms
 		waitOnce();
-		writeLED(column, screen, toWrite[screen - 1]);
+		//doesn't support strings that are smaller than the amount of displays
+		//cound easily be sloved by using a MAX function to either get the length of the string or
+		//the amount of displays but that's currently not needed
+		writeLED(column, display, toWrite[display - 1]);
 	}
 }
 
+//updates all columns of all displays
 void LEDupdate()
 {
 	int column = 0;
-	for(column = 0; column < DISPLAY_COLUMN_COUNT; column++) // doesn't support strings that are smaller than 4 chars
+	for(column = 0; column < DISPLAY_COLUMN_COUNT; column++)
 	{
 		LEDWriteCharColumnsToScreen(column, videoBuffer);
 	}
 }
 
+//handles scrolling of the text on the displays
+//which doesn't nessesarily mean that the text will scroll
+//when this method will be called as this method will only scroll the text when it
+//has been called UPDATES_BEFORE_SCROLL times.
+//This is to prevent the text from scrolling too fast when calling this method in a tight loop
 void scrollText()
 {
 	int i;
 	int j;
 	int k;
+	//either show the text on the displays or load in a new character
 	if(columnScrollOffset < VIDEO_BUFFER_COLUMNS)
 	{
+		//only scrolls the text every UPDATES_BEFORE_SCROLL times this method is called
+		//so when it isn't scrolling it's just showing the text on the displays
 		if (LEDUpdateCount < UPDATES_BEFORE_SCROLL)
 		{
 			LEDupdate();
@@ -195,21 +213,29 @@ void scrollText()
 		}
 		else
 		{
-			for(i = 0; i < 5; i++)
+			//foreach column in each character move every column one to the left
+			for(i = 0; i < VIDEO_BUFFER_LENGTH; i++)
 			{
+				//move ever column to the left except for the last one as that one has to come from the next characters first column
 				for(k = 1; k < VIDEO_BUFFER_COLUMNS; k++)
 				{
 					videoBuffer[i][k - 1] = videoBuffer[i][k];
 				}
-				if(i < 5)
+				//only move a column from the next character to this character if we are not at the end of the videobuffer
+				//as there is no next character when the end is reached
+				if(i < VIDEO_BUFFER_LENGTH)
 				{
-					videoBuffer[i][DISPLAY_COLUMN_COUNT] = videoBuffer[i + 1][0];
+					videoBuffer[i][VIDEO_BUFFER_LENGTH] = videoBuffer[i + 1][0];
 				}
 			}
+			//the text scrolled so now wait for UPDATES_BEFORE_SCROLL to be reacked again
+			//and increment columnScrollOffset which determines when to load in a nother character
 			LEDUpdateCount = 0;
 			columnScrollOffset++;
 		}
 	}
+	//if the last character has been fully moved into the last display then load a new
+	//character into the end of the videobuffer as there would otherwise be nothing to scroll
 	if(columnScrollOffset == VIDEO_BUFFER_COLUMNS)
 	{
 		loadCharIntoVideoBuffer();

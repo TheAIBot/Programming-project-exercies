@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "trigonometry.h"
 #include "SuperIO.h"
-#include "screenio.h"
+#include "display.h"
 #include "buttonio.h"
 #include "timer.h"
 #include "game.h"
