@@ -32,7 +32,7 @@ The top left position of the brick
 
 size:
 Contains the width and height of the brick. Height and width is both 4 bits which means
-that the max value for the height and width is 15. Due to the way brick collisions with balls
+that the max value for the height and width is 15. The mininmum width and height of a brick is 1.
 The height of the brick is the last four bits and can be extracted with the macro BRICK_HEIGHT
 The width of the brick is the first four bits and can be extracted with the macro BRICK_HEIGHT
 A size can be made by a width and height by using the macro MAKE_SIZE.

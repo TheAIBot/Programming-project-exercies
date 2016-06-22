@@ -1,10 +1,10 @@
 #ifndef _SCREENIO_H_
 #define _SCREENIO_H_
 
-void LEDinit(void);
+void LEDinit();
 void LEDsetString(char string[]);
-void LEDupdate(void);
-void LEDWriteCharToScreen(int screen, char toWrite[]);
-void scrollText(void);
+void LEDupdate();
+void LEDWriteCharToDisplay(int display, char toWrite[]);
+void scrollText();
 
 #endif
