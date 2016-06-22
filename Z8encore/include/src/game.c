@@ -2,7 +2,6 @@
 #include <sio.h>             // special encore serial i/o routines
 #include <stdio.h>
 #include "trigonometry.h"
-#include "SuperIO.h"
 #include "display.h"
 #include "buttonio.h"
 #include "timer.h"

@@ -134,7 +134,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\main.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\joystick.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\sound.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\tests.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\stdarg.h  \
@@ -274,7 +273,6 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\brick.obj :  \
 
 C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\game.obj :  \
             C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\src\game.c  \
-            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\SuperIO.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ansi.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\ball.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\boss.h  \

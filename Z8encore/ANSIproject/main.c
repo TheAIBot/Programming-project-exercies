@@ -6,7 +6,6 @@
 #include "game.h"
 #include "clockio.h"
 #include "sound.h"
-#include "tests.h"
 #include "charset.h"
 
 void main() {
