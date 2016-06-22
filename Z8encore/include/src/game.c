@@ -72,7 +72,7 @@ void getDifficulty(struct TGame *game)
 	writeTitle(game->gameSizeX,5, "Welcome to", FCOLOR_LIGHT_CYAN);
 	writeTitle(game->gameSizeX,5 + ROW_COUNT + 1, "Brick Breaker!", FCOLOR_LIGHT_CYAN);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-    printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
+    printf("Select difficulty level by pressing A/B button (max. 5): %5d", game->difficulty);
     gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 3);
     printf("Press both buttons to start game.");
 	while(1){
@@ -93,13 +93,13 @@ void getDifficulty(struct TGame *game)
 			//increment difficulty and redraw the difficulty on the screen
 			game->difficulty++;
 			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-            printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
+            printf("Select difficulty level by pressing A/B button (max. 5): %5d", game->difficulty);
 		}
 		if(isButton2Pressed() && game->difficulty > MIN_DIFFICULTY){
 			//decrement difficulty and redraw the difficulty on the screen
 			game->difficulty--;
 			gotoxy((game->gameSizeX >> 1) - 30, (game->gameSizeY >> 1) + 2);
-        	printf("Select difficulty level by pressing up/down button (max. 5): %5d", game->difficulty);
+        	printf("Select difficulty level by pressing A/B button (max. 5): %5d", game->difficulty);
 		}
 	}
 	//the amount of lives and the strikers length depends on the difficulty
@@ -238,8 +238,8 @@ void endScreen(struct TGame *game, char message[], char color)
 	sprintf(formattedString, "Score: %5d", game->score + game->lives * 500 * game->difficulty);
 	writeTitle(game->gameSizeX, (game->gameSizeY >> 1) + 3, formattedString, color);
 
-	gotoxy(game->gameSizeX >> 1, (game->gameSizeY >> 1) + 3 + ROW_COUNT + 2);
-	printf("Press button 2 to restart");
+	gotoxy((game->gameSizeX >> 1) - 10, (game->gameSizeY >> 1) + 3 + ROW_COUNT + 2);
+	printf("Press button B to restart");
 	gotoxy(0, game->gameSizeY + 1);
 	printf("Score = points + lives * 500 * difficulty");
 }
