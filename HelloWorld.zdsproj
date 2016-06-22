@@ -267,7 +267,7 @@
 </tool>
 <tool name="General">
 <options>
-<option name="outputdir" type="string" change-action="compile">.</option>
+<option name="outputdir" type="string" change-action="compile">Z8encore\include\</option>
 <option name="tempath" type="string" change-action="none"></option>
 </options>
 </tool>

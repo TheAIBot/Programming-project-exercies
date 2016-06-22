@@ -183,28 +183,28 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 					   		ballY == brickY - 1)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 180, 270, 90, 180);
+						handleBrickCornerCollision(ball, 180, 315, 90, 180);
 					}
 					//hit top right corner
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY - 1)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 270, 360, 0, 90);
+						handleBrickCornerCollision(ball, 225, 360, 0, 90);
 					}
 					//hit bottom left corner
 					else if(ballX == brickX - 1 &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 90, 180, 180, 270);
+						handleBrickCornerCollision(ball, 45, 180, 180, 270);
 					}
 					//hit bottom right corner
 					else if(ballX == brickX + brickSizeWidth &&
 					   		ballY == brickY + brickSizeHeight)
 					{
 						hit = 1;
-						handleBrickCornerCollision(ball, 0, 90, 270, 360);
+						handleBrickCornerCollision(ball, 0, 135, 270, 360);
 					}
 					//if the brick was hit
 					if(hit == 1)

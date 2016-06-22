@@ -312,7 +312,7 @@ C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\level.obj :  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\FIXEDM~1.H  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\game.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\level.h  \
-            C:\Users\Andreas\Documents\GitHub\Programming-project-exercies\Z8encore\include\powerup.h  \
+            C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\powerup.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\striker.h  \
             C:\Users\Andreas\DOCUME~1\GitHub\PROGRA~1\Z8encore\include\timer.h  \
             D:\ProgramFiles\ZiLOG\ZDSIIZ8Encore493\include\std\format.h  \

@@ -159,8 +159,8 @@ void initSoundClock() // need to add an argument to set the time interval
 	T1RL = 0x04;
 
 	//Set interrupt
-	IRQ0ENL &= 0xBF; //enable Timer 0 interrupt, and set nominal priority
-	IRQ0ENH |= 0x40; 
+	IRQ0ENL &= 0xBF; 
+	IRQ0ENH |= 0x40; //enable Timer 1 interrupt, and set nominal priority
 
 	//Enable timer
 	T1CTL = 0xB9; //10111001
