@@ -246,7 +246,7 @@ char handleBrickCollisions(struct TBrick bricks[], struct TBall balls[MAX_BALL_C
 	}
 	return 0;
 	*/
-	return anyBricksAlive;
+	return !anyBricksAlive;
 }
 
 //init all bricks by drawing them all on the screen

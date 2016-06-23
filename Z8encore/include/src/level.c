@@ -27,7 +27,7 @@
 void level1(struct TGame *game)
 {
 	char i;
-	struct TBrick bricks[39] = 
+	struct TBrick bricks[36] = 
 	{
 		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
 		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
@@ -41,7 +41,6 @@ void level1(struct TGame *game)
 		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
 		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
 		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
-		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 5, BRICK_SIZE_1_, 3},
 		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
 		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
 		{(BRICK_WIDTH_1_ + 1) * 3, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
@@ -54,7 +53,6 @@ void level1(struct TGame *game)
 		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
 		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
 		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
-		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 6, BRICK_SIZE_1_, 2},
 		{(BRICK_WIDTH_1_ + 1) * 1, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 		{(BRICK_WIDTH_1_ + 1) * 2, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 		{(BRICK_WIDTH_1_ + 1) * 3, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
@@ -66,7 +64,6 @@ void level1(struct TGame *game)
 		{(BRICK_WIDTH_1_ + 1) * 9, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 		{(BRICK_WIDTH_1_ + 1) *10, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 		{(BRICK_WIDTH_1_ + 1) *11, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
-		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 		{(BRICK_WIDTH_1_ + 1) *12, (BRICK_HEIGHT_1_ + 1) * 7, BRICK_SIZE_1_, 1},
 	};
 	struct TBrick bossBricks[0];
